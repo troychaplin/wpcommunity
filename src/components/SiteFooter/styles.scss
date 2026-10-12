@@ -1,0 +1,87 @@
+@use '../../styles/wpc-variables' as *;
+@use '../../styles/mixins/tones';
+
+.wpc-site-footer {
+    @include tones.inverse;
+    padding-block: var(--wpc--spacing-x-large) var(--wpc--spacing-medium);
+    padding-inline: var(--wpc--root-padding-x);
+    font-size: var(--wpc--font-size-small);
+    background-color: var(--wpc--color-forest);
+
+    p {
+        margin: 0;
+    }
+
+    a {
+        color: var(--wpc--color-text-muted);
+        text-decoration: none;
+        transition: color var(--wpc--transition-fast);
+
+        &:hover {
+            color: var(--wpc--color-text);
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            transition: none;
+        }
+    }
+}
+
+// Stacked on small screens. Above tablet width: brand, then the nav column, then the extra slot
+// (language) pushed to the end.
+.wpc-site-footer__inner {
+    display: grid;
+    gap: var(--wpc--spacing-large);
+    max-width: var(--wpc--layout-wide-size);
+    margin-inline: auto;
+
+    @include above-tablet {
+        grid-template-columns: minmax(0, 2fr) minmax(0, 1fr) auto;
+    }
+}
+
+.wpc-site-footer .wpc-site-footer__name,
+.wpc-site-footer .wpc-site-footer__name a {
+    font-family: var(--wpc--font-family-serif);
+    font-size: var(--wpc--font-size-x-large);
+    font-weight: var(--wpc--font-weight-semibold);
+    line-height: var(--wpc--line-height-tight);
+    color: var(--wpc--color-text);
+}
+
+.wpc-site-footer__description {
+    margin-top: var(--wpc--spacing-small);
+    color: var(--wpc--color-text-muted);
+}
+
+.wpc-site-footer__nav ul {
+    display: grid;
+    gap: var(--wpc--spacing-small);
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+@include above-tablet {
+    .wpc-site-footer__extra {
+        justify-self: end;
+    }
+}
+
+.wpc-site-footer__bottom {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: var(--wpc--spacing-small);
+    max-width: var(--wpc--layout-wide-size);
+    margin: var(--wpc--spacing-x-large) auto 0;
+    padding-top: var(--wpc--spacing-medium);
+    font-size: var(--wpc--font-size-x-small);
+    color: var(--wpc--color-text-muted);
+    border-top: 1px solid var(--wpc--color-border);
+}
+
+.wpc-site-footer .wpc-site-footer__meta a {
+    font-weight: var(--wpc--font-weight-semibold);
+    color: var(--wpc--color-text);
+}

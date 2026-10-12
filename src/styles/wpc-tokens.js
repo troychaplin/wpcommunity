@@ -19,6 +19,7 @@ export const wpcTokens = {
         white: '#ffffff',
         primary: 'var(--wpc--color-crimson)',
         primaryHover: 'var(--wpc--color-crimson-dark)',
+        accent: 'var(--wpc--color-crimson)',
         heading: 'var(--wpc--color-forest)',
         text: 'var(--wpc--color-ink)',
         textMuted: 'var(--wpc--color-slate)',
@@ -88,11 +89,17 @@ export const wpcTokens = {
         fast: '150ms ease',
         normal: '250ms ease'
     },
+    z: {
+        '100': '100',
+        '200': '200',
+        '500': '500'
+    },
     layout: {
         contentSize: '1024px',
         wideSize: '1280px',
         smallSize: '720px',
-        maxSize: '1440px'
+        maxSize: '1440px',
+        fullSize: '100vw'
     },
     viewport: {
         mobile: '600px',
@@ -110,7 +117,7 @@ export const wpcTokens = {
 };
 
 export const wpcTokenKeys = {
-    color: { crimson: 'crimson', 'crimson-dark': 'crimson-dark', 'crimson-light': 'crimson-light', forest: 'forest', 'forest-light': 'forest-light', moss: 'moss', ink: 'ink', slate: 'slate', lichen: 'lichen', mist: 'mist', stone: 'stone', 'sage-dark': 'sage-dark', sage: 'sage', canvas: 'canvas', white: 'white', primary: 'primary', 'primary-hover': 'primary-hover', heading: 'heading', text: 'text', 'text-muted': 'text-muted', background: 'background', surface: 'surface', 'surface-tint': 'surface-tint', border: 'border', inverse: 'inverse', 'text-inverse': 'text-inverse', 'text-inverse-muted': 'text-inverse-muted', 'accent-inverse': 'accent-inverse' },
+    color: { crimson: 'crimson', 'crimson-dark': 'crimson-dark', 'crimson-light': 'crimson-light', forest: 'forest', 'forest-light': 'forest-light', moss: 'moss', ink: 'ink', slate: 'slate', lichen: 'lichen', mist: 'mist', stone: 'stone', 'sage-dark': 'sage-dark', sage: 'sage', canvas: 'canvas', white: 'white', primary: 'primary', 'primary-hover': 'primary-hover', accent: 'accent', heading: 'heading', text: 'text', 'text-muted': 'text-muted', background: 'background', surface: 'surface', 'surface-tint': 'surface-tint', border: 'border', inverse: 'inverse', 'text-inverse': 'text-inverse', 'text-inverse-muted': 'text-inverse-muted', 'accent-inverse': 'accent-inverse' },
     gradient: { blush: 'blush', 'forest-glow': 'forest-glow' },
     spacing: { '2x-small': '2x-small', 'x-small': 'x-small', small: 'small', medium: 'medium', large: 'large', 'x-large': 'x-large', '2x-large': '2x-large' },
     fontFamily: { serif: 'serif', sans: 'sans', mono: 'mono' },
@@ -120,7 +127,8 @@ export const wpcTokenKeys = {
     lineHeight: { tight: 'tight', snug: 'snug', normal: 'normal', relaxed: 'relaxed' },
     radius: { sm: 'sm', md: 'md', lg: 'lg', full: 'full' },
     transition: { fast: 'fast', normal: 'normal' },
-    layout: { 'content-size': 'content-size', 'wide-size': 'wide-size', 'small-size': 'small-size', 'max-size': 'max-size' },
+    z: { '100': '100', '200': '200', '500': '500' },
+    layout: { 'content-size': 'content-size', 'wide-size': 'wide-size', 'small-size': 'small-size', 'max-size': 'max-size', 'full-size': 'full-size' },
     viewport: { mobile: 'mobile', tablet: 'tablet' }
 };
 

@@ -1,0 +1,80 @@
+@use '../../styles/wpc-variables' as *;
+
+.wpc-column {
+    display: grid;
+    gap: var(--wpc--spacing-large);
+    margin-left: auto;
+    margin-right: auto;
+
+    &--one {
+        grid-template-columns: repeat(1, minmax(0, 1fr));
+    }
+
+    &--two {
+        grid-template-columns: 1fr;
+
+        @include above-mobile {
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+        }
+    }
+
+    &--three {
+        grid-template-columns: 1fr;
+
+        @include above-tablet {
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+        }
+    }
+
+    &--four {
+        grid-template-columns: 1fr;
+
+        @include above-mobile {
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+        }
+
+        @include above-tablet {
+            grid-template-columns: repeat(4, minmax(0, 1fr));
+        }
+    }
+
+    &--one-third {
+        grid-template-columns: 1fr;
+
+        @include above-tablet {
+            grid-template-columns: 33% auto;
+        }
+    }
+
+    &--two-thirds {
+        grid-template-columns: 1fr;
+
+        @include above-tablet {
+            grid-template-columns: 66% auto;
+        }
+    }
+}
+
+.wpc-column > .wpc-column__content *:first-child {
+    margin-top: 0;
+}
+
+.wpc-column > .wpc-column__content *:last-child {
+    margin-bottom: 0;
+}
+
+/* Ordering — isFirst only applies once the columns sit side by side, so stacked columns keep DOM order */
+.wpc-column--two > .is-first,
+.wpc-column--four > .is-first {
+    @include above-mobile {
+        order: -1;
+    }
+}
+
+.wpc-column--three > .is-first,
+.wpc-column--one-third > .is-first,
+.wpc-column--two-thirds > .is-first {
+    @include above-tablet {
+        order: -1;
+    }
+}

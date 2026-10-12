@@ -7,7 +7,7 @@
         "themeable": false,
         "emitScssAlongside": false,
         "emitAggregate": false,
-        "scssVars": ["viewport", "spacing"]
+        "scssVars": ["viewport", "spacing", "radius"]
     },
 
     "fluid": {
@@ -20,7 +20,8 @@
             "contentSize": "1024px",
             "wideSize": "1280px",
             "smallSize": { "value": "720px", "cssOnly": true },
-            "maxSize": { "value": "1440px", "cssOnly": true }
+            "maxSize": { "value": "1440px", "cssOnly": true },
+            "fullSize": { "value": "100vw", "cssOnly": true }
         },
 
         "viewport": {
@@ -47,6 +48,7 @@
 
             "primary": { "value": "var(--wpc--color-crimson)", "cssOnly": true },
             "primary-hover": { "value": "var(--wpc--color-crimson-dark)", "cssOnly": true },
+            "accent": { "value": "var(--wpc--color-crimson)", "cssOnly": true },
             "heading": { "value": "var(--wpc--color-forest)", "cssOnly": true },
             "text": { "value": "var(--wpc--color-ink)", "cssOnly": true },
             "text-muted": { "value": "var(--wpc--color-slate)", "cssOnly": true },
@@ -130,6 +132,12 @@
         "transition": {
             "fast": "150ms ease",
             "normal": "250ms ease"
+        },
+
+        "zIndex": {
+            "100": "100",
+            "200": "200",
+            "500": "500"
         }
     },
 

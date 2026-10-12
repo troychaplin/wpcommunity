@@ -19,6 +19,19 @@ $wpc-spacing: (
   '2x-large': $wpc-spacing-2x-large,
 );
 
+// Border Radius
+$wpc-radius-sm: 4px;
+$wpc-radius-md: 6px;
+$wpc-radius-lg: 8px;
+$wpc-radius-full: 9999px;
+
+$wpc-radius: (
+  'sm': $wpc-radius-sm,
+  'md': $wpc-radius-md,
+  'lg': $wpc-radius-lg,
+  'full': $wpc-radius-full,
+);
+
 // Viewport
 $wpc-viewport-mobile: 600px;
 $wpc-viewport-tablet: 960px;

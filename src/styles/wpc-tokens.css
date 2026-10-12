@@ -19,6 +19,7 @@
   --wpc--color-white: #ffffff;
   --wpc--color-primary: var(--wpc--color-crimson);
   --wpc--color-primary-hover: var(--wpc--color-crimson-dark);
+  --wpc--color-accent: var(--wpc--color-crimson);
   --wpc--color-heading: var(--wpc--color-forest);
   --wpc--color-text: var(--wpc--color-ink);
   --wpc--color-text-muted: var(--wpc--color-slate);
@@ -88,11 +89,17 @@
   --wpc--transition-fast: 150ms ease;
   --wpc--transition-normal: 250ms ease;
 
+  /* Z-Index */
+  --wpc--z-100: 100;
+  --wpc--z-200: 200;
+  --wpc--z-500: 500;
+
   /* Layout */
   --wpc--layout-content-size: 1024px;
   --wpc--layout-wide-size: 1280px;
   --wpc--layout-small-size: 720px;
   --wpc--layout-max-size: 1440px;
+  --wpc--layout-full-size: 100vw;
 
   /* Viewport */
   --wpc--viewport-mobile: 600px;

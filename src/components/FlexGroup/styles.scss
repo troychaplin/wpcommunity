@@ -1,0 +1,88 @@
+@use 'sass:map';
+@use '../../styles/wpc-variables' as vars;
+
+.wpc-flex-group {
+    display: flex;
+    margin-left: auto;
+    margin-right: auto;
+
+    // direction and wrap always emit a class, so nothing here competes with a
+    // modifier at equal specificity and source order never decides a winner.
+    &--row {
+        flex-direction: row;
+    }
+
+    &--column {
+        flex-direction: column;
+    }
+
+    &--wrap {
+        flex-wrap: wrap;
+    }
+
+    &--nowrap {
+        flex-wrap: nowrap;
+    }
+
+    // Main axis (justify-content)
+    &--justify-start {
+        justify-content: flex-start;
+    }
+
+    &--justify-center {
+        justify-content: center;
+    }
+
+    &--justify-end {
+        justify-content: flex-end;
+    }
+
+    &--justify-space-between {
+        justify-content: space-between;
+    }
+
+    // Cross axis (align-items)
+    &--align-start {
+        align-items: flex-start;
+    }
+
+    &--align-center {
+        align-items: center;
+    }
+
+    &--align-end {
+        align-items: flex-end;
+    }
+
+    &--align-stretch {
+        align-items: stretch;
+    }
+}
+
+// Spacing modifiers are generated from the scale rather than hand-listed, so a
+// change to c2b.config.json propagates here with no edit.
+$steps: (
+    none: 0,
+);
+
+@each $name in map.keys(vars.$wpc-spacing) {
+    $steps: map.set($steps, $name, var(--wpc--spacing-#{$name}));
+}
+
+@each $key, $value in $steps {
+    .wpc-flex-group--gap-#{$key} {
+        gap: $value;
+    }
+
+    .wpc-flex-group--padding-#{$key} {
+        padding: $value;
+    }
+
+    // Doubled class = (0,2,0) deliberately. wpc-typography.css ships
+    // `.is-layout-constrained > :is(h1,h2,h3,h4,h5,h6) + *` at (0,1,1), which
+    // beats a single-class modifier and would silently reset margin-block-start
+    // on any FlexGroup that follows a heading inside Main.
+    .wpc-flex-group.wpc-flex-group--margin-#{$key} {
+        margin-block: $value;
+    }
+}

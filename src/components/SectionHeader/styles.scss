@@ -1,0 +1,57 @@
+@use '../../styles/wpc-variables' as *;
+
+// Title and meta share the first row once there's room; the description always takes a row of
+// its own below them.
+.wpc-section-header {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    gap: var(--wpc--spacing-x-small) var(--wpc--spacing-medium);
+    margin-bottom: var(--wpc--spacing-large);
+
+    @include above-mobile {
+        grid-template-columns: minmax(0, 1fr) auto;
+        align-items: end;
+    }
+}
+
+.wpc-section-header--center {
+    justify-items: center;
+    text-align: center;
+
+    @include above-mobile {
+        grid-template-columns: minmax(0, 1fr);
+    }
+}
+
+.wpc-section-header--divider {
+    padding-bottom: var(--wpc--spacing-small);
+    border-bottom: 1px solid var(--wpc--color-border);
+}
+
+.wpc-section-header__prefix {
+    margin: 0 0 var(--wpc--spacing-x-small);
+    font-family: var(--wpc--font-family-mono);
+    font-size: var(--wpc--font-size-x-small);
+    font-weight: var(--wpc--font-weight-normal);
+    color: var(--wpc--color-accent);
+}
+
+.wpc-section-header__title {
+    margin: 0;
+    font-size: var(--wpc--font-size-heading-medium);
+    line-height: var(--wpc--line-height-tight);
+}
+
+.wpc-section-header__meta {
+    margin: 0;
+    font-family: var(--wpc--font-family-mono);
+    font-size: var(--wpc--font-size-x-small);
+    color: var(--wpc--color-text-muted);
+}
+
+.wpc-section-header__description {
+    grid-column: 1 / -1;
+    max-width: var(--wpc--layout-small-size);
+    margin: 0;
+    color: var(--wpc--color-text-muted);
+}

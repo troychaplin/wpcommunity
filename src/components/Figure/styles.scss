@@ -1,0 +1,81 @@
+@use '../../styles/wpc-variables' as *;
+
+.wpc-figure {
+    max-width: 100%; // safety net — never overflow container
+    margin: 0;
+
+    img {
+        display: block;
+        width: 100%;
+        height: auto;
+    }
+}
+
+// Explicit width so wpc-figure__inner (and the caption inside it) is always
+// bounded to the same width as the image. max-width: 100% on the root
+// handles the case where the viewport is narrower than the declared size.
+.wpc-figure--xs {
+    width: 320px;
+}
+.wpc-figure--sm {
+    width: 440px;
+}
+.wpc-figure--md {
+    width: 512px;
+}
+.wpc-figure--lg {
+    width: 48rem;
+}
+.wpc-figure--full {
+    width: 100%;
+}
+
+// Below the float breakpoint, collapse all sized variants to full width
+// so they stack naturally without overflowing narrow viewports.
+@include below-tablet {
+    .wpc-figure--xs,
+    .wpc-figure--sm,
+    .wpc-figure--md,
+    .wpc-figure--lg {
+        width: 100%;
+    }
+}
+
+// Float alignment — activates at md+
+.wpc-figure--left {
+    margin: var(--wpc--spacing-medium) 0;
+
+    @include above-tablet {
+        float: left;
+        clear: left;
+        margin-top: 0;
+        margin-right: var(--wpc--spacing-large);
+    }
+}
+
+.wpc-figure--right {
+    margin: var(--wpc--spacing-medium) 0;
+
+    @include above-tablet {
+        float: right;
+        clear: right;
+        margin-top: 0;
+        margin-left: var(--wpc--spacing-large);
+    }
+}
+
+.wpc-figure--center {
+    margin: var(--wpc--spacing-medium) 0;
+}
+
+.wpc-figure__inner {
+    overflow: hidden;
+    border-radius: var(--wpc--radius-md);
+}
+
+.wpc-figure__caption {
+    background-color: var(--wpc--color-surface-tint);
+    padding: var(--wpc--spacing-x-small) var(--wpc--spacing-small);
+    font-size: var(--wpc--font-size-small);
+    color: var(--wpc--color-text-muted);
+}

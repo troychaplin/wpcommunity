@@ -1,0 +1,36 @@
+// Role colours for each surface tone. A surface that re-declares the roles hands the right values
+// to every child that reads them (body text, headings, borders, eyebrows), so components work
+// unchanged on light and dark sections. Light surfaces re-declare too, so a white card inside an
+// inverse section switches back to dark text.
+
+@mixin light {
+    --wpc--color-text: var(--wpc--color-ink);
+    --wpc--color-heading: var(--wpc--color-forest);
+    --wpc--color-text-muted: var(--wpc--color-slate);
+    --wpc--color-border: var(--wpc--color-stone);
+    --wpc--color-accent: var(--wpc--color-crimson);
+    color: var(--wpc--color-text);
+
+    // (0,0,1): beats the zero-specificity base link colour, loses to any component class
+    :where(&) a {
+        color: var(--wpc--color-primary);
+    }
+}
+
+@mixin inverse {
+    --wpc--color-text: var(--wpc--color-mist);
+    --wpc--color-heading: var(--wpc--color-white);
+    --wpc--color-text-muted: var(--wpc--color-lichen);
+    --wpc--color-border: var(--wpc--color-forest-light);
+    --wpc--color-accent: var(--wpc--color-accent-inverse);
+    color: var(--wpc--color-text);
+
+    // crimson falls below 3:1 on forest, so links and focus rings use the light accent
+    :where(&) a {
+        color: var(--wpc--color-accent-inverse);
+    }
+
+    :where(&) :focus-visible {
+        outline-color: var(--wpc--color-accent-inverse);
+    }
+}

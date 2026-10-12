@@ -1,0 +1,23 @@
+// Global width classes for Gutenberg alignments, used by the layout components
+.alignsmall {
+    max-width: var(--wpc--layout-small-size) !important;
+}
+
+.aligncontent {
+    max-width: var(--wpc--layout-content-size);
+}
+
+.alignwide {
+    max-width: var(--wpc--layout-wide-size);
+}
+
+.alignfull {
+    max-width: var(--wpc--layout-full-size);
+}
+
+// Spacing between layout sections inside Main
+.wpc-main > div > .wpc-layout + .wpc-layout,
+.wpc-main > div > .wpc-layout + :not(.wpc-layout),
+.wpc-main > div > :not(.wpc-layout) + .wpc-layout {
+    margin-top: var(--wpc--spacing-x-large);
+}
