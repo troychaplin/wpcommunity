@@ -1,0 +1,36 @@
+.wpc-filter-pill {
+    display: inline-flex;
+    align-items: center;
+    padding: var(--wpc--spacing-x-small) var(--wpc--spacing-small);
+    font-family: var(--wpc--font-family-sans);
+    font-size: var(--wpc--font-size-medium);
+    font-weight: var(--wpc--font-weight-normal);
+    line-height: var(--wpc--line-height-flat);
+    color: var(--wpc--color-text-muted);
+    white-space: nowrap;
+    background-color: transparent;
+    border: 1px solid var(--wpc--color-border);
+    border-radius: var(--wpc--radius-full);
+    cursor: pointer;
+    transition:
+        color var(--wpc--transition-fast),
+        background-color var(--wpc--transition-fast),
+        border-color var(--wpc--transition-fast);
+
+    &:hover {
+        color: var(--wpc--color-text);
+        border-color: var(--wpc--color-text-muted);
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+        transition: none;
+    }
+}
+
+// Palette tokens, like Button, so the selected state looks the same in any section tone
+.wpc-filter-pill--pressed,
+.wpc-filter-pill--pressed:hover {
+    color: var(--wpc--color-white);
+    background-color: var(--wpc--color-forest-light);
+    border-color: var(--wpc--color-forest-light);
+}

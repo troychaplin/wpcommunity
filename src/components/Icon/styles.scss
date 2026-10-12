@@ -1,0 +1,31 @@
+// Sized in em, so an icon matches the text it sits beside. The size modifiers set the font size
+// from the type scale for icons that stand alone.
+.wpc-icon {
+    flex-shrink: 0;
+    width: 1em;
+    height: 1em;
+}
+
+.wpc-icon--small {
+    font-size: var(--wpc--font-size-small);
+}
+
+.wpc-icon--medium {
+    font-size: var(--wpc--font-size-medium);
+}
+
+.wpc-icon--large {
+    font-size: var(--wpc--font-size-large);
+}
+
+.wpc-icon--x-large {
+    font-size: var(--wpc--font-size-x-large);
+}
+
+.wpc-icon--2x-large {
+    font-size: var(--wpc--font-size-2x-large);
+}
+
+.wpc-icon--heading-small {
+    font-size: var(--wpc--font-size-heading-small);
+}

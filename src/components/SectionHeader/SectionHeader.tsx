@@ -1,5 +1,7 @@
 import React from 'react';
 
+import { Eyebrow } from '../Eyebrow';
+
 import './styles.scss';
 
 export interface SectionHeaderProps extends Omit<
@@ -40,10 +42,14 @@ export const SectionHeader = ({
     return (
         <header className={rootClasses} {...rest}>
             <div className="wpc-section-header__main">
-                {prefix && <p className="wpc-section-header__prefix">{prefix}</p>}
+                {prefix && (
+                    <Eyebrow tone="accent" className="wpc-section-header__prefix">
+                        {prefix}
+                    </Eyebrow>
+                )}
                 {title && <Heading className="wpc-section-header__title">{title}</Heading>}
             </div>
-            {meta && <p className="wpc-section-header__meta">{meta}</p>}
+            {meta && <Eyebrow className="wpc-section-header__meta">{meta}</Eyebrow>}
             {description && <p className="wpc-section-header__description">{description}</p>}
         </header>
     );

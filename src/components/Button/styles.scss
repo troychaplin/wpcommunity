@@ -11,7 +11,7 @@ a.wpc-button {
     font-family: var(--wpc--font-family-sans);
     font-size: var(--wpc--font-size-medium);
     font-weight: var(--wpc--font-weight-medium);
-    line-height: var(--wpc--line-height-snug);
+    line-height: var(--wpc--line-height-relaxed);
     text-decoration: none;
     border-width: 1px;
     border-style: solid;
@@ -87,6 +87,13 @@ a.wpc-button {
 a.wpc-button--small {
     padding: var(--wpc--spacing-2x-small) var(--wpc--spacing-x-small);
     font-size: var(--wpc--font-size-small);
+}
+
+.wpc-button--large,
+a.wpc-button--large {
+    padding: var(--wpc--spacing-small) var(--wpc--spacing-medium);
+    font-size: var(--wpc--font-size-large);
+    line-height: var(--wpc--line-height-tight);
 }
 
 .wpc-button--full {

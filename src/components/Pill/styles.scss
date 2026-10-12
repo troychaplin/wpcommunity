@@ -1,0 +1,47 @@
+.wpc-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--wpc--spacing-x-small);
+    font-family: var(--wpc--font-family-mono);
+    font-size: var(--wpc--font-size-x-small);
+    font-weight: var(--wpc--font-weight-normal);
+    line-height: var(--wpc--line-height-tight);
+    white-space: nowrap;
+}
+
+li.wpc-pill {
+    list-style: none;
+}
+
+// Update categories: Event, Announcement, Resource, Community
+.wpc-pill--tag {
+    padding: var(--wpc--spacing-2x-small) var(--wpc--spacing-x-small);
+    line-height: var(--wpc--line-height-snug);
+    color: var(--wpc--color-accent);
+    background-color: var(--wpc--color-crimson-tint);
+    border-radius: var(--wpc--radius-sm);
+}
+
+.wpc-pill--region {
+    padding: var(--wpc--spacing-x-small) var(--wpc--spacing-small);
+    color: var(--wpc--color-text-muted);
+    background-color: var(--wpc--color-surface-tint);
+    border-radius: var(--wpc--radius-full);
+
+    &::before {
+        content: '';
+        width: 0.4em;
+        height: 0.4em;
+        background-color: var(--wpc--color-moss);
+        border-radius: var(--wpc--radius-full);
+    }
+}
+
+// The 1px border comes off the block padding, so status and region pills share a height
+.wpc-pill--status {
+    padding: calc(var(--wpc--spacing-x-small) - 1px) var(--wpc--spacing-small);
+    color: var(--wpc--color-heading);
+    background-color: var(--wpc--color-surface-tint);
+    border: 1px solid var(--wpc--color-sage-dark);
+    border-radius: var(--wpc--radius-full);
+}

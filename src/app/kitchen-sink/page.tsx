@@ -2,18 +2,27 @@ import type { Metadata } from "next";
 import Image from "next/image";
 import { Article } from "@/components/Article";
 import { Aside } from "@/components/Aside";
+import { Avatar } from "@/components/Avatar";
 import { Button } from "@/components/Button";
 import { ButtonGroup } from "@/components/ButtonGroup";
 import { Card } from "@/components/Card";
 import { Column } from "@/components/Column";
 import { Container } from "@/components/Container";
+import { Eyebrow } from "@/components/Eyebrow";
 import { Figure } from "@/components/Figure";
+import { FilterPill } from "@/components/FilterPill";
 import { FlexGroup } from "@/components/FlexGroup";
 import { GridGroup } from "@/components/GridGroup";
+import { Heading } from "@/components/Heading";
+import { Icon } from "@/components/Icon";
+import type { IconName } from "@/components/Icon";
+import { icons } from "@/components/Icon/icons";
 import { Main } from "@/components/Main";
+import { Pill } from "@/components/Pill";
 import { SectionHeader } from "@/components/SectionHeader";
 import { SiteFooter } from "@/components/SiteFooter";
 import { SiteHeader } from "@/components/SiteHeader";
+import { TextLink } from "@/components/TextLink";
 
 export const metadata: Metadata = {
   title: "Kitchen sink",
@@ -27,6 +36,19 @@ const navItems = [
 ];
 
 const tones = ["canvas", "tint", "blush", "inverse", "white"] as const;
+
+const headingSizes = [
+  "heading-large",
+  "heading-medium",
+  "heading-small",
+  "2x-large",
+  "x-large",
+  "large",
+] as const;
+
+const regions = ["All Regions", "British Columbia", "Prairies", "Ontario", "Québec", "Atlantic"];
+
+const iconNames = Object.keys(icons) as IconName[];
 
 const cards = [
   { backgroundColor: "white", label: "White, with shadow", shadow: true },
@@ -67,6 +89,70 @@ export default function KitchenSink() {
             <Button text="Disabled" disabled />
           </ButtonGroup>
           <Button text="Full width" isFull />
+        </Container>
+
+        <Container as="section" maxWidth="alignwide" contentWidth="alignwide">
+          <SectionHeader
+            title="Foundations"
+            meta="Heading · Eyebrow · TextLink · Pill · FilterPill · Avatar · Icon"
+            level={3}
+            hasDivider
+          />
+          <Heading as="p" size="display" accent="canopy">
+            Gather under the canopy
+          </Heading>
+          <FlexGroup gap="large" align="end">
+            {headingSizes.map((size) => (
+              <Heading key={size} as="p" size={size}>
+                {size}
+              </Heading>
+            ))}
+          </FlexGroup>
+          <FlexGroup gap="large" align="center">
+            <Eyebrow tone="accent">Ontario</Eyebrow>
+            <Eyebrow>primary group contact</Eyebrow>
+            <Eyebrow as="time" dateTime="2026-09-12">
+              Sept 12
+            </Eyebrow>
+          </FlexGroup>
+          <FlexGroup gap="large" align="center">
+            <TextLink href="/kitchen-sink#groups">View group details</TextLink>
+            <TextLink href="/kitchen-sink#resources" size="small" hasArrow>
+              Visit Group Page
+            </TextLink>
+            <TextLink href="/kitchen-sink#slack" font="mono" size="small">
+              #wp-toronto
+            </TextLink>
+          </FlexGroup>
+          <FlexGroup gap="small" align="center">
+            <Pill variant="region">Ontario / Great Lakes Region</Pill>
+            <Pill variant="status">Active Chapter</Pill>
+            <Pill>Event</Pill>
+            <Pill>Announcement</Pill>
+          </FlexGroup>
+          <FlexGroup gap="x-small" align="center">
+            <Eyebrow as="span">Region</Eyebrow>
+            {regions.map((label, index) => (
+              <FilterPill key={label} pressed={index === 0}>
+                {label}
+              </FilterPill>
+            ))}
+          </FlexGroup>
+          <FlexGroup gap="medium" align="center">
+            <Avatar name="Elena Rostova" src="/globe.svg" size="large" />
+            <Avatar name="Marcus Chen" src="/globe.svg" />
+            <Avatar name="Sophie L." size="small" shape="square" />
+            <Avatar name="Marie-Ange" size="small" shape="square" />
+          </FlexGroup>
+          <FlexGroup gap="medium" align="center">
+            {iconNames.map((name) => (
+              <Icon key={name} name={name} size="heading-small" label={name} />
+            ))}
+          </FlexGroup>
+          <ButtonGroup>
+            <Button text="Find Local Meetups" icon="map-pin" isLarge />
+            <Button text="Join Canadian Slack" icon="message-circle-more" color="secondary" isLarge />
+          </ButtonGroup>
         </Container>
 
         <Container as="section" maxWidth="alignwide" contentWidth="alignwide">
@@ -132,8 +218,8 @@ export default function KitchenSink() {
         <Container as="section" maxWidth="alignwide" contentWidth="alignwide">
           <SectionHeader title="FlexGroup" meta="space-between · gap small" level={3} />
           <FlexGroup justify="space-between" align="center" gap="small">
-            <p>Showing 6 of 23 groups</p>
-            <a href="#flex">View all groups</a>
+            <Eyebrow>Showing 6 of 23 groups</Eyebrow>
+            <TextLink href="/kitchen-sink#flex">View all groups</TextLink>
           </FlexGroup>
         </Container>
 
@@ -154,6 +240,16 @@ export default function KitchenSink() {
             <p>
               A paragraph with an <a href="#tones">inline link</a>.
             </p>
+            <Heading as="p" size="heading-small" accent="canopy">
+              Accent words follow the canopy tone
+            </Heading>
+            <FlexGroup gap="large" align="center">
+              <Eyebrow tone="accent">Upcoming Gathering</Eyebrow>
+              <Eyebrow>Thursday, November 14</Eyebrow>
+              <TextLink href="/kitchen-sink#tones" hasArrow>
+                Read recap
+              </TextLink>
+            </FlexGroup>
             <ButtonGroup>
               <Button text="RSVP on Meetup.com" />
               {tone === "inverse" ? (

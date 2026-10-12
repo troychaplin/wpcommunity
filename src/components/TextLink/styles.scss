@@ -1,0 +1,47 @@
+.wpc-text-link {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--wpc--spacing-2x-small);
+    color: var(--wpc--color-accent);
+    text-decoration: none;
+    text-underline-offset: 0.2em;
+
+    &:hover,
+    &:focus-visible {
+        text-decoration: underline;
+    }
+}
+
+.wpc-text-link--sans {
+    font-family: var(--wpc--font-family-sans);
+    font-weight: var(--wpc--font-weight-semibold);
+}
+
+.wpc-text-link--mono {
+    font-family: var(--wpc--font-family-mono);
+    font-weight: var(--wpc--font-weight-medium);
+}
+
+.wpc-text-link--small {
+    font-size: var(--wpc--font-size-small);
+}
+
+.wpc-text-link--medium {
+    font-size: var(--wpc--font-size-medium);
+}
+
+.wpc-text-link__arrow {
+    transition: transform var(--wpc--transition-fast);
+
+    .wpc-text-link:hover & {
+        transform: translateX(var(--wpc--spacing-2x-small));
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+        transition: none;
+
+        .wpc-text-link:hover & {
+            transform: none;
+        }
+    }
+}

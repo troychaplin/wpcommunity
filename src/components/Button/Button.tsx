@@ -1,6 +1,8 @@
 import Link from 'next/link';
 import type { ComponentPropsWithoutRef } from 'react';
 import { borderRadiusClasses } from '../../utils/propClasses';
+import { Icon } from '../Icon';
+import type { IconName } from '../Icon';
 import './styles.scss';
 
 type borderRadiusKeys = keyof typeof borderRadiusClasses;
@@ -10,7 +12,9 @@ interface ButtonBaseProps {
     text: string;
     rounded?: borderRadiusKeys;
     color?: colorKeys;
+    icon?: IconName;
     isSmall?: boolean;
+    isLarge?: boolean;
     isFull?: boolean;
 }
 
@@ -33,7 +37,9 @@ export const Button = ({
     color = 'primary',
     rounded = 'sm',
     type = 'button',
+    icon,
     isSmall = false,
+    isLarge = false,
     isFull = false,
     disabled = false,
     className,
@@ -44,6 +50,7 @@ export const Button = ({
         disabled ? 'wpc-button--disabled' : `wpc-button--${color}`,
         rounded && `wpc-button--radius-${rounded}`,
         isSmall && 'wpc-button--small',
+        isLarge && 'wpc-button--large',
         isFull && 'wpc-button--full',
         className,
     ]
@@ -53,6 +60,7 @@ export const Button = ({
     if (rest.href !== undefined) {
         return (
             <Link className={classes} {...rest}>
+                {icon && <Icon name={icon} />}
                 {text}
             </Link>
         );
@@ -60,6 +68,7 @@ export const Button = ({
 
     return (
         <button type={type} className={classes} disabled={disabled} {...rest}>
+            {icon && <Icon name={icon} />}
             {text}
         </button>
     );

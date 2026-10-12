@@ -2,18 +2,18 @@
 
 export declare const wpcTokens: Record<string, Record<string, string>>;
 export declare const wpcTokenKeys: {
-    readonly color: { readonly crimson: 'crimson'; readonly 'crimson-dark': 'crimson-dark'; readonly 'crimson-light': 'crimson-light'; readonly forest: 'forest'; readonly 'forest-light': 'forest-light'; readonly moss: 'moss'; readonly ink: 'ink'; readonly slate: 'slate'; readonly lichen: 'lichen'; readonly mist: 'mist'; readonly stone: 'stone'; readonly 'sage-dark': 'sage-dark'; readonly sage: 'sage'; readonly canvas: 'canvas'; readonly white: 'white'; readonly primary: 'primary'; readonly 'primary-hover': 'primary-hover'; readonly accent: 'accent'; readonly heading: 'heading'; readonly text: 'text'; readonly 'text-muted': 'text-muted'; readonly background: 'background'; readonly surface: 'surface'; readonly 'surface-tint': 'surface-tint'; readonly border: 'border'; readonly inverse: 'inverse'; readonly 'text-inverse': 'text-inverse'; readonly 'text-inverse-muted': 'text-inverse-muted'; readonly 'accent-inverse': 'accent-inverse' };
+    readonly color: { readonly crimson: 'crimson'; readonly 'crimson-dark': 'crimson-dark'; readonly 'crimson-light': 'crimson-light'; readonly 'crimson-tint': 'crimson-tint'; readonly forest: 'forest'; readonly 'forest-light': 'forest-light'; readonly moss: 'moss'; readonly ink: 'ink'; readonly slate: 'slate'; readonly lichen: 'lichen'; readonly mist: 'mist'; readonly stone: 'stone'; readonly 'sage-dark': 'sage-dark'; readonly sage: 'sage'; readonly canvas: 'canvas'; readonly white: 'white'; readonly primary: 'primary'; readonly 'primary-hover': 'primary-hover'; readonly accent: 'accent'; readonly heading: 'heading'; readonly text: 'text'; readonly 'text-muted': 'text-muted'; readonly background: 'background'; readonly surface: 'surface'; readonly 'surface-tint': 'surface-tint'; readonly border: 'border'; readonly inverse: 'inverse'; readonly 'text-inverse': 'text-inverse'; readonly 'text-inverse-muted': 'text-inverse-muted'; readonly 'accent-inverse': 'accent-inverse' };
     readonly gradient: { readonly blush: 'blush'; readonly 'forest-glow': 'forest-glow' };
     readonly spacing: { readonly '2x-small': '2x-small'; readonly 'x-small': 'x-small'; readonly small: 'small'; readonly medium: 'medium'; readonly large: 'large'; readonly 'x-large': 'x-large'; readonly '2x-large': '2x-large' };
     readonly fontFamily: { readonly serif: 'serif'; readonly sans: 'sans'; readonly mono: 'mono' };
     readonly fontSize: { readonly 'x-small': 'x-small'; readonly small: 'small'; readonly medium: 'medium'; readonly large: 'large'; readonly 'x-large': 'x-large'; readonly '2x-large': '2x-large'; readonly 'heading-small': 'heading-small'; readonly 'heading-medium': 'heading-medium'; readonly 'heading-large': 'heading-large'; readonly display: 'display' };
     readonly shadow: { readonly subtle: 'subtle'; readonly raised: 'raised' };
     readonly fontWeight: { readonly light: 'light'; readonly normal: 'normal'; readonly medium: 'medium'; readonly semibold: 'semibold'; readonly bold: 'bold' };
-    readonly lineHeight: { readonly tight: 'tight'; readonly snug: 'snug'; readonly normal: 'normal'; readonly relaxed: 'relaxed' };
+    readonly lineHeight: { readonly flat: 'flat'; readonly tight: 'tight'; readonly snug: 'snug'; readonly normal: 'normal'; readonly relaxed: 'relaxed' };
     readonly radius: { readonly sm: 'sm'; readonly md: 'md'; readonly lg: 'lg'; readonly full: 'full' };
     readonly transition: { readonly fast: 'fast'; readonly normal: 'normal' };
     readonly z: { readonly '100': '100'; readonly '200': '200'; readonly '500': '500' };
-    readonly layout: { readonly 'content-size': 'content-size'; readonly 'wide-size': 'wide-size'; readonly 'small-size': 'small-size'; readonly 'max-size': 'max-size'; readonly 'full-size': 'full-size' };
+    readonly layout: { readonly 'content-size': 'content-size'; readonly 'wide-size': 'wide-size'; readonly 'small-size': 'small-size'; readonly 'max-size': 'max-size'; readonly 'full-size': 'full-size'; readonly 'avatar-small': 'avatar-small'; readonly 'avatar-medium': 'avatar-medium'; readonly 'avatar-large': 'avatar-large' };
     readonly viewport: { readonly mobile: 'mobile'; readonly tablet: 'tablet' };
 };
 export default wpcTokens;

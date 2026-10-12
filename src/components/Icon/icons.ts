@@ -1,0 +1,26 @@
+import {
+    ArrowRight,
+    CirclePlus,
+    MapPin,
+    MessageCircleMore,
+    MessagesSquare,
+    Minus,
+    Plus,
+    Search,
+    Star,
+} from 'lucide-react';
+
+// Only the icons the designs use. Swapping icon libraries means changing this file alone.
+export const icons = {
+    'arrow-right': ArrowRight,
+    'circle-plus': CirclePlus,
+    'map-pin': MapPin,
+    'message-circle-more': MessageCircleMore,
+    'messages-square': MessagesSquare,
+    minus: Minus,
+    plus: Plus,
+    search: Search,
+    star: Star,
+};
+
+export type IconName = keyof typeof icons;

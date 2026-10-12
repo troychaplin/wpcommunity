@@ -5,6 +5,7 @@ export const wpcTokens = {
         crimson: '#b01d33',
         crimsonDark: '#8e1728',
         crimsonLight: '#e8a5af',
+        crimsonTint: '#f5ebea',
         forest: '#0f251b',
         forestLight: '#1c3528',
         moss: '#2c493d',
@@ -51,7 +52,7 @@ export const wpcTokens = {
         mono: 'var(--font-plex-mono), \'IBM Plex Mono\', ui-monospace, monospace'
     },
     fontSize: {
-        xSmall: 'clamp(0.6875rem, 0.6875rem + ((1vw - 0.2rem) * 0.104), 0.75rem)',
+        xSmall: 'clamp(0.8125rem, 0.8125rem + ((1vw - 0.2rem) * 0.104), 0.875rem)',
         small: 'clamp(0.8125rem, 0.8125rem + ((1vw - 0.2rem) * 0.104), 0.875rem)',
         medium: 'clamp(0.9375rem, 0.9375rem + ((1vw - 0.2rem) * 0.104), 1rem)',
         large: 'clamp(1rem, 1rem + ((1vw - 0.2rem) * 0.208), 1.125rem)',
@@ -60,7 +61,7 @@ export const wpcTokens = {
         headingSmall: 'clamp(1.375rem, 1.375rem + ((1vw - 0.2rem) * 0.625), 1.75rem)',
         headingMedium: 'clamp(1.625rem, 1.625rem + ((1vw - 0.2rem) * 0.833), 2.125rem)',
         headingLarge: 'clamp(2rem, 2rem + ((1vw - 0.2rem) * 1.25), 2.75rem)',
-        display: 'clamp(2.75rem, 2.75rem + ((1vw - 0.2rem) * 3.75), 5rem)'
+        display: 'clamp(2.75rem, 2.75rem + ((1vw - 0.2rem) * 4.792), 5.625rem)'
     },
     shadow: {
         subtle: '0 1px 2px rgb(15 37 27 / 0.04), 0 1px 3px rgb(15 37 27 / 0.06)',
@@ -74,6 +75,7 @@ export const wpcTokens = {
         bold: '700'
     },
     lineHeight: {
+        flat: '1',
         tight: '1.1',
         snug: '1.3',
         normal: '1.5',
@@ -99,7 +101,10 @@ export const wpcTokens = {
         wideSize: '1280px',
         smallSize: '720px',
         maxSize: '1440px',
-        fullSize: '100vw'
+        fullSize: '100vw',
+        avatarSmall: '2.25rem',
+        avatarMedium: '3.5rem',
+        avatarLarge: '4.75rem'
     },
     viewport: {
         mobile: '600px',
@@ -117,18 +122,18 @@ export const wpcTokens = {
 };
 
 export const wpcTokenKeys = {
-    color: { crimson: 'crimson', 'crimson-dark': 'crimson-dark', 'crimson-light': 'crimson-light', forest: 'forest', 'forest-light': 'forest-light', moss: 'moss', ink: 'ink', slate: 'slate', lichen: 'lichen', mist: 'mist', stone: 'stone', 'sage-dark': 'sage-dark', sage: 'sage', canvas: 'canvas', white: 'white', primary: 'primary', 'primary-hover': 'primary-hover', accent: 'accent', heading: 'heading', text: 'text', 'text-muted': 'text-muted', background: 'background', surface: 'surface', 'surface-tint': 'surface-tint', border: 'border', inverse: 'inverse', 'text-inverse': 'text-inverse', 'text-inverse-muted': 'text-inverse-muted', 'accent-inverse': 'accent-inverse' },
+    color: { crimson: 'crimson', 'crimson-dark': 'crimson-dark', 'crimson-light': 'crimson-light', 'crimson-tint': 'crimson-tint', forest: 'forest', 'forest-light': 'forest-light', moss: 'moss', ink: 'ink', slate: 'slate', lichen: 'lichen', mist: 'mist', stone: 'stone', 'sage-dark': 'sage-dark', sage: 'sage', canvas: 'canvas', white: 'white', primary: 'primary', 'primary-hover': 'primary-hover', accent: 'accent', heading: 'heading', text: 'text', 'text-muted': 'text-muted', background: 'background', surface: 'surface', 'surface-tint': 'surface-tint', border: 'border', inverse: 'inverse', 'text-inverse': 'text-inverse', 'text-inverse-muted': 'text-inverse-muted', 'accent-inverse': 'accent-inverse' },
     gradient: { blush: 'blush', 'forest-glow': 'forest-glow' },
     spacing: { '2x-small': '2x-small', 'x-small': 'x-small', small: 'small', medium: 'medium', large: 'large', 'x-large': 'x-large', '2x-large': '2x-large' },
     fontFamily: { serif: 'serif', sans: 'sans', mono: 'mono' },
     fontSize: { 'x-small': 'x-small', small: 'small', medium: 'medium', large: 'large', 'x-large': 'x-large', '2x-large': '2x-large', 'heading-small': 'heading-small', 'heading-medium': 'heading-medium', 'heading-large': 'heading-large', display: 'display' },
     shadow: { subtle: 'subtle', raised: 'raised' },
     fontWeight: { light: 'light', normal: 'normal', medium: 'medium', semibold: 'semibold', bold: 'bold' },
-    lineHeight: { tight: 'tight', snug: 'snug', normal: 'normal', relaxed: 'relaxed' },
+    lineHeight: { flat: 'flat', tight: 'tight', snug: 'snug', normal: 'normal', relaxed: 'relaxed' },
     radius: { sm: 'sm', md: 'md', lg: 'lg', full: 'full' },
     transition: { fast: 'fast', normal: 'normal' },
     z: { '100': '100', '200': '200', '500': '500' },
-    layout: { 'content-size': 'content-size', 'wide-size': 'wide-size', 'small-size': 'small-size', 'max-size': 'max-size', 'full-size': 'full-size' },
+    layout: { 'content-size': 'content-size', 'wide-size': 'wide-size', 'small-size': 'small-size', 'max-size': 'max-size', 'full-size': 'full-size', 'avatar-small': 'avatar-small', 'avatar-medium': 'avatar-medium', 'avatar-large': 'avatar-large' },
     viewport: { mobile: 'mobile', tablet: 'tablet' }
 };
 

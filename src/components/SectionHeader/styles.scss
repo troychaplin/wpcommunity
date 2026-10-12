@@ -28,25 +28,15 @@
     border-bottom: 1px solid var(--wpc--color-border);
 }
 
-.wpc-section-header__prefix {
-    margin: 0 0 var(--wpc--spacing-x-small);
-    font-family: var(--wpc--font-family-mono);
-    font-size: var(--wpc--font-size-x-small);
-    font-weight: var(--wpc--font-weight-normal);
-    color: var(--wpc--color-accent);
+// Doubled class outranks the Eyebrow's own margin reset whatever order the stylesheets load in
+.wpc-section-header .wpc-section-header__prefix {
+    margin-block-end: var(--wpc--spacing-x-small);
 }
 
 .wpc-section-header__title {
     margin: 0;
     font-size: var(--wpc--font-size-heading-medium);
     line-height: var(--wpc--line-height-tight);
-}
-
-.wpc-section-header__meta {
-    margin: 0;
-    font-family: var(--wpc--font-family-mono);
-    font-size: var(--wpc--font-size-x-small);
-    color: var(--wpc--color-text-muted);
 }
 
 .wpc-section-header__description {

@@ -11,6 +11,7 @@ The first set of components came from [Parlour UI](https://github.com/troychapli
 - **Designs** live in [`docs/design/`](../design/) as the original 2× exports. **Crops** for individual docs are cut from those and saved in `docs/components/images/`.
 - **Review** components on the [`/kitchen-sink`](../../src/app/kitchen-sink/page.tsx) route (`pnpm dev`, then open `/kitchen-sink`).
 - **Tokens** come from [`c2b.config.json`](../../c2b.config.json) (prefix `wpc`). Docs refer to tokens by role (`--wpc--color-text`, `--wpc--spacing-medium`) rather than raw values.
+- **Design scale:** the exports are 2×. The homepage is 1277 CSS px wide and the group page 1371, so halve pixel measurements taken from them.
 
 ## Conventions
 
@@ -49,6 +50,10 @@ docs/components/component-name.md
 - Use a discriminated union for polymorphic shapes (Button: `href` → link, otherwise `<button>`).
 - Spread `...rest` onto the root element so consumers can pass ARIA and HTML attributes. Interactive components extend the underlying element's props.
 
+### Icons
+
+- Icons come from `lucide-react`, through the registry in `src/components/Icon/icons.ts`. Add an icon there before using it; components take an `IconName`, never a Lucide import.
+
 ### Links and client code
 
 - Links use `next/link` directly. Components are Server Components by default; add `'use client'` only for state, effects or context.
@@ -65,16 +70,16 @@ docs/components/component-name.md
 
 | Component | Used in | Variants / notes | Depends on | Status |
 |---|---|---|---|---|
-| [Button](./button.md) | Hero, Slack section, contact card, CTA band, group form | primary (crimson), secondary (white + border), inverse (outline on forest); `href` renders a link | — | complete |
+| [Button](./button.md) | Hero, Slack section, contact card, CTA band, group form | primary (crimson), secondary (white + border), inverse (outline on forest); leading icon; small / large; `href` renders a link | Icon | complete |
 | [ButtonGroup](./button-group.md) | Hero, contact card, CTA band | wrapping row of buttons; align start / center / end | Button | complete |
 | [SkipLink](./skip-link.md) | Every page (root layout) | off-screen until focused; targets `#main` | Main | complete |
-| TextLink | Group cards, resources, updates, "View all groups" | crimson, small, semibold; optional trailing arrow | Icon | planned |
-| Eyebrow | Card regions, stat / resource / fieldset / FAQ-group labels, update dates | mono label; tones: accent, muted, inverse | — | planned |
-| Pill | Group header, update tags | region (sage + dot), status (outline), tag (Event / Announcement / Resource / Community) | — | planned |
-| FilterPill | Meetup filter bar | toggle (`aria-pressed`): active forest fill / inactive outline | — | planned |
-| Avatar | Contact, volunteers, Slack mock | image (sizes lg / md) or initials fallback | — | planned |
-| Icon | Feature list, Slack button, FAQ `+`, arrows, search | wrapper around the chosen icon set | — | planned |
-| Heading | Everywhere | separates the HTML level (`as`) from the visual size (display / large / medium / small / card); optional accent word (the "canopy" span) | — | planned |
+| [Icon](./icon.md) | Feature list, hero buttons, FAQ `+`, arrows, search | Lucide icons behind a registry of the ones the designs use; `em`-sized, decorative unless labelled | — | complete |
+| [Heading](./heading.md) | Hero, page and card titles, stat values | HTML level (`as`) separate from visual size (display … large); `accent` word (the "canopy" span) | — | complete |
+| [Eyebrow](./eyebrow.md) | Card regions, section eyebrows, stat / resource / fieldset / FAQ-group labels, dates | mono label; tones muted / accent (both follow the section tone) | — | complete |
+| [TextLink](./text-link.md) | Group cards, resources, updates, "View all groups", channel links | crimson semibold; optional trailing arrow; mono variant | Icon | complete |
+| [Pill](./pill.md) | Group header, update tags | tag (crimson tint), region (sage + dot), status (bordered) | — | complete |
+| [FilterPill](./filter-pill.md) | Meetup filter bar | stateless toggle (`aria-pressed`): forest-light fill when pressed | — | complete |
+| [Avatar](./avatar.md) | Contact, volunteers, Slack mock | photo (ringed circle) or initials; small / medium / large; circle / square | — | complete |
 
 ### Page structure
 
@@ -90,7 +95,7 @@ docs/components/component-name.md
 | Component | Used in | Variants / notes | Depends on | Status |
 |---|---|---|---|---|
 | [Container](./container.md) | Every page band | tone: canvas / tint / inverse / blush / white (re-declares role tokens); width and content width from the WP alignment classes | — | complete |
-| [SectionHeader](./section-header.md) | Meetup groups, resources, updates, FAQ, "New here?", Slack, CTA band | eyebrow, serif title, mono meta, description; align start / center; optional divider | — | complete |
+| [SectionHeader](./section-header.md) | Meetup groups, resources, updates, FAQ, "New here?", Slack, CTA band | eyebrow, serif title, mono meta, description; align start / center; optional divider | Eyebrow | complete |
 | [GridGroup](./grid-group.md) | Group cards (3), features (4), resources (4), team (3) | 1–4 responsive columns, token gaps | — | complete |
 | [Column](./column.md) | Slack section, "Start a group", contact + team | halves, thirds, quarters, one-third / two-thirds; `Column.Content isFirst` reordering | — | complete |
 | [FlexGroup](./flex-group.md) | Header row, "Showing 6 of 23" row, card meta rows | direction, wrap, justify, align, token gap / padding / margin | — | complete |
@@ -149,7 +154,7 @@ The imported components were aligned to this project in one pass.
 Each phase only depends on the phases before it.
 
 0. **Align the imported components** ✅
-1. **Foundations:** TextLink, Eyebrow, Pill, FilterPill, Avatar, Icon, Heading
+1. **Foundations** ✅ Icon, Heading, Eyebrow, TextLink, Pill, FilterPill, Avatar (plus token calibration against the designs)
 2. **Layout:** complete (Container, SectionHeader, GridGroup, Column, FlexGroup)
 3. **Content components:** GroupCard, FeatureItem, Stat / StatGroup, PersonCard, ResourceCard, UpdateItem, Accordion, Form fields, SearchField, FilterBar, ChatPreview
 4. **Page sections:** LanguageToggle, MeetupIndex, Hero, GroupHeader, CTABand
@@ -157,7 +162,6 @@ Each phase only depends on the phases before it.
 
 ## Open questions
 
-- **Icons:** which icon library.
 - **Bilingual EN / FR:** routing (`/fr`?) and which i18n library.
 - **Data source:** static typed mock data first; later WP REST, the Meetup API, or something else.
 - **Mobile nav:** the designs don't show one; the header nav currently wraps.

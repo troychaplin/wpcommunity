@@ -1,6 +1,6 @@
 # Button
 
-An action trigger that renders a native `<button>`, or a Next.js `Link` styled as a button when an `href` is provided. Comes in three colour variants plus size, width and disabled states.
+An action trigger that renders a native `<button>`, or a Next.js `Link` styled as a button when an `href` is provided. Comes in three colour variants, an optional leading icon, and size, width and disabled states.
 
 **Status:** complete
 
@@ -14,6 +14,8 @@ An action trigger that renders a native `<button>`, or a Next.js `Link` styled a
 ## Used in
 
 Homepage hero ("Find Local Meetups", "Join Canadian Slack"), Slack section ("Get your invite"), "Start a group" form ("Submit my group"), group page contact card ("Contact Organizer", "Find on Slack"), Upcoming Gathering band ("RSVP on Meetup.com", "Propose a Talk").
+
+![The large hero buttons, with icons](./images/button-hero.png)
 
 ## Import
 
@@ -35,6 +37,9 @@ import { Button } from '@/components/Button';
 
 // Outline, on an inverse (forest) surface
 <Button text="Propose a Talk" color="inverse" href="/talks" />
+
+// Hero: large, with a leading icon
+<Button text="Find Local Meetups" icon="map-pin" href="/meetups" isLarge />
 ```
 
 ## Props
@@ -45,8 +50,10 @@ import { Button } from '@/components/Button';
 | `color` | `'primary' \| 'secondary' \| 'inverse'` | `'primary'` | Colour variant |
 | `href` | `string` | — | Renders a `Link` instead of a `<button>` |
 | `type` | `'button' \| 'submit' \| 'reset'` | `'button'` | Button type (button form only) |
+| `icon` | `IconName` | — | Leading [`Icon`](./icon.md) |
 | `rounded` | `'none' \| 'sm' \| 'md' \| 'lg' \| 'full'` | `'sm'` | Corner radius |
 | `isSmall` | `boolean` | `false` | Smaller padding and font size |
+| `isLarge` | `boolean` | `false` | Hero size: about 55px tall, `font-size-large` |
 | `isFull` | `boolean` | `false` | Full width |
 | `disabled` | `boolean` | `false` | Native disabled state (button form only) |
 
@@ -61,6 +68,7 @@ Any other `<button>` or `Link` props pass through.
 | `wpc-button--disabled` | `disabled` |
 | `wpc-button--radius-{name}` | The active `rounded` value |
 | `wpc-button--small` | `isSmall` |
+| `wpc-button--large` | `isLarge` |
 | `wpc-button--full` | `isFull` |
 
 The variants read palette tokens (crimson, forest, white…) rather than role tokens, so a button looks the same in every section tone.
@@ -73,8 +81,9 @@ The variants read palette tokens (crimson, forest, white…) rather than role to
 | `--wpc--color-forest`, `--wpc--color-white`, `--wpc--color-stone`, `--wpc--color-slate` | Secondary text, background, border and hover border |
 | `--wpc--color-white` (mixed with transparent) | Inverse text, border and hover background |
 | `--wpc--color-sage`, `--wpc--color-sage-dark`, `--wpc--color-slate` | Disabled background, border and text |
-| `--wpc--font-family-sans`, `--wpc--font-size-medium`, `--wpc--font-weight-medium`, `--wpc--line-height-snug` | Typography |
+| `--wpc--font-family-sans`, `--wpc--font-size-medium`, `--wpc--font-weight-medium`, `--wpc--line-height-relaxed` | Typography (about 44px tall) |
 | `--wpc--font-size-small` | Small variant |
+| `--wpc--font-size-large`, `--wpc--line-height-tight`, `--wpc--spacing-medium` | Large variant |
 | `--wpc--spacing-x-small`, `--wpc--spacing-small`, `--wpc--spacing-2x-small` | Padding and icon gap |
 | `--wpc--radius-*` | Corner radius |
 | `--wpc--transition-fast` | Hover transition |
@@ -87,7 +96,4 @@ The variants read palette tokens (crimson, forest, white…) rather than role to
 - `disabled` uses the native attribute, which removes the button from the tab order.
 - Colour signals emphasis, not meaning; the text must say what the button does.
 - White on crimson is about 6.8:1 and forest on white about 16:1.
-
-## Open questions
-
-- Icon support ("Join Canadian Slack" has a leading Slack icon) waits for the planned Icon component.
+- The icon is decorative; the text names the action.

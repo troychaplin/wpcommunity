@@ -1,6 +1,6 @@
 # SectionHeader
 
-The heading block for a section of a page: an optional mono eyebrow, a serif title, optional mono meta text beside it, an optional description below and an optional divider rule. Renders a `<header>` with an `<h2>`, or the level set by `level`.
+The heading block for a section of a page: an optional [`Eyebrow`](./eyebrow.md), a serif title, optional mono meta text beside it, an optional description below and an optional divider rule. Renders a `<header>` with an `<h2>`, or the level set by `level`.
 
 **Status:** complete
 
@@ -56,9 +56,9 @@ import { SectionHeader } from '@/components/SectionHeader';
 | `wpc-section-header`, `wpc-section-header--{align}` | Always |
 | `wpc-section-header--divider` | `hasDivider` |
 | `wpc-section-header__main` | Wrapper for eyebrow and title |
-| `wpc-section-header__prefix` | `prefix` is set |
+| `wpc-section-header__prefix` | `prefix` is set; an accent `Eyebrow` |
 | `wpc-section-header__title` | `title` is set |
-| `wpc-section-header__meta` | `meta` is set |
+| `wpc-section-header__meta` | `meta` is set; a muted `Eyebrow` |
 | `wpc-section-header__description` | `description` is set |
 
 ## Design tokens
@@ -66,9 +66,7 @@ import { SectionHeader } from '@/components/SectionHeader';
 | Token | Used for |
 |---|---|
 | `--wpc--font-size-heading-medium`, `--wpc--line-height-tight` | Title size (family, weight and colour come from the base heading styles) |
-| `--wpc--font-family-mono`, `--wpc--font-size-x-small`, `--wpc--font-weight-normal` | Eyebrow and meta |
-| `--wpc--color-accent` (role) | Eyebrow: crimson, or the light accent on inverse |
-| `--wpc--color-text-muted` (role) | Meta and description |
+| `--wpc--color-text-muted` (role) | Description |
 | `--wpc--color-border` (role) | Divider |
 | `--wpc--layout-small-size` | Description max width |
 | `--wpc--spacing-x-small`, `--wpc--spacing-small`, `--wpc--spacing-medium`, `--wpc--spacing-large` | Gaps, divider padding and bottom margin |
