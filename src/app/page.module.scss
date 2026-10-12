@@ -1,3 +1,5 @@
+@use "../styles/wpc-variables" as t;
+
 .page {
   --background: #fafafa;
   --foreground: #fff;
@@ -14,7 +16,7 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  font-family: var(--font-geist-sans);
+  font-family: var(--wpc--font-family-sans);
   background-color: var(--background);
 }
 
@@ -35,7 +37,7 @@
   flex-direction: column;
   align-items: flex-start;
   text-align: left;
-  gap: 24px;
+  gap: t.$wpc-spacing-medium;
 }
 
 .intro h1 {
@@ -107,13 +109,13 @@ a.secondary {
   }
 }
 
-@media (max-width: 600px) {
+@include t.below-mobile {
   .main {
-    padding: 48px 24px;
+    padding: var(--wpc--spacing-large) var(--wpc--spacing-medium);
   }
 
   .intro {
-    gap: 16px;
+    gap: t.$wpc-spacing-small;
   }
 
   .intro h1 {
@@ -125,7 +127,7 @@ a.secondary {
 
 @media (prefers-color-scheme: dark) {
   .logo {
-    filter: invert();
+    filter: invert(1);
   }
 
   .page {
@@ -142,7 +144,7 @@ a.secondary {
 }
 
 .code {
-  font-family: var(--font-geist-mono);
+  font-family: var(--wpc--font-family-mono);
   font-size: 0.9em;
   background: color-mix(in srgb, currentColor 8%, transparent);
   padding: 0.1em 0.4em;

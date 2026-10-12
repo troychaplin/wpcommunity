@@ -39,3 +39,6 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# component2block WordPress outputs (not used by the Next app)
+/.c2b

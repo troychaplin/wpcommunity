@@ -1,0 +1,172 @@
+{
+    "prefix": "wpc",
+
+    "output": {
+        "srcDir": "src/styles",
+        "outputDir": ".c2b",
+        "themeable": false,
+        "emitScssAlongside": false,
+        "emitAggregate": false,
+        "scssVars": ["viewport", "spacing"]
+    },
+
+    "fluid": {
+        "minViewport": "320px",
+        "maxViewport": "1280px"
+    },
+
+    "tokens": {
+        "layout": {
+            "contentSize": "1024px",
+            "wideSize": "1280px",
+            "smallSize": { "value": "720px", "cssOnly": true },
+            "maxSize": { "value": "1440px", "cssOnly": true }
+        },
+
+        "viewport": {
+            "mobile": "600px",
+            "tablet": "960px"
+        },
+
+        "color": {
+            "crimson": "#b01d33",
+            "crimson-dark": { "value": "#8e1728", "cssOnly": true },
+            "crimson-light": { "value": "#e8a5af", "cssOnly": true },
+            "forest": "#0f251b",
+            "forest-light": "#1c3528",
+            "moss": "#2c493d",
+            "ink": "#25332c",
+            "slate": "#64706a",
+            "lichen": { "value": "#5a7165", "cssOnly": true },
+            "mist": "#e4efe8",
+            "stone": "#e8e6e1",
+            "sage-dark": { "value": "#e2e7e3", "cssOnly": true },
+            "sage": "#eff4f0",
+            "canvas": "#faf8f4",
+            "white": "#ffffff",
+
+            "primary": { "value": "var(--wpc--color-crimson)", "cssOnly": true },
+            "primary-hover": { "value": "var(--wpc--color-crimson-dark)", "cssOnly": true },
+            "heading": { "value": "var(--wpc--color-forest)", "cssOnly": true },
+            "text": { "value": "var(--wpc--color-ink)", "cssOnly": true },
+            "text-muted": { "value": "var(--wpc--color-slate)", "cssOnly": true },
+            "background": { "value": "var(--wpc--color-canvas)", "cssOnly": true },
+            "surface": { "value": "var(--wpc--color-white)", "cssOnly": true },
+            "surface-tint": { "value": "var(--wpc--color-sage)", "cssOnly": true },
+            "border": { "value": "var(--wpc--color-stone)", "cssOnly": true },
+            "inverse": { "value": "var(--wpc--color-forest)", "cssOnly": true },
+            "text-inverse": { "value": "var(--wpc--color-mist)", "cssOnly": true },
+            "text-inverse-muted": { "value": "var(--wpc--color-lichen)", "cssOnly": true },
+            "accent-inverse": { "value": "var(--wpc--color-crimson-light)", "cssOnly": true }
+        },
+
+        "gradient": {
+            "blush": {
+                "value": "linear-gradient(160deg,rgb(246,236,230) 0%,rgb(250,248,244) 65%)",
+                "slug": "custom-blush"
+            },
+            "forest-glow": {
+                "value": "radial-gradient(circle at 92% 18%,rgb(176 29 51 / 0.22) 0%,transparent 45%)",
+                "slug": "custom-forest-glow"
+            }
+        },
+
+        "fontFamily": {
+            "serif": "var(--font-cormorant), 'Cormorant Garamond', Georgia, serif",
+            "sans": "var(--font-jakarta), 'Plus Jakarta Sans', system-ui, sans-serif",
+            "mono": "var(--font-plex-mono), 'IBM Plex Mono', ui-monospace, monospace"
+        },
+
+        "fontWeight": {
+            "light": "300",
+            "normal": "400",
+            "medium": "500",
+            "semibold": "600",
+            "bold": "700"
+        },
+
+        "fontSize": {
+            "x-small": { "value": "0.75rem", "fluid": { "min": "0.6875rem", "max": "0.75rem" }, "cssOnly": true },
+            "small": { "min": "0.8125rem", "max": "0.875rem" },
+            "medium": { "min": "0.9375rem", "max": "1rem" },
+            "large": { "min": "1rem", "max": "1.125rem" },
+            "x-large": { "min": "1.125rem", "max": "1.25rem" },
+            "2x-large": { "min": "1.25rem", "max": "1.5rem" },
+            "heading-small": { "min": "1.375rem", "max": "1.75rem" },
+            "heading-medium": { "min": "1.625rem", "max": "2.125rem" },
+            "heading-large": { "min": "2rem", "max": "2.75rem" },
+            "display": { "value": "5rem", "fluid": { "min": "2.75rem", "max": "5rem" }, "cssOnly": true }
+        },
+
+        "spacing": {
+            "2x-small": { "value": "0.25rem", "slug": "20" },
+            "x-small": { "value": "0.5rem", "slug": "30" },
+            "small": { "value": "1rem", "slug": "40" },
+            "medium": { "value": "clamp(1.25rem, 2.5vw, 1.75rem)", "slug": "50" },
+            "large": { "value": "clamp(2rem, 4.5vw, 3.5rem)", "slug": "60" },
+            "x-large": { "value": "clamp(3rem, 7vw, 5rem)", "slug": "70" },
+            "2x-large": { "value": "clamp(4rem, 10vw, 7.5rem)", "slug": "80" }
+        },
+
+        "shadow": {
+            "subtle": "0 1px 2px rgb(15 37 27 / 0.04), 0 1px 3px rgb(15 37 27 / 0.06)",
+            "raised": "0 12px 32px -12px rgb(15 37 27 / 0.35)"
+        },
+
+        "lineHeight": {
+            "tight": "1.1",
+            "snug": "1.3",
+            "normal": "1.5",
+            "relaxed": "1.65"
+        },
+
+        "radius": {
+            "sm": "4px",
+            "md": "6px",
+            "lg": "8px",
+            "full": "9999px"
+        },
+
+        "transition": {
+            "fast": "150ms ease",
+            "normal": "250ms ease"
+        }
+    },
+
+    "baseStyles": {
+        "body": {
+            "fontFamily": "sans",
+            "fontSize": "medium",
+            "fontWeight": "normal",
+            "lineHeight": "normal",
+            "color": "text",
+            "background": "background"
+        },
+        "heading": {
+            "fontFamily": "serif",
+            "fontWeight": "medium",
+            "lineHeight": "tight",
+            "letterSpacing": "-0.01em",
+            "color": "heading"
+        },
+        "h1": { "fontSize": "heading-large", "marginBlockStart": "x-large" },
+        "h2": { "fontSize": "heading-medium", "marginBlockStart": "large" },
+        "h3": { "fontSize": "heading-small", "marginBlockStart": "large" },
+        "h4": { "fontSize": "2x-large", "marginBlockStart": "medium" },
+        "h5": { "fontSize": "x-large", "marginBlockStart": "medium" },
+        "h6": { "fontSize": "large", "marginBlockStart": "medium" },
+        "caption": { "fontSize": "small", "color": "text-muted" },
+        "link": { "color": "primary", "hoverColor": "primary-hover" },
+        "spacing": {
+            "blockGap": "medium",
+            "afterHeading": "small",
+            "entryContent": "small",
+            "padding": {
+                "top": "0",
+                "right": "medium",
+                "bottom": "0",
+                "left": "medium"
+            }
+        }
+    }
+}

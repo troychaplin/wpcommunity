@@ -3,10 +3,11 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "next dev",
-    "build": "next build",
+    "dev": "c2b generate && next dev",
+    "build": "c2b generate && next build",
     "start": "next start",
-    "lint": "eslint"
+    "lint": "eslint",
+    "tokens": "c2b generate"
   },
   "dependencies": {
     "next": "16.4.0",
@@ -14,11 +15,13 @@
     "react-dom": "19.3.0"
   },
   "devDependencies": {
+    "@troychaplin/component2block": "^0.9.0",
     "@types/node": "^20",
     "@types/react": "^19",
     "@types/react-dom": "^19",
     "eslint": "^9",
     "eslint-config-next": "16.4.0",
+    "sass": "^1.105.1",
     "typescript": "^5"
   },
   "packageManager": "pnpm@10.34.6"
