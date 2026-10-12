@@ -29,6 +29,11 @@ import { GridGroup } from '@/components/GridGroup';
 </GridGroup>
 
 <GridGroup columns={3} gap="large" rowGap="medium">...</GridGroup>
+
+// Lines between cells instead of gaps (the homepage group grid)
+<GridGroup columns={3} dividers="all">
+  <GroupCard … />
+</GridGroup>
 ```
 
 ## Props
@@ -41,7 +46,8 @@ import { GridGroup } from '@/components/GridGroup';
 | `gap` | spacing key or `'none'` | `'medium'` | Gap between items |
 | `rowGap` | spacing key or `'none'` | — | Overrides the row gap |
 | `align` | `'start' \| 'center' \| 'end' \| 'stretch'` | — | `align-items` |
-| `maxWidth` | `'alignsmall' \| 'aligncontent' \| 'alignwide' \| 'alignfull'` | — | Width class |
+| `maxWidth` | `'alignsmall' \| 'aligncontent' \| 'alignwide' \| 'alignfull'` | — | Width class; the grid centres only when one is set |
+| `dividers` | `'none' \| 'columns' \| 'all'` | `'none'` | Lines between cells instead of gaps: `columns` draws vertical lines, `all` adds lines between rows and a bottom rule |
 
 ## CSS classes
 
@@ -52,14 +58,18 @@ import { GridGroup } from '@/components/GridGroup';
 | `wpc-grid-group--gap-{step}` | Always |
 | `wpc-grid-group--row-gap-{step}` | `rowGap` is set |
 | `wpc-grid-group--align-{value}` | `align` is set |
+| `wpc-grid-group--dividers`, `wpc-grid-group--dividers-{columns,all}` | `dividers` isn't `none` |
 
 Gap classes are generated from the `$wpc-spacing` map.
+
+With dividers, the gap is replaced by cell padding (`spacing-large` / `spacing-medium`). Each cell draws its own right and bottom lines as box shadows in the `border` role, and the grid clips the ones that fall past its edges, so lines only ever appear between cells at every column count. Cells should have no background, which would paint over the neighbouring lines.
 
 ## Design tokens
 
 | Token | Used for |
 |---|---|
 | `--wpc--spacing-*` | Gap and row gap modifiers |
+| `--wpc--color-border` (role), `--wpc--spacing-large`, `--wpc--spacing-medium` | Divider lines and cell padding |
 
 ## Responsive behaviour
 

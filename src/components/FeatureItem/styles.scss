@@ -1,0 +1,36 @@
+.wpc-feature-item {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: var(--wpc--spacing-small);
+    height: 100%;
+
+    > * {
+        margin-block: 0;
+    }
+
+    // The short rule above the icon
+    &::before {
+        content: '';
+        width: var(--wpc--spacing-medium);
+        height: 1px;
+        background-color: var(--wpc--color-border);
+    }
+}
+
+.wpc-feature-item__icon {
+    color: var(--wpc--color-heading);
+}
+
+.wpc-feature-item__text {
+    color: var(--wpc--color-text-muted);
+
+    > * {
+        margin-block: 0;
+    }
+}
+
+// Pinned to the bottom, so the links line up across a row of features
+.wpc-feature-item .wpc-feature-item__link {
+    margin-top: auto;
+}

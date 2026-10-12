@@ -8,8 +8,13 @@
 .wpc-grid-group {
     display: grid;
     grid-template-columns: minmax(0, 1fr);
-    margin-left: auto;
-    margin-right: auto;
+}
+
+// Centred only when a width class caps it. Auto margins stop a grid or flex item from stretching,
+// so an uncapped group would shrink to its content inside a grid or flex parent.
+.wpc-grid-group:is(.alignsmall, .aligncontent, .alignwide, .alignfull) {
+    width: 100%;
+    margin-inline: auto;
 }
 
 ul.wpc-grid-group,
@@ -67,5 +72,31 @@ $steps: (
 @each $key, $value in $steps {
     .wpc-grid-group--row-gap-#{$key} {
         row-gap: $value;
+    }
+}
+
+// Lines between cells instead of gaps. Each cell draws its own right (and, for `all`, bottom)
+// line as a shadow; the grid clips the shadows that fall past its right and bottom edges, so
+// lines only ever appear between cells, at every column count. `all` closes with a bottom rule.
+.wpc-grid-group.wpc-grid-group--dividers {
+    gap: 0;
+    overflow: hidden;
+
+    > * {
+        padding: var(--wpc--spacing-large) var(--wpc--spacing-medium);
+    }
+}
+
+.wpc-grid-group--dividers-columns > * {
+    box-shadow: 1px 0 0 var(--wpc--color-border);
+}
+
+.wpc-grid-group--dividers-all {
+    border-bottom: 1px solid var(--wpc--color-border);
+
+    > * {
+        box-shadow:
+            1px 0 0 var(--wpc--color-border),
+            0 1px 0 var(--wpc--color-border);
     }
 }

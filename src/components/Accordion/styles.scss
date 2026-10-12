@@ -1,0 +1,54 @@
+// Doubled class outranks the Eyebrow's own margin reset
+.wpc-accordion .wpc-accordion__label {
+    padding-bottom: var(--wpc--spacing-x-small);
+    border-bottom: 1px solid var(--wpc--color-border);
+}
+
+.wpc-accordion__item {
+    border-bottom: 1px solid var(--wpc--color-border);
+}
+
+.wpc-accordion__question {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--wpc--spacing-medium);
+    padding-block: var(--wpc--spacing-small);
+    font-family: var(--wpc--font-family-sans);
+    font-size: var(--wpc--font-size-large);
+    line-height: var(--wpc--line-height-relaxed);
+    color: var(--wpc--color-heading);
+    list-style: none;
+    cursor: pointer;
+
+    &::-webkit-details-marker {
+        display: none;
+    }
+}
+
+.wpc-accordion__icon {
+    color: var(--wpc--color-text-muted);
+}
+
+.wpc-accordion__icon--open,
+.wpc-accordion__item[open] .wpc-accordion__icon--closed {
+    display: none;
+}
+
+.wpc-accordion__item[open] .wpc-accordion__icon--open {
+    display: block;
+}
+
+.wpc-accordion__answer {
+    max-width: var(--wpc--layout-small-size);
+    padding-bottom: var(--wpc--spacing-small);
+    color: var(--wpc--color-text-muted);
+
+    > * {
+        margin-block: 0;
+    }
+
+    > * + * {
+        margin-top: var(--wpc--spacing-small);
+    }
+}

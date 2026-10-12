@@ -1,0 +1,12 @@
+.wpc-filter-bar {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: var(--wpc--spacing-x-small);
+    padding-block: var(--wpc--spacing-small);
+    border-bottom: 1px solid var(--wpc--color-border);
+}
+
+.wpc-filter-bar .wpc-filter-bar__label {
+    margin-inline-end: var(--wpc--spacing-x-small);
+}

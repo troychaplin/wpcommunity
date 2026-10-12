@@ -9,7 +9,11 @@
     --wpc--color-text-muted: var(--wpc--color-slate);
     --wpc--color-border: var(--wpc--color-stone);
     --wpc--color-accent: var(--wpc--color-crimson);
+    --wpc--color-field: var(--wpc--color-white);
+    // Resolves against this element's border role, so a tint surface's sage-dark border applies
+    --wpc--color-field-border: var(--wpc--color-border);
     color: var(--wpc--color-text);
+    color-scheme: light;
 
     // (0,0,1): beats the zero-specificity base link colour, loses to any component class
     :where(&) a {
@@ -23,7 +27,11 @@
     --wpc--color-text-muted: var(--wpc--color-lichen);
     --wpc--color-border: var(--wpc--color-forest-light);
     --wpc--color-accent: var(--wpc--color-accent-inverse);
+    --wpc--color-field: var(--wpc--color-forest-light);
+    --wpc--color-field-border: var(--wpc--color-pine);
     color: var(--wpc--color-text);
+    // Native control parts (select menus, search clear buttons) render dark to match
+    color-scheme: dark;
 
     // crimson falls below 3:1 on forest, so links and focus rings use the light accent
     :where(&) a {

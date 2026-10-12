@@ -8,6 +8,7 @@ export const wpcTokens = {
         crimsonTint: '#f5ebea',
         forest: '#0f251b',
         forestLight: '#1c3528',
+        pine: '#34453c',
         moss: '#2c493d',
         ink: '#25332c',
         slate: '#64706a',
@@ -28,6 +29,8 @@ export const wpcTokens = {
         surface: 'var(--wpc--color-white)',
         surfaceTint: 'var(--wpc--color-sage)',
         border: 'var(--wpc--color-stone)',
+        field: 'var(--wpc--color-white)',
+        fieldBorder: 'var(--wpc--color-border)',
         inverse: 'var(--wpc--color-forest)',
         textInverse: 'var(--wpc--color-mist)',
         textInverseMuted: 'var(--wpc--color-lichen)',
@@ -59,8 +62,8 @@ export const wpcTokens = {
         xLarge: 'clamp(1.125rem, 1.125rem + ((1vw - 0.2rem) * 0.208), 1.25rem)',
         x2Large: 'clamp(1.25rem, 1.25rem + ((1vw - 0.2rem) * 0.417), 1.5rem)',
         headingSmall: 'clamp(1.375rem, 1.375rem + ((1vw - 0.2rem) * 0.625), 1.75rem)',
-        headingMedium: 'clamp(1.625rem, 1.625rem + ((1vw - 0.2rem) * 0.833), 2.125rem)',
-        headingLarge: 'clamp(2rem, 2rem + ((1vw - 0.2rem) * 1.25), 2.75rem)',
+        headingMedium: 'clamp(1.75rem, 1.75rem + ((1vw - 0.2rem) * 1.25), 2.5rem)',
+        headingLarge: 'clamp(2.125rem, 2.125rem + ((1vw - 0.2rem) * 1.458), 3rem)',
         display: 'clamp(2.75rem, 2.75rem + ((1vw - 0.2rem) * 4.792), 5.625rem)'
     },
     shadow: {
@@ -122,7 +125,7 @@ export const wpcTokens = {
 };
 
 export const wpcTokenKeys = {
-    color: { crimson: 'crimson', 'crimson-dark': 'crimson-dark', 'crimson-light': 'crimson-light', 'crimson-tint': 'crimson-tint', forest: 'forest', 'forest-light': 'forest-light', moss: 'moss', ink: 'ink', slate: 'slate', lichen: 'lichen', mist: 'mist', stone: 'stone', 'sage-dark': 'sage-dark', sage: 'sage', canvas: 'canvas', white: 'white', primary: 'primary', 'primary-hover': 'primary-hover', accent: 'accent', heading: 'heading', text: 'text', 'text-muted': 'text-muted', background: 'background', surface: 'surface', 'surface-tint': 'surface-tint', border: 'border', inverse: 'inverse', 'text-inverse': 'text-inverse', 'text-inverse-muted': 'text-inverse-muted', 'accent-inverse': 'accent-inverse' },
+    color: { crimson: 'crimson', 'crimson-dark': 'crimson-dark', 'crimson-light': 'crimson-light', 'crimson-tint': 'crimson-tint', forest: 'forest', 'forest-light': 'forest-light', pine: 'pine', moss: 'moss', ink: 'ink', slate: 'slate', lichen: 'lichen', mist: 'mist', stone: 'stone', 'sage-dark': 'sage-dark', sage: 'sage', canvas: 'canvas', white: 'white', primary: 'primary', 'primary-hover': 'primary-hover', accent: 'accent', heading: 'heading', text: 'text', 'text-muted': 'text-muted', background: 'background', surface: 'surface', 'surface-tint': 'surface-tint', border: 'border', field: 'field', 'field-border': 'field-border', inverse: 'inverse', 'text-inverse': 'text-inverse', 'text-inverse-muted': 'text-inverse-muted', 'accent-inverse': 'accent-inverse' },
     gradient: { blush: 'blush', 'forest-glow': 'forest-glow' },
     spacing: { '2x-small': '2x-small', 'x-small': 'x-small', small: 'small', medium: 'medium', large: 'large', 'x-large': 'x-large', '2x-large': '2x-large' },
     fontFamily: { serif: 'serif', sans: 'sans', mono: 'mono' },

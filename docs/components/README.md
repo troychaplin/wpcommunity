@@ -44,6 +44,11 @@ docs/components/component-name.md
 - Components read roles, not palette colours, for anything that should adapt to light or dark sections. Buttons are the exception: they read palette tokens so they look the same everywhere.
 - `Container` and `Card` take the same `backgroundColor` / `color` values: `white`, `canvas`, `tint`, `inverse`, `blush`.
 
+### Forms
+
+- Form controls are wrapped by their `<label>`, which associates the two without ids. `hideLabel` keeps the label for screen readers.
+- Controls share the `control` mixin in `src/styles/mixins/_field.scss` and read the `field` and `field-border` roles, which the tone mixins re-declare (white / stone or sage-dark on light, forest-light / pine on inverse). Placeholders use `text-muted`.
+
 ### Props
 
 - Shared option sets live in `src/utils/propClasses.tsx`. Derive prop types from them with `keyof typeof` so the two can't drift.
@@ -57,6 +62,11 @@ docs/components/component-name.md
 ### Links and client code
 
 - Links use `next/link` directly. Components are Server Components by default; add `'use client'` only for state, effects or context.
+- Interactive components are controlled (`value` + `onChange`) and hold no state. A small client wrapper owns the state, as in `src/app/kitchen-sink/FilterDemo.tsx`.
+
+### Layout
+
+- GridGroup, FlexGroup and Column centre themselves only when a width class (`maxWidth`) caps them. Auto margins stop a grid or flex item from stretching, so an uncapped group fills its parent instead.
 
 ### Code style
 
@@ -96,7 +106,7 @@ docs/components/component-name.md
 |---|---|---|---|---|
 | [Container](./container.md) | Every page band | tone: canvas / tint / inverse / blush / white (re-declares role tokens); width and content width from the WP alignment classes | — | complete |
 | [SectionHeader](./section-header.md) | Meetup groups, resources, updates, FAQ, "New here?", Slack, CTA band | eyebrow, serif title, mono meta, description; align start / center; optional divider | Eyebrow | complete |
-| [GridGroup](./grid-group.md) | Group cards (3), features (4), resources (4), team (3) | 1–4 responsive columns, token gaps | — | complete |
+| [GridGroup](./grid-group.md) | Group cards (3), features (4), resources (4), team (3), form rows (2) | 1–4 responsive columns, token gaps; `dividers` (columns / all) draws lines between cells | — | complete |
 | [Column](./column.md) | Slack section, "Start a group", contact + team | halves, thirds, quarters, one-third / two-thirds; `Column.Content isFirst` reordering | — | complete |
 | [FlexGroup](./flex-group.md) | Header row, "Showing 6 of 23" row, card meta rows | direction, wrap, justify, align, token gap / padding / margin | — | complete |
 
@@ -106,17 +116,20 @@ docs/components/component-name.md
 |---|---|---|---|---|
 | [Card](./card.md) | Group header, contact, team panel, resources, Slack mock | surfaces white / canvas / tint / inverse / blush; border, shadow, radius, padding; full-card link | — | complete |
 | [Figure](./figure.md) | Content pages | sizes xs–full, float left / right / center, caption | — | complete |
-| GroupCard | Homepage group grid | eyebrow region, serif title, excerpt, rule, meta (members · cadence), link; divider-line grid style | Card, Eyebrow, TextLink | planned |
-| FeatureItem | "New here?" | icon, serif title, text, link | Icon, TextLink | planned |
-| Stat / StatGroup | Group header, Slack mock | serif value + mono label, with dividers; mono-value variant for the Slack mock | Eyebrow | planned |
-| PersonCard | Primary contact, volunteers | featured (label, lg avatar, role, handle, bio, actions) / compact | Avatar, Eyebrow, Button, Card | planned |
-| ResourceCard | Local resources | eyebrow, serif title, text, arrow link pinned to the bottom | Card, Eyebrow, TextLink | planned |
-| UpdateItem | Community updates | date + tag column, serif title, excerpt, link; rules between items | Eyebrow, Pill, TextLink | planned |
-| Accordion | FAQ | AccordionGroup (mono label) + AccordionItem; built on `details` / `summary` | Eyebrow, Icon | planned |
-| Form fields | "Start a group" | Fieldset (mono legend), TextField, TextArea, Select (province); inverse tone; form note | Eyebrow | planned |
-| SearchField | Meetup Index sidebar | TextField variant with a leading icon | Form fields, Icon | planned |
-| FilterBar | Meetup groups | "Region" label + single-select FilterPill group | FilterPill | planned |
-| ChatPreview | Slack section | static Slack mock: channel header, messages (initials avatar, name, time, text), stats footer | Card, Avatar, StatGroup | planned |
+| [GroupCard](./group-card.md) | Homepage group grid | unboxed; region eyebrow, title, description, meta (members · cadence), link | Eyebrow, Heading, TextLink | complete |
+| [FeatureItem](./feature-item.md) | "New here?" | short rule, icon, title, text, link pinned to the bottom | Icon, Heading, TextLink | complete |
+| [StatGroup](./stat-group.md) | Group header, Slack mock | `<dl>` with `StatGroup.Item`; serif (with dividers) / mono | — | complete |
+| [PersonCard](./person-card.md) | Primary contact, volunteers | featured (label, lg avatar, role, handle, bio, actions) / compact | Avatar, Card, Eyebrow, Heading | complete |
+| [ResourceCard](./resource-card.md) | Local resources | eyebrow, title, text, arrow link pinned to the bottom | Card, Eyebrow, Heading, TextLink | complete |
+| [UpdateList](./update-list.md) | Community updates | `UpdateList.Item`: date + tag column (subgrid-aligned), title, excerpt, link | Eyebrow, Pill, Heading, TextLink | complete |
+| [Accordion](./accordion.md) | FAQ | label + `Accordion.Item` on native `details` / `summary`; plus / minus icons | Eyebrow, Icon | complete |
+| [Fieldset](./fieldset.md) | "Start a group" form | mono legend over a rule | — | complete |
+| [TextField](./text-field.md) | "Start a group" form | wrapping label; optional leading icon; field roles for light / inverse | Icon | complete |
+| [TextArea](./text-area.md) | "Start a group" form | wrapping label; vertical resize | — | complete |
+| [Select](./select.md) | "Start a group" form (province) | native select with a chevron icon | Icon | complete |
+| [SearchField](./search-field.md) | Meetup Index sidebar | TextField preset: search icon, hidden label, taller | TextField | complete |
+| [FilterBar](./filter-bar.md) | Meetup groups | controlled client component; label + FilterPill group | Eyebrow, FilterPill | complete |
+| [ChatPreview](./chat-preview.md) | Slack section | figure: channel header, initials-avatar messages, mono stats footer | Card, Avatar, Eyebrow, StatGroup | complete |
 
 ### Page sections
 
@@ -156,7 +169,7 @@ Each phase only depends on the phases before it.
 0. **Align the imported components** ✅
 1. **Foundations** ✅ Icon, Heading, Eyebrow, TextLink, Pill, FilterPill, Avatar (plus token calibration against the designs)
 2. **Layout:** complete (Container, SectionHeader, GridGroup, Column, FlexGroup)
-3. **Content components:** GroupCard, FeatureItem, Stat / StatGroup, PersonCard, ResourceCard, UpdateItem, Accordion, Form fields, SearchField, FilterBar, ChatPreview
+3. **Content components** ✅ GroupCard, FeatureItem, StatGroup, PersonCard, ResourceCard, UpdateList, Accordion, Fieldset, TextField, TextArea, Select, SearchField, FilterBar, ChatPreview (plus GridGroup dividers and heading-scale calibration)
 4. **Page sections:** LanguageToggle, MeetupIndex, Hero, GroupHeader, CTABand
 5. **Pages:** homepage and group detail page, assembled from typed mock data
 
@@ -165,8 +178,7 @@ Each phase only depends on the phases before it.
 - **Bilingual EN / FR:** routing (`/fr`?) and which i18n library.
 - **Data source:** static typed mock data first; later WP REST, the Meetup API, or something else.
 - **Mobile nav:** the designs don't show one; the header nav currently wraps.
-- **Filtering:** whether the region filter and search are client-side.
-- **Group form:** where submissions go.
+- **Group form:** where submissions go. The fields exist; the form's action is wired up in Phase 5.
 - **Imagery:** the hero canopy image and the avatars.
 - **Group page title:** it's smaller than the section titles in the design (about 30px vs 34px); pick a size.
 - **Muted text on forest:** the design's muted colour on dark sections (lichen `#5a7165`) is about 3:1 on forest, below the 4.5:1 AA needs for small text. It's used for footer links and inverse descriptions. A lighter value (around `#8fa79a`, about 6:1) would pass.

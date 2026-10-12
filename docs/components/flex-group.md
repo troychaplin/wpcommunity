@@ -43,7 +43,7 @@ import { FlexGroup } from '@/components/FlexGroup';
 | `justify` | `'start' \| 'center' \| 'end' \| 'space-between'` | — | `justify-content` |
 | `align` | `'start' \| 'center' \| 'end' \| 'stretch'` | — | `align-items` |
 | `gap`, `padding`, `margin` | spacing key or `'none'` | — | Gap, padding and block margin |
-| `maxWidth` | `'alignsmall' \| 'aligncontent' \| 'alignwide' \| 'alignfull'` | — | Width class |
+| `maxWidth` | `'alignsmall' \| 'aligncontent' \| 'alignwide' \| 'alignfull'` | — | Width class; the group fills its parent up to that width and centres only when one is set |
 
 ## CSS classes
 

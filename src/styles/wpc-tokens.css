@@ -8,6 +8,7 @@
   --wpc--color-crimson-tint: #f5ebea;
   --wpc--color-forest: #0f251b;
   --wpc--color-forest-light: #1c3528;
+  --wpc--color-pine: #34453c;
   --wpc--color-moss: #2c493d;
   --wpc--color-ink: #25332c;
   --wpc--color-slate: #64706a;
@@ -28,6 +29,8 @@
   --wpc--color-surface: var(--wpc--color-white);
   --wpc--color-surface-tint: var(--wpc--color-sage);
   --wpc--color-border: var(--wpc--color-stone);
+  --wpc--color-field: var(--wpc--color-white);
+  --wpc--color-field-border: var(--wpc--color-border);
   --wpc--color-inverse: var(--wpc--color-forest);
   --wpc--color-text-inverse: var(--wpc--color-mist);
   --wpc--color-text-inverse-muted: var(--wpc--color-lichen);
@@ -59,8 +62,8 @@
   --wpc--font-size-x-large: clamp(1.125rem, 1.125rem + ((1vw - 0.2rem) * 0.208), 1.25rem);
   --wpc--font-size-2x-large: clamp(1.25rem, 1.25rem + ((1vw - 0.2rem) * 0.417), 1.5rem);
   --wpc--font-size-heading-small: clamp(1.375rem, 1.375rem + ((1vw - 0.2rem) * 0.625), 1.75rem);
-  --wpc--font-size-heading-medium: clamp(1.625rem, 1.625rem + ((1vw - 0.2rem) * 0.833), 2.125rem);
-  --wpc--font-size-heading-large: clamp(2rem, 2rem + ((1vw - 0.2rem) * 1.25), 2.75rem);
+  --wpc--font-size-heading-medium: clamp(1.75rem, 1.75rem + ((1vw - 0.2rem) * 1.25), 2.5rem);
+  --wpc--font-size-heading-large: clamp(2.125rem, 2.125rem + ((1vw - 0.2rem) * 1.458), 3rem);
   --wpc--font-size-display: clamp(2.75rem, 2.75rem + ((1vw - 0.2rem) * 4.792), 5.625rem);
 
   /* Shadows */

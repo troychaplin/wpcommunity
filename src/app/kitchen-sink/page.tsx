@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Image from "next/image";
+import { Accordion } from "@/components/Accordion";
 import { Article } from "@/components/Article";
 import { Aside } from "@/components/Aside";
 import { Avatar } from "@/components/Avatar";
@@ -7,8 +8,11 @@ import { Button } from "@/components/Button";
 import { ButtonGroup } from "@/components/ButtonGroup";
 import { Card } from "@/components/Card";
 import { Column } from "@/components/Column";
+import { ChatPreview } from "@/components/ChatPreview";
 import { Container } from "@/components/Container";
 import { Eyebrow } from "@/components/Eyebrow";
+import { FeatureItem } from "@/components/FeatureItem";
+import { Fieldset } from "@/components/Fieldset";
 import { Figure } from "@/components/Figure";
 import { FilterPill } from "@/components/FilterPill";
 import { FlexGroup } from "@/components/FlexGroup";
@@ -18,11 +22,20 @@ import { Icon } from "@/components/Icon";
 import type { IconName } from "@/components/Icon";
 import { icons } from "@/components/Icon/icons";
 import { Main } from "@/components/Main";
+import { PersonCard } from "@/components/PersonCard";
 import { Pill } from "@/components/Pill";
+import { ResourceCard } from "@/components/ResourceCard";
+import { SearchField } from "@/components/SearchField";
 import { SectionHeader } from "@/components/SectionHeader";
+import { Select } from "@/components/Select";
 import { SiteFooter } from "@/components/SiteFooter";
 import { SiteHeader } from "@/components/SiteHeader";
+import { StatGroup } from "@/components/StatGroup";
+import { TextArea } from "@/components/TextArea";
+import { TextField } from "@/components/TextField";
 import { TextLink } from "@/components/TextLink";
+import { UpdateList } from "@/components/UpdateList";
+import { FilterDemo } from "./FilterDemo";
 
 export const metadata: Metadata = {
   title: "Kitchen sink",
@@ -49,6 +62,85 @@ const headingSizes = [
 const regions = ["All Regions", "British Columbia", "Prairies", "Ontario", "Québec", "Atlantic"];
 
 const iconNames = Object.keys(icons) as IconName[];
+
+const provinces = [
+  "Alberta",
+  "British Columbia",
+  "Manitoba",
+  "New Brunswick",
+  "Newfoundland and Labrador",
+  "Northwest Territories",
+  "Nova Scotia",
+  "Nunavut",
+  "Ontario",
+  "Prince Edward Island",
+  "Québec",
+  "Saskatchewan",
+  "Yukon",
+].map((name) => ({ value: name, label: name }));
+
+const volunteers = [
+  { name: "Marcus Chen", role: "Speaker Curator", handle: "@marcus_c" },
+  { name: "Amira Said", role: "Workshop Lead", handle: "@amira_dev" },
+  { name: "Jean-Luc Tremblay", role: "Welcome Ambassador", handle: "@jltremblay" },
+];
+
+const resources = [
+  {
+    label: "External Platform",
+    title: "Meetup.com Page",
+    description: "Official RSVP portal, upcoming event dates, and community discussions.",
+    linkText: "Visit Group Page",
+  },
+  {
+    label: "WP Canada Slack",
+    title: "#wp-toronto Channel",
+    description: "Real-time local chat, job postings, emergency help, and coffee meetups.",
+    linkText: "Join Channel",
+  },
+  {
+    label: "Code & Slides",
+    title: "Slide Decks & Repo",
+    description: "Presentation slides, code examples, and workshop starter files from past sessions.",
+    linkText: "Browse Repository",
+  },
+  {
+    label: "Accessibility Info",
+    title: "Venue & Arrival Guide",
+    description: "Transit directions, wheelchair access notes, parking details, and building codes.",
+    linkText: "Read Venue Guide",
+  },
+];
+
+const updates = [
+  {
+    date: "Sept 12",
+    dateTime: "2026-09-12",
+    category: "Event",
+    title: "WordPress Toronto hosts Full Site Editing workshop",
+    excerpt:
+      "Last week's hands-on session walked members through block themes, template editing, and the style engine. Slides and recording now available on the meetup page.",
+    linkText: "Read recap",
+  },
+  {
+    date: "Sept 5",
+    dateTime: "2026-09-05",
+    category: "Announcement",
+    title: "WordCamp Canada 2027 organizer applications now open",
+    excerpt:
+      "Want to bring WordCamp to your city? The organizing team is actively looking for volunteers across three potential host cities.",
+    linkText: "Learn more",
+  },
+  {
+    date: "Aug 28",
+    dateTime: "2026-08-28",
+    category: "Resource",
+    title: "New bilingual welcome guide added to community resources",
+    excerpt:
+      "We've published a revised getting-started guide in both English and French. It covers finding local meetups, joining Slack, and attending your first WordCamp.",
+    linkText: "Download guide",
+  },
+];
 
 const cards = [
   { backgroundColor: "white", label: "White, with shadow", shadow: true },
@@ -221,6 +313,233 @@ export default function KitchenSink() {
             <Eyebrow>Showing 6 of 23 groups</Eyebrow>
             <TextLink href="/kitchen-sink#flex">View all groups</TextLink>
           </FlexGroup>
+        </Container>
+
+
+        <Container as="section" maxWidth="alignwide" contentWidth="alignwide">
+          <SectionHeader
+            prefix="Content components"
+            title="Local Meetup Groups"
+            meta="23 active groups across Canada"
+            hasDivider
+          />
+          <FilterDemo />
+        </Container>
+
+        <Container as="section" maxWidth="alignwide" contentWidth="alignwide">
+          <SectionHeader
+            title="New here? Start with these."
+            description="Whether you're new to WordPress or a seasoned developer, there's a place for you in the Canadian community."
+          />
+          <GridGroup columns={4} dividers="columns">
+            <FeatureItem icon="map-pin" title="Find your meetup" href="/kitchen-sink#groups" linkText="Browse groups">
+              Browse 23 active local groups organized by province. Most groups welcome all skill levels.
+            </FeatureItem>
+            <FeatureItem icon="messages-square" title="Join Slack" href="/kitchen-sink#slack" linkText="Get an invite">
+              Connect with 2,400+ Canadian WordPress people between events.
+            </FeatureItem>
+            <FeatureItem icon="circle-plus" title="Organize a group" href="/kitchen-sink#form" linkText="Submit a group">
+              Don&apos;t see your city listed? Submit your group and we&apos;ll help you get set up.
+            </FeatureItem>
+            <FeatureItem icon="star" title="Attend a WordCamp" href="/kitchen-sink#wordcamp" linkText="Find a WordCamp">
+              WordCamps are official, volunteer-run WordPress conferences held across Canada.
+            </FeatureItem>
+          </GridGroup>
+        </Container>
+
+        <Container as="section" maxWidth="alignwide" contentWidth="alignwide">
+          <SectionHeader title="StatGroup" meta="serif · in a tint card" level={3} />
+          <Card backgroundColor="tint" borderRadius="md">
+            <StatGroup>
+              <StatGroup.Item value="1,200+" label="Local Members" />
+              <StatGroup.Item value="Monthly" label="Meeting Cadence" />
+              <StatGroup.Item value="Hybrid" label="In-Person & Online" />
+              <StatGroup.Item value="Est. 2011" label="Community History" />
+            </StatGroup>
+          </Card>
+        </Container>
+
+        <Container as="section" maxWidth="alignwide" contentWidth="alignwide">
+          <Column cols="1/3" maxWidth="alignwide">
+            <Column.Content>
+              <PersonCard
+                label="primary group contact"
+                name="Elena Rostova"
+                role="Lead Organizer & Liaison"
+                handle="@elena on Slack"
+                bio={
+                  <p>
+                    Co-leading Toronto meetups since 2018. Focused on web accessibility, custom block
+                    development, and making every newcomer feel welcome.
+                  </p>
+                }
+                actions={
+                  <>
+                    <Button text="Contact Organizer" href="/kitchen-sink#contact" />
+                    <Button text="Find on Slack" color="secondary" href="/kitchen-sink#slack" />
+                  </>
+                }
+              />
+            </Column.Content>
+            <Column.Content>
+              <Card shadow paddingInline="medium" paddingBlock="medium">
+                <FlexGroup direction="column" gap="medium">
+                  <Heading size="heading-medium">Organizing Team &amp; Volunteers</Heading>
+                  <GridGroup as="ul" columns={3} gap="small">
+                    {volunteers.map((person) => (
+                      <li key={person.name}>
+                        <PersonCard variant="compact" {...person} />
+                      </li>
+                    ))}
+                  </GridGroup>
+                </FlexGroup>
+              </Card>
+            </Column.Content>
+          </Column>
+        </Container>
+
+        <Container as="section" maxWidth="alignwide" contentWidth="alignwide">
+          <SectionHeader title="Local Resources & Chapter Links" meta="04 Essential Touchpoints" hasDivider />
+          <GridGroup columns={4} gap="small">
+            {resources.map((resource) => (
+              <ResourceCard key={resource.title} href="/kitchen-sink#resources" {...resource} />
+            ))}
+          </GridGroup>
+        </Container>
+
+        <Container as="section" maxWidth="alignwide" contentWidth="aligncontent">
+          <SectionHeader title="Community updates" align="center" />
+          <UpdateList>
+            {updates.map((update) => (
+              <UpdateList.Item key={update.title} href="/kitchen-sink#updates" {...update} />
+            ))}
+          </UpdateList>
+          <FlexGroup justify="center">
+            <Eyebrow>3 of 38 updates</Eyebrow>
+          </FlexGroup>
+        </Container>
+
+        <Container as="section" color="tint" maxWidth="alignfull" contentWidth="aligncontent">
+          <SectionHeader
+            title="Common questions"
+            description="Everything you need to know about joining the Canadian WordPress community."
+          />
+          <Accordion label="Getting started">
+            <Accordion.Item question="Do I need to be a developer to attend meetups?" defaultOpen>
+              <p>
+                Not at all. Meetups welcome designers, writers, site owners, marketers and people who
+                are simply curious about WordPress.
+              </p>
+            </Accordion.Item>
+            <Accordion.Item question="Are meetups free to attend?">
+              <p>Almost always. Some workshops ask for a small fee to cover the venue.</p>
+            </Accordion.Item>
+            <Accordion.Item question="How do I find out when the next event is?">
+              <p>Each group lists its events on its Meetup.com page and in its Slack channel.</p>
+            </Accordion.Item>
+          </Accordion>
+          <Accordion label="Slack and online community">
+            <Accordion.Item question="How do I join the WP Canada Slack?">
+              <p>Request an invite from the Slack section on the homepage.</p>
+            </Accordion.Item>
+            <Accordion.Item question="Is the Slack group bilingual?">
+              <p>Yes. Channels run in English and French, and many members speak both.</p>
+            </Accordion.Item>
+          </Accordion>
+        </Container>
+
+        <Container as="section" color="tint" maxWidth="alignfull" contentWidth="alignwide">
+          <Column cols="2" maxWidth="alignwide">
+            <Column.Content>
+              <SectionHeader prefix="Community channel" title="Join the WP Canada Slack" />
+              <p>
+                Our national Slack workspace is the heartbeat of the community. Ask questions, share
+                resources, find collaborators, and stay connected between meetups.
+              </p>
+              <Button text="Get your invite" href="/kitchen-sink#slack" />
+            </Column.Content>
+            <Column.Content>
+              <ChatPreview
+                channel="wp-canada-general"
+                messages={[
+                  {
+                    author: "Sophie L.",
+                    time: "Today, 9:14 AM",
+                    text: "Anyone heading to WordCamp Canada this year? Looking for a Montréal carpool from Ottawa.",
+                  },
+                  {
+                    author: "Raj K.",
+                    time: "Today, 9:31 AM",
+                    text: "Great FSE talk last night in Toronto. Slides are on the meetup page now if you missed it!",
+                  },
+                  {
+                    author: "Marie-Ange",
+                    time: "Today, 10:02 AM",
+                    text: "Notre groupe Montréal cherche un animateur bénévole pour novembre. Faites-moi signe!",
+                  },
+                ]}
+                stats={[
+                  { value: "2,400+", label: "members" },
+                  { value: "18", label: "channels" },
+                  { value: "bilingual", label: "en & fr" },
+                ]}
+              />
+            </Column.Content>
+          </Column>
+          <Card backgroundColor="tint" border={false} paddingInline="none" paddingBlock="none">
+            <SearchField label="Search groups by city" placeholder="Search your city..." />
+          </Card>
+        </Container>
+
+        <Container as="section" color="inverse" maxWidth="alignfull" contentWidth="alignwide">
+          <Column cols="1/3" maxWidth="alignwide">
+            <Column.Content>
+              <Heading size="heading-medium">Start a group in your city</Heading>
+              <p>
+                We support new organizers with resources, promotion, and a community of experienced
+                peers across Canada.
+              </p>
+            </Column.Content>
+            <Column.Content>
+              <form action="/kitchen-sink">
+                <FlexGroup direction="column" gap="large">
+                  <Fieldset legend="Your details">
+                    <GridGroup columns={2}>
+                      <TextField label="Your name" name="name" placeholder="Jane Smith" autoComplete="name" />
+                      <TextField
+                        label="Email address"
+                        name="email"
+                        type="email"
+                        placeholder="jane@example.ca"
+                        autoComplete="email"
+                      />
+                    </GridGroup>
+                  </Fieldset>
+                  <Fieldset legend="Group details">
+                    <GridGroup columns={2}>
+                      <TextField label="City" name="city" placeholder="Winnipeg" />
+                      <Select
+                        label="Province or territory"
+                        name="province"
+                        options={provinces}
+                        placeholder="Choose one"
+                        defaultValue=""
+                      />
+                    </GridGroup>
+                    <TextArea
+                      label="Tell us about your group"
+                      name="about"
+                      placeholder="Who is the group for? What kind of events do you plan?"
+                    />
+                  </Fieldset>
+                  <FlexGroup justify="space-between" align="center" gap="small">
+                    <p>We&apos;ll review your submission and reach out within a few days.</p>
+                    <Button text="Submit my group" type="submit" />
+                  </FlexGroup>
+                </FlexGroup>
+              </form>
+            </Column.Content>
+          </Column>
         </Container>
 
         {tones.map((tone) => (

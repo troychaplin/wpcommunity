@@ -1,0 +1,32 @@
+// The shared look of a form control: TextField, TextArea, Select and SearchField. Colours read
+// the field roles, so controls switch between light and inverse sections with no props.
+@mixin control {
+    display: block;
+    width: 100%;
+    padding: var(--wpc--spacing-x-small) var(--wpc--spacing-small);
+    font-family: var(--wpc--font-family-sans);
+    font-size: var(--wpc--font-size-medium);
+    line-height: var(--wpc--line-height-relaxed);
+    color: var(--wpc--color-text);
+    background-color: var(--wpc--color-field);
+    border: 1px solid var(--wpc--color-field-border);
+    border-radius: var(--wpc--radius-sm);
+    appearance: none;
+
+    &::placeholder {
+        color: var(--wpc--color-text-muted);
+        opacity: 1;
+    }
+}
+
+// The wrapping label and its text, shared by every field
+@mixin shell {
+    display: grid;
+    gap: var(--wpc--spacing-x-small);
+}
+
+@mixin label {
+    font-family: var(--wpc--font-family-sans);
+    font-size: var(--wpc--font-size-small);
+    color: var(--wpc--color-text);
+}

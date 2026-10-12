@@ -1,0 +1,14 @@
+@use '../../styles/mixins/field';
+
+.wpc-text-area {
+    @include field.shell;
+}
+
+.wpc-text-area__label {
+    @include field.label;
+}
+
+.wpc-text-area__input {
+    @include field.control;
+    resize: vertical;
+}

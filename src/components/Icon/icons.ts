@@ -1,5 +1,6 @@
 import {
     ArrowRight,
+    ChevronDown,
     CirclePlus,
     MapPin,
     MessageCircleMore,
@@ -13,6 +14,7 @@ import {
 // Only the icons the designs use. Swapping icon libraries means changing this file alone.
 export const icons = {
     'arrow-right': ArrowRight,
+    'chevron-down': ChevronDown,
     'circle-plus': CirclePlus,
     'map-pin': MapPin,
     'message-circle-more': MessageCircleMore,

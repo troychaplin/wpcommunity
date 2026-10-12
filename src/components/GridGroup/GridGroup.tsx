@@ -13,6 +13,7 @@ export interface GridGroupProps extends React.HTMLAttributes<HTMLElement> {
     rowGap?: spacingKeys;
     align?: alignKeys;
     maxWidth?: maxWidthKeys;
+    dividers?: 'none' | 'columns' | 'all';
 }
 
 export const GridGroup = ({
@@ -23,6 +24,7 @@ export const GridGroup = ({
     rowGap,
     align,
     maxWidth,
+    dividers = 'none',
     className,
     ...rest
 }: GridGroupProps) => {
@@ -35,6 +37,7 @@ export const GridGroup = ({
         rowGap && `wpc-grid-group--row-gap-${spacingClasses[rowGap]}`,
         align && `wpc-grid-group--align-${flexAlignClasses[align]}`,
         maxWidth && maxWidthClasses[maxWidth],
+        dividers !== 'none' && `wpc-grid-group--dividers wpc-grid-group--dividers-${dividers}`,
         className,
     ]
         .filter(Boolean)
