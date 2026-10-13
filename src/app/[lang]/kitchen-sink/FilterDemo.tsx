@@ -97,7 +97,7 @@ export function FilterDemo() {
       <FilterBar label="Region" options={regions} value={region} onChange={setRegion} />
       <GridGroup columns={3} dividers="all">
         {visible.map(({ regionKey, ...group }) => (
-          <GroupCard key={group.name} href={`/kitchen-sink#${regionKey}`} {...group} />
+          <GroupCard key={group.name} href={`#${regionKey}`} {...group} />
         ))}
       </GridGroup>
       <Eyebrow aria-live="polite">

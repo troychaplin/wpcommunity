@@ -19,14 +19,15 @@ export interface ChatPreviewProps {
     channel: string;
     messages: ChatPreviewMessage[];
     stats?: ChatPreviewStat[];
+    label?: string;
     className?: string;
 }
 
-export const ChatPreview = ({ channel, messages, stats, className }: ChatPreviewProps) => {
+export const ChatPreview = ({ channel, messages, stats, label, className }: ChatPreviewProps) => {
     const classes = ['wpc-chat-preview', className].filter(Boolean).join(' ');
 
     return (
-        <figure className={classes} aria-label={`Preview of the #${channel} Slack channel`}>
+        <figure className={classes} aria-label={label ?? `Preview of the #${channel} Slack channel`}>
             <Card borderRadius="md" paddingInline="none" paddingBlock="none" className="wpc-chat-preview__card">
                 <p className="wpc-chat-preview__channel">
                     <span className="wpc-chat-preview__hash" aria-hidden="true">

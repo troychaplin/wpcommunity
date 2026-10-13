@@ -17,6 +17,17 @@
         color: var(--wpc--color-text-muted);
         opacity: 1;
     }
+
+    &[aria-invalid='true'] {
+        border-color: var(--wpc--color-accent);
+    }
+}
+
+// Reads the accent role: crimson on light surfaces, the light accent on inverse ones
+@mixin error {
+    font-family: var(--wpc--font-family-sans);
+    font-size: var(--wpc--font-size-small);
+    color: var(--wpc--color-accent);
 }
 
 // The wrapping label and its text, shared by every field

@@ -19,6 +19,7 @@ export interface MeetupIndexProps {
     search?: React.ReactNode;
     regions: MeetupIndexRegion[];
     meta?: MeetupIndexMeta[];
+    countLabel?: (count: number) => string;
     className?: string;
 }
 
@@ -28,6 +29,7 @@ export const MeetupIndex = ({
     search,
     regions,
     meta,
+    countLabel = (count) => `${count} ${count === 1 ? 'group' : 'groups'}`,
     className,
 }: MeetupIndexProps) => {
     const classes = ['wpc-meetup-index', className].filter(Boolean).join(' ');
@@ -45,15 +47,19 @@ export const MeetupIndex = ({
                         <>
                             <span className="wpc-meetup-index__name">{label}</span>
                             <span className="wpc-meetup-index__leader" aria-hidden="true" />
-                            <span className="wpc-meetup-index__count">
-                                {count} {count === 1 ? 'group' : 'groups'}
-                            </span>
+                            <span className="wpc-meetup-index__count">{countLabel(count)}</span>
                         </>
                     );
 
+                    // In-page fragments use a plain anchor so the browser fires `hashchange`,
+                    // which the router's own hash navigation does not
                     return (
                         <li key={label}>
-                            {href ? (
+                            {href?.startsWith('#') ? (
+                                <a href={href} className="wpc-meetup-index__region">
+                                    {row}
+                                </a>
+                            ) : href ? (
                                 <Link href={href} className="wpc-meetup-index__region">
                                     {row}
                                 </Link>

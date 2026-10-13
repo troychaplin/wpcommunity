@@ -9,7 +9,7 @@ The first set of components came from [Parlour UI](https://github.com/troychapli
 - **One doc per component.** Each component has its own file in this folder (e.g. [`button.md`](./button.md)), following [`_template.md`](./_template.md). The inventory links to each doc.
 - **Status** moves through `planned` → `specced` → `complete`.
 - **Designs** live in [`docs/design/`](../design/) as the original 2× exports. **Crops** for individual docs are cut from those and saved in `docs/components/images/`.
-- **Review** components on the [`/kitchen-sink`](../../src/app/kitchen-sink/page.tsx) route (`pnpm dev`, then open `/kitchen-sink`).
+- **Review** components on the [`/kitchen-sink`](../../src/app/[lang]/kitchen-sink/page.tsx) route (`pnpm dev`, then open `/en/kitchen-sink`).
 - **Tokens** come from [`c2b.config.json`](../../c2b.config.json) (prefix `wpc`). Docs refer to tokens by role (`--wpc--color-text`, `--wpc--spacing-medium`) rather than raw values.
 - **Design scale:** the exports are 2×. The homepage is 1277 CSS px wide and the group page 1371, so halve pixel measurements taken from them.
 
@@ -36,7 +36,7 @@ docs/components/component-name.md
 - Every visual value comes from a `--wpc--*` token. If a value has no token, add it to `c2b.config.json` and run `pnpm tokens`. Never edit the generated `src/styles/wpc-*` files.
 - Breakpoints use the generated mixins, mobile-first: `@use '../../styles/wpc-variables' as *;` then `@include above-mobile { … }` / `above-tablet` (600px / 960px).
 - Modifier classes for a token scale are generated from the `$wpc-spacing` and `$wpc-radius` maps, so new token steps get classes with no component edit.
-- Global styles live in `src/styles/main.scss`, imported once by the root layout: modern-normalize, the generated tokens, `base/*` (focus, selection, alignment widths, `.sr-only`) and the generated base, layout and typography CSS.
+- Global styles live in `src/styles/main.scss`, imported once by the root layout (`src/app/[lang]/layout.tsx`): modern-normalize, the generated tokens, `base/*` (focus, selection, alignment widths, `.sr-only`) and the generated base, layout and typography CSS.
 
 ### Tones
 
@@ -47,6 +47,7 @@ docs/components/component-name.md
 ### Forms
 
 - Form controls are wrapped by their `<label>`, which associates the two without ids. `hideLabel` keeps the label for screen readers.
+- TextField, TextArea and Select take an `error` message: it renders under the control in the accent role, sets `aria-invalid` and is linked with `aria-describedby`.
 - Controls share the `control` mixin in `src/styles/mixins/_field.scss` and read the `field` and `field-border` roles, which the tone mixins re-declare (white / stone or sage-dark on light, forest-light / pine on inverse). Placeholders use `text-muted`.
 
 ### Props
@@ -62,7 +63,9 @@ docs/components/component-name.md
 ### Links and client code
 
 - Links use `next/link` directly. Components are Server Components by default; add `'use client'` only for state, effects or context.
-- Interactive components are controlled (`value` + `onChange`) and hold no state. A small client wrapper owns the state, as in `src/app/kitchen-sink/FilterDemo.tsx`.
+- Interactive components are controlled (`value` + `onChange`) and hold no state. A small client wrapper owns the state, as in `src/app/[lang]/kitchen-sink/FilterDemo.tsx`.
+- App-level client code that wires components to data lives in `src/features/`, not in `src/components/` (see [Pages](#pages)).
+- Components take their user-facing strings as props with English defaults, so the pages can pass translations.
 
 ### Layout
 
@@ -135,13 +138,52 @@ docs/components/component-name.md
 
 | Component | Used in | Variants / notes | Depends on | Status |
 |---|---|---|---|---|
-| [SiteHeader](./site-header.md) | All pages | serif wordmark; muted nav beside the actions slot (language toggle) | FlexGroup | complete |
+| [SiteHeader](./site-header.md) | All pages | serif wordmark; muted nav beside the actions slot (language toggle); Menu button and panel below tablet | FlexGroup, Icon | complete |
 | [SiteFooter](./site-footer.md) | All pages | forest; brand + description, nav column, extra slot (language), bottom bar | — | complete |
 | [LanguageToggle](./language-toggle.md) | Header, footer | segmented En / Fr pill / labelled list; takes hrefs, `lang` + `aria-current` | — | complete |
 | [MeetupIndex](./meetup-index.md) | Home hero | title + version, search slot, region rows with dotted leaders and counts, meta facts | Eyebrow | complete |
 | [Hero](./hero.md) | Home | full-bleed; display h1 with accent, lead, actions, aside; blush gradient, optional photo under a wash | Heading | complete |
 | [GroupHeader](./group-header.md) | Group page | pills row + channel link, 48px h1, description, stats in a tint card | Card, FlexGroup, Pill, TextLink, Heading, StatGroup | complete |
 | [CTABand](./cta-band.md) | Group page (upcoming gathering) | inverse card with forest glow and raised shadow; eyebrow, title, details, location, actions | Card, Eyebrow, Heading | complete |
+
+## Pages
+
+Phase 5 assembled the designs into real routes, in English and French.
+
+### Routes
+
+| Route | Page | Notes |
+|---|---|---|
+| `/` | Redirect | [`src/proxy.ts`](../../src/proxy.ts) sends any path without a locale to `/en…` or `/fr…`, picked from `Accept-Language` (English by default) |
+| `/{lang}` | Homepage | Hero with the Meetup Index, group grid (first 6), Slack, "New here?", the group form, updates, FAQ |
+| `/{lang}/groups` | Groups directory | Every group, with search and region filters; the "View all groups" target |
+| `/{lang}/groups/{slug}` | Group page | Header and stats, organizer and team, resources, next event. Sections without data are left out; unknown slugs return a 404 |
+| `/{lang}/kitchen-sink` | Component review | `noindex` |
+
+Every route is prerendered for both locales (`generateStaticParams` in the root layout and the group page). The localized `not-found.tsx` covers unknown slugs and paths.
+
+### i18n
+
+- [`src/i18n/config.ts`](../../src/i18n/config.ts): `locales`, `defaultLocale`, `localeTags` (`en-CA`, `fr-CA` for `Intl`) and each language's name in its own language.
+- [`src/i18n/dictionaries/`](../../src/i18n/dictionaries/): one TypeScript dictionary per language. `en.ts` defines the `Dictionary` type and `fr.ts` is typed against it, so a key missing in French fails the build.
+- [`getDictionary.ts`](../../src/i18n/getDictionary.ts): `getI18n()` reads the locale with `next/root-params`, so Server Components get `{ locale, tag, t }` without prop drilling. Server Actions can't read root params; they take the locale from a hidden form field and call `dictionaryFor(locale)`.
+- [`format.ts`](../../src/i18n/format.ts): `format()` fills `{name}` placeholders and `plural()` picks a form with `Intl.PluralRules`. Templates let word order differ between languages (`'{cadence} meetups'` / `'Rencontres {cadence}'`).
+- [`paths.ts`](../../src/i18n/paths.ts): `localeHref()` prefixes internal paths and `alternatesFor()` builds the canonical and hreflang links each page passes to `generateMetadata`.
+- The `LocaleSwitcher` swaps the locale segment of the current path, so changing language keeps you on the same page.
+
+### Data
+
+- [`src/data/`](../../src/data/) holds typed **mock data**: 23 groups (6 from the design, WordPress Ottawa with full detail), regions, updates, FAQ, the Slack preview, features and provinces. Text that changes by language is `Localized` (`{ en, fr }`).
+- [`src/data/index.ts`](../../src/data/index.ts) has the accessors and formatters (`getGroup`, `getRegions`, `getDirectoryGroups`, `formatEventDetails`…). They're plain functions over static data, so a WP REST or Meetup source can replace them without touching the pages.
+- Meetup links are Meetup.com searches for the group's city, and Slack links go to a placeholder, until real URLs exist.
+
+### Features
+
+[`src/features/`](../../src/features/) holds the app's client code:
+
+- `locale/LocaleSwitcher`: the header and footer language toggles.
+- `directory/`: `DirectoryProvider` shares the search query and region across sections that sit apart on the page (the hero search and the group grid). A `#region-bc` link from the Meetup Index selects that region and scrolls to the results. `DirectorySearch` and `DirectoryResults` read the context. Search ignores case and accents ("montreal" finds Montréal).
+- `group-form/`: `GroupForm` with `useActionState` and the `submitGroup` Server Action. It validates and returns localized errors, keeps what was typed, moves focus to the first invalid field, and announces the result in a live region. Nothing is stored yet: `deliverGroupSubmission()` is where a backend plugs in.
 
 ## Alignment (Parlour → wpc)
 
@@ -171,14 +213,20 @@ Each phase only depends on the phases before it.
 2. **Layout:** complete (Container, SectionHeader, GridGroup, Column, FlexGroup)
 3. **Content components** ✅ GroupCard, FeatureItem, StatGroup, PersonCard, ResourceCard, UpdateList, Accordion, Fieldset, TextField, TextArea, Select, SearchField, FilterBar, ChatPreview (plus GridGroup dividers and heading-scale calibration)
 4. **Page sections** ✅ LanguageToggle, MeetupIndex, Hero, GroupHeader, CTABand (plus SiteHeader tuned to the design)
-5. **Pages:** homepage and group detail page, assembled from typed mock data
+5. **Pages** ✅ bilingual homepage, groups directory and group pages from typed mock data (plus the mobile menu, form errors and lighter muted text on forest)
+
+## Resolved
+
+- **Bilingual EN / FR:** `/en` and `/fr` routes with typed dictionaries and no i18n library (see [Pages](#pages)).
+- **Mobile nav:** a Menu button below the tablet breakpoint ([SiteHeader](./site-header.md)).
+- **Muted text on forest:** the inverse muted role is now `lichen-light` (#8fa79a), about 6:1 on forest; the design's lichen was about 3:1.
 
 ## Open questions
 
-- **Bilingual EN / FR:** routing (`/fr`?) and which i18n library. LanguageToggle takes plain hrefs, so it fits either.
-- **Data source:** static typed mock data first; later WP REST, the Meetup API, or something else.
-- **Mobile nav:** the designs don't show one; the header nav currently wraps.
-- **Group form:** where submissions go. The fields exist; the form's action is wired up in Phase 5.
+- **French copy:** the dictionaries and data were drafted in Québec French and need a native speaker's review before launch.
+- **Data source:** mock data for now; later WP REST, the Meetup API, or something else. The accessors in `src/data/index.ts` are the seam.
+- **Group form backend:** where submissions go (email, a CRM, WordPress). The form validates and thanks the person but stores nothing.
+- **Real links:** each group's Meetup page (currently a city search) and the WP Canada Slack invite (currently WordPress's own Slack sign-up page).
+- **Our Story page:** the header links "Our Story" to the homepage's "New here?" section until a page is designed.
 - **Imagery:** the hero's misty-forest photo and the people's avatars. Hero renders the blush gradient until `image` is passed; avatars fall back to initials.
-- **Muted text on forest:** the design's muted colour on dark sections (lichen `#5a7165`) is about 3:1 on forest, below the 4.5:1 AA needs for small text. It's used for footer links and inverse descriptions. A lighter value (around `#8fa79a`, about 6:1) would pass.
 - **Figure widths:** the size widths are raw values carried over from Parlour; add layout tokens if Figure gets used.

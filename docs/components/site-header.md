@@ -1,6 +1,6 @@
 # SiteHeader
 
-The header at the top of every page: the site title as a link home, the primary navigation, and an optional actions slot, in one row at the wide content width. Renders a `<header>`, with a `<nav aria-label="Primary">` when navigation links are passed.
+The header at the top of every page: the site title as a link home, the primary navigation, and an optional actions slot, in one row at the wide content width. Renders a `<header>`, with a `<nav aria-label="Primary">` when navigation links are passed. Below the tablet breakpoint the nav and actions fold into a panel behind a Menu button.
 
 **Status:** complete
 
@@ -24,15 +24,18 @@ import { SiteHeader } from '@/components/SiteHeader';
 
 ```tsx
 <SiteHeader
+  homeHref="/en"
   navItems={[
-    { href: '/meetups', label: 'Meetups' },
-    { href: '/submit', label: 'Submit a Group' },
-    { href: '/story', label: 'Our Story' },
+    { href: '/en/groups', label: 'Meetups' },
+    { href: '/en#start-a-group', label: 'Submit a Group' },
+    { href: '/en#new-here', label: 'Our Story' },
   ]}
 >
-  <LanguageToggle languages={languages} />
+  <LocaleSwitcher locale="en" label="Language" />
 </SiteHeader>
 ```
+
+The root layout (`src/app/[lang]/layout.tsx`) renders it with the dictionary's labels.
 
 ## Props
 
@@ -40,7 +43,11 @@ import { SiteHeader } from '@/components/SiteHeader';
 |---|---|---|---|
 | `siteTitle` | `string` | `'WP Canada'` | Text of the home link |
 | `siteTitleAccent` | `string` | — | Part of the title shown in crimson |
+| `homeHref` | `string` | `'/'` | Target of the title link (the locale's homepage) |
 | `navItems` | `{ href: string; label: string }[]` | — | Primary navigation links |
+| `navLabel` | `string` | `'Primary'` | Accessible name of the nav |
+| `menuLabel` | `string` | `'Menu'` | Menu button text while the panel is closed |
+| `closeLabel` | `string` | `'Close'` | Menu button text while the panel is open |
 | `children` | `ReactNode` | — | Actions slot at the end of the row |
 | `className` | `string` | — | Extra classes |
 
@@ -51,10 +58,13 @@ import { SiteHeader } from '@/components/SiteHeader';
 | `wpc-site-header` | Always |
 | `wpc-site-header__branding` | Title wrapper |
 | `wpc-site-header__title-accent` | `siteTitleAccent` matched part of the title |
+| `wpc-site-header__menu`, `__menu--open` | Wraps the toggle and panel; `display: contents` so both join the row |
+| `wpc-site-header__toggle` | The Menu button (hidden above tablet) |
+| `wpc-site-header__panel` | Holds the nav and actions |
 | `wpc-site-header__nav` | `navItems` is non-empty |
 | `wpc-site-header__actions` | `children` is set |
 
-The row itself is a [`FlexGroup`](./flex-group.md) (`alignwide`, `space-between`, gap `small`).
+The row itself is a [`FlexGroup`](./flex-group.md) (`alignwide`, `space-between`, gap `small`). `SiteHeader` stays a Server Component; the toggle state lives in a small client component, `SiteHeaderMenu`, that wraps the nav and actions.
 
 ## Design tokens
 
@@ -68,16 +78,16 @@ The row itself is a [`FlexGroup`](./flex-group.md) (`alignwide`, `space-between`
 | `--wpc--spacing-x-small`, `--wpc--spacing-medium`, `--wpc--root-padding-x` | Padding (about 52px tall) and nav gap |
 | `--wpc--transition-fast` | Nav hover |
 
-The nav has `margin-inline-start: auto`, so it sits beside the actions at the end of the row rather than in the middle.
+## Responsive behaviour
+
+- Below the tablet breakpoint (960px), the Menu button sits at the end of the row and the panel is hidden. Opening it shows the nav and actions as a full-width column under the row.
+- From tablet up, the button is hidden and the panel lays out inline with `margin-inline-start: auto`, so the nav sits beside the actions at the end of the row.
 
 ## Accessibility
 
 - A top-level `<header>` is the `banner` landmark; keep it outside `Main`, one per page.
 - The title is a paragraph holding a `rel="home"` link, not a heading, so the page keeps a single `<h1>`.
 - `siteTitleAccent` wraps part of the text in a `<span>` without changing it, so it's announced as written.
-- The nav is labelled "Primary"; give any other `<nav>` a different label (the footer's is "Footer").
+- The nav is labelled by `navLabel` ("Primary"); give any other `<nav>` a different label (the footer's is "Footer").
+- The Menu button has `aria-expanded` and `aria-controls` pointing at the panel, and its text switches between `menuLabel` and `closeLabel`. Escape closes the panel and returns focus to the button; following a link closes it too.
 - Links don't mark the current page with `aria-current` yet.
-
-## Open questions
-
-- Mobile navigation pattern: the designs don't show one. On phones the nav and toggle currently wrap onto extra lines (about 126px tall at 375px).

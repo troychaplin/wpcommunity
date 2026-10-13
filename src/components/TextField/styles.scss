@@ -1,7 +1,12 @@
 @use '../../styles/mixins/field';
 
-.wpc-text-field {
+.wpc-text-field,
+.wpc-text-field__field {
     @include field.shell;
+}
+
+.wpc-text-field__error {
+    @include field.error;
 }
 
 .wpc-text-field__label {

@@ -1,0 +1,18 @@
+@use '../../styles/mixins/field';
+
+.wpc-group-form__summary {
+    @include field.error;
+    margin-block-start: var(--wpc--spacing-medium);
+}
+
+.wpc-group-form__success {
+    display: grid;
+    gap: var(--wpc--spacing-small);
+    padding: var(--wpc--spacing-large);
+    border: 1px solid var(--wpc--color-border);
+    border-radius: var(--wpc--radius-md);
+
+    > * {
+        margin: 0;
+    }
+}

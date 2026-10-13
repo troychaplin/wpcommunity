@@ -43,6 +43,7 @@ import { ChatPreview } from '@/components/ChatPreview';
 | `channel` | `string` | — | Channel name, without the `#` |
 | `messages` | `{ author: string; time: string; text: string }[]` | — | Messages in order |
 | `stats` | `{ value: string; label: string }[]` | — | Footer stats ([`StatGroup`](./stat-group.md) `mono`) |
+| `label` | `string` | `'Preview of the #{channel} Slack channel'` | Accessible name of the figure |
 | `className` | `string` | — | Extra classes on the figure |
 
 ## CSS classes
@@ -66,5 +67,5 @@ Avatars are small square initials ([`Avatar`](./avatar.md)); times are muted [`E
 
 ## Accessibility
 
-- A `<figure>` labelled "Preview of the #channel Slack channel", with the messages as an ordered list.
+- A `<figure>` labelled "Preview of the #channel Slack channel" (or `label`), with the messages as an ordered list.
 - The `#` is decorative (`aria-hidden`), and the initials avatars are hidden because each author's name follows.

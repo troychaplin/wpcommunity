@@ -43,9 +43,13 @@ import { GroupCard } from '@/components/GroupCard';
 | `region` | `string` | — | Accent eyebrow |
 | `name` | `string` | — | Title |
 | `description` | `string` | — | Muted paragraph |
-| `members` | `string \| number` | — | Numbers are formatted `en-CA` (1200 → 1,200) |
+| `members` | `string \| number` | — | Numbers are formatted for `locale` (1200 → 1,200, or 1 200 in French) |
 | `cadence` | `string` | — | "Monthly", "Bi-monthly", "Quarterly" |
 | `href` | `string` | — | Group page |
+| `linkText` | `string` | `'View group details'` | Link text |
+| `membersFormat` | `string` | `'{members} members'` | Meta template; `{members}` becomes the mono value |
+| `cadenceFormat` | `string` | `'{cadence} meetups'` | Meta template, so word order can change by language (`'Rencontres {cadence}'`) |
+| `locale` | `string` | `'en-CA'` | BCP 47 tag for number formatting |
 | `headingLevel` | `2 \| 3 \| 4` | `3` | Title element |
 
 Other HTML attributes pass through to the `<article>`.
@@ -74,4 +78,4 @@ The card fills its grid cell; the meta line sits at the bottom (`margin-top: aut
 ## Accessibility
 
 - An `<article>` with a heading, so each group is a navigable unit.
-- Every card has the same link text, so the link carries `aria-label="View group details, {name}"` to tell them apart.
+- Every card has the same link text, so the link carries `aria-label="{linkText}, {name}"` to tell them apart.

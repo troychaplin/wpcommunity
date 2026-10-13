@@ -24,7 +24,8 @@
 @mixin inverse {
     --wpc--color-text: var(--wpc--color-mist);
     --wpc--color-heading: var(--wpc--color-white);
-    --wpc--color-text-muted: var(--wpc--color-lichen);
+    // Lighter than the design's lichen, which is only ~3:1 on forest; this is ~6:1
+    --wpc--color-text-muted: var(--wpc--color-lichen-light);
     --wpc--color-border: var(--wpc--color-forest-light);
     --wpc--color-accent: var(--wpc--color-accent-inverse);
     --wpc--color-field: var(--wpc--color-forest-light);

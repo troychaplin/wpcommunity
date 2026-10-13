@@ -34,16 +34,19 @@ import { TextField } from '@/components/TextField';
 |---|---|---|---|
 | `label` | `string` | — | Visible label (required) |
 | `hideLabel` | `boolean` | `false` | Keeps the label for screen readers only |
+| `error` | `string` | — | Message shown under the field; sets `aria-invalid` and links the message with `aria-describedby` |
 | `icon` | `IconName` | — | Leading icon |
 | `type` | `'text' \| 'email' \| 'tel' \| 'url' \| 'search'` | `'text'` | Input type |
 
-Other `<input>` props (`name`, `value`, `onChange`, `required`, `autoComplete`…) pass through; `className` goes on the label wrapper.
+Other `<input>` props (`name`, `value`, `onChange`, `required`, `autoComplete`…) pass through; `className` goes on the wrapper.
 
 ## CSS classes
 
 | Class | When applied |
 |---|---|
-| `wpc-text-field` | Always (the `<label>`) |
+| `wpc-text-field` | Always (the wrapper `<div>`) |
+| `wpc-text-field__field` | The `<label>` around the label text and control |
+| `wpc-text-field__error` | `error` is set |
 | `wpc-text-field--has-icon` | `icon` is set |
 | `wpc-text-field__label`, `__control`, `__input`, `__icon` | Parts |
 
@@ -58,10 +61,12 @@ The control look comes from the shared `control` mixin (`src/styles/mixins/_fiel
 | `--wpc--font-family-sans`, `--wpc--font-size-medium`, `--wpc--line-height-relaxed` | Input text (about 44px tall) |
 | `--wpc--font-size-small` | Label |
 | `--wpc--spacing-x-small`, `--wpc--spacing-small`, `--wpc--radius-sm` | Padding and corners |
+| `--wpc--color-accent` (role) | Error message and invalid border: crimson on light, the light accent on inverse |
 
 ## Accessibility
 
 - The wrapping label names the input, including when `hideLabel` is used (the text stays in the accessible name).
 - Don't rely on the placeholder as a label: it disappears on typing and is low contrast by design.
+- With `error`, the input gets `aria-invalid="true"` and `aria-describedby` pointing at the message, so the message is read after the label. The error text uses the accent role, not colour alone: the message itself says what's wrong.
 - Focus shows the global ring (crimson on light, the light accent on inverse).
 - Inverse sections set `color-scheme: dark`, so native parts such as the search clear button render to match.

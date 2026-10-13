@@ -3,6 +3,7 @@ import Link from 'next/link';
 
 import { FlexGroup } from '../FlexGroup/FlexGroup';
 import { splitTitle } from '../../utils/splitTitle';
+import { SiteHeaderMenu } from './SiteHeaderMenu';
 
 import './styles.scss';
 
@@ -15,7 +16,11 @@ export interface SiteHeaderProps {
     children?: React.ReactNode;
     siteTitle?: string;
     siteTitleAccent?: string;
+    homeHref?: string;
     navItems?: SiteHeaderNavItem[];
+    navLabel?: string;
+    menuLabel?: string;
+    closeLabel?: string;
     className?: string;
 }
 
@@ -24,17 +29,22 @@ export const SiteHeader = ({
     children,
     siteTitle = 'WP Canada',
     siteTitleAccent,
+    homeHref = '/',
     navItems,
+    navLabel = 'Primary',
+    menuLabel = 'Menu',
+    closeLabel = 'Close',
 }: SiteHeaderProps) => {
     const rootClasses = ['wpc-site-header', className].filter(Boolean).join(' ');
     const [titleStart, titleAccent, titleEnd] = splitTitle(siteTitle, siteTitleAccent);
+    const hasNav = navItems !== undefined && navItems.length > 0;
 
     return (
         <header className={rootClasses}>
             <FlexGroup gap="small" maxWidth="alignwide" justify="space-between" align="center">
                 <div className="wpc-site-header__branding">
                     <p>
-                        <Link href="/" rel="home">
+                        <Link href={homeHref} rel="home">
                             {titleStart}
                             {titleAccent && (
                                 <span className="wpc-site-header__title-accent">{titleAccent}</span>
@@ -43,18 +53,22 @@ export const SiteHeader = ({
                         </Link>
                     </p>
                 </div>
-                {navItems && navItems.length > 0 && (
-                    <nav className="wpc-site-header__nav" aria-label="Primary">
-                        <ul>
-                            {navItems.map(({ href, label }) => (
-                                <li key={href}>
-                                    <Link href={href}>{label}</Link>
-                                </li>
-                            ))}
-                        </ul>
-                    </nav>
+                {(hasNav || children) && (
+                    <SiteHeaderMenu menuLabel={menuLabel} closeLabel={closeLabel}>
+                        {hasNav && (
+                            <nav className="wpc-site-header__nav" aria-label={navLabel}>
+                                <ul>
+                                    {navItems.map(({ href, label }) => (
+                                        <li key={href}>
+                                            <Link href={href}>{label}</Link>
+                                        </li>
+                                    ))}
+                                </ul>
+                            </nav>
+                        )}
+                        {children && <div className="wpc-site-header__actions">{children}</div>}
+                    </SiteHeaderMenu>
                 )}
-                {children && <div className="wpc-site-header__actions">{children}</div>}
             </FlexGroup>
         </header>
     );

@@ -42,6 +42,7 @@ import { SiteFooter } from '@/components/SiteFooter';
 | `nameHref` | `string` | — | Makes the name a link |
 | `description` | `ReactNode` | — | Line under the name |
 | `navItems` | `{ href: string; label: string }[]` | — | Footer navigation links |
+| `navLabel` | `string` | `'Footer'` | Accessible name of the nav |
 | `children` | `ReactNode` | — | Extra slot at the end of the row (language) |
 | `legal` | `ReactNode` | — | Bottom bar, start |
 | `meta` | `ReactNode` | — | Bottom bar, end; links in it are highlighted |
@@ -79,5 +80,5 @@ Stacked on small screens. Above the tablet breakpoint: brand (2fr), nav (1fr), t
 ## Accessibility
 
 - A top-level `<footer>` is the `contentinfo` landmark; keep it outside `Main`.
-- The nav is labelled "Footer" so it's distinct from the header's "Primary" nav.
-- Links use the inverse muted role (lichen, about 3:1 on forest), the same as the design. That's below the 4.5:1 AA needs for small text; see the README open questions.
+- The nav is labelled by `navLabel` ("Footer") so it's distinct from the header's "Primary" nav.
+- Links use the inverse muted role, `lichen-light` (#8fa79a), about 6:1 on forest. The design's lichen (#5a7165) is about 3:1, below the 4.5:1 AA needs for small text, so the role was lightened.

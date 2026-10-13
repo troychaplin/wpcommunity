@@ -45,7 +45,8 @@ import { MeetupIndex } from '@/components/MeetupIndex';
 | `title` | `string` | `'Meetup Index'` | Panel title and the section's accessible name |
 | `version` | `string` | — | Muted mono tag beside the title |
 | `search` | `ReactNode` | — | Slot below the title |
-| `regions` | `{ label, count, href? }[]` | — | Region rows; links when `href` is set |
+| `regions` | `{ label, count, href? }[]` | — | Region rows; links when `href` is set. A fragment (`#region-bc`) renders a plain `<a>` so the browser fires `hashchange`, which `next/link` doesn't |
+| `countLabel` | `(count: number) => string` | "1 group" / "n groups" | Formats each count; the homepage passes a localized plural |
 | `meta` | `{ label, value }[]` | — | Facts pinned to the bottom |
 | `className` | `string` | — | Extra classes |
 
@@ -75,5 +76,5 @@ The panel fills the height it's given; the meta block sits at the bottom (`margi
 ## Accessibility
 
 - A `<section aria-label="Meetup Index">`. The title is a paragraph rather than a heading, so the hero's h1 stays the first heading on the page.
-- Counts read naturally ("British Columbia 4 groups"; singular for one). The dotted leader is `aria-hidden`.
+- Counts read naturally ("British Columbia 4 groups"; singular for one). Pass `countLabel` to translate them. The dotted leader is `aria-hidden`.
 - The meta facts are a `<dl>`.

@@ -13,6 +13,7 @@
   --wpc--color-ink: #25332c;
   --wpc--color-slate: #64706a;
   --wpc--color-lichen: #5a7165;
+  --wpc--color-lichen-light: #8fa79a;
   --wpc--color-mist: #e4efe8;
   --wpc--color-stone: #e8e6e1;
   --wpc--color-sage-dark: #e2e7e3;
@@ -33,7 +34,7 @@
   --wpc--color-field-border: var(--wpc--color-border);
   --wpc--color-inverse: var(--wpc--color-forest);
   --wpc--color-text-inverse: var(--wpc--color-mist);
-  --wpc--color-text-inverse-muted: var(--wpc--color-lichen);
+  --wpc--color-text-inverse-muted: var(--wpc--color-lichen-light);
   --wpc--color-accent-inverse: var(--wpc--color-crimson-light);
 
   /* Gradients */

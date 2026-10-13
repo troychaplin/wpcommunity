@@ -13,6 +13,7 @@ export interface SiteFooterProps extends React.HTMLAttributes<HTMLElement> {
     nameHref?: string;
     description?: React.ReactNode;
     navItems?: SiteFooterNavItem[];
+    navLabel?: string;
     children?: React.ReactNode;
     legal?: React.ReactNode;
     meta?: React.ReactNode;
@@ -24,6 +25,7 @@ export const SiteFooter = ({
     nameHref,
     description,
     navItems,
+    navLabel = 'Footer',
     children,
     legal,
     meta,
@@ -42,7 +44,7 @@ export const SiteFooter = ({
                     {description && <p className="wpc-site-footer__description">{description}</p>}
                 </div>
                 {navItems && navItems.length > 0 && (
-                    <nav className="wpc-site-footer__nav" aria-label="Footer">
+                    <nav className="wpc-site-footer__nav" aria-label={navLabel}>
                         <ul>
                             {navItems.map(({ href, label }) => (
                                 <li key={href}>

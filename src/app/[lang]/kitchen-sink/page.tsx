@@ -33,8 +33,6 @@ import { ResourceCard } from "@/components/ResourceCard";
 import { SearchField } from "@/components/SearchField";
 import { SectionHeader } from "@/components/SectionHeader";
 import { Select } from "@/components/Select";
-import { SiteFooter } from "@/components/SiteFooter";
-import { SiteHeader } from "@/components/SiteHeader";
 import { StatGroup } from "@/components/StatGroup";
 import { TextArea } from "@/components/TextArea";
 import { TextField } from "@/components/TextField";
@@ -47,25 +45,19 @@ export const metadata: Metadata = {
   robots: { index: false, follow: false },
 };
 
-const navItems = [
-  { href: "/", label: "Meetups" },
-  { href: "/kitchen-sink#submit", label: "Submit a Group" },
-  { href: "/kitchen-sink#story", label: "Our Story" },
-];
-
 const tones = ["canvas", "tint", "blush", "inverse", "white"] as const;
 
 const languages = [
-  { code: "en", label: "English", shortLabel: "En", href: "/kitchen-sink#en", isCurrent: true },
-  { code: "fr", label: "Français", shortLabel: "Fr", href: "/kitchen-sink#fr" },
+  { code: "en", label: "English", shortLabel: "En", href: "#en", isCurrent: true },
+  { code: "fr", label: "Français", shortLabel: "Fr", href: "#fr" },
 ];
 
 const meetupRegions = [
-  { label: "British Columbia", count: 4, href: "/kitchen-sink#bc" },
-  { label: "Prairies & North", count: 3, href: "/kitchen-sink#prairies" },
-  { label: "Ontario", count: 9, href: "/kitchen-sink#on" },
-  { label: "Québec", count: 5, href: "/kitchen-sink#qc" },
-  { label: "Atlantic Canada", count: 2, href: "/kitchen-sink#atlantic" },
+  { label: "British Columbia", count: 4, href: "#bc" },
+  { label: "Prairies & North", count: 3, href: "#prairies" },
+  { label: "Ontario", count: 9, href: "#on" },
+  { label: "Québec", count: 5, href: "#qc" },
+  { label: "Atlantic Canada", count: 2, href: "#atlantic" },
 ];
 
 const headingSizes = [
@@ -169,11 +161,7 @@ const cards = [
 
 export default function KitchenSink() {
   return (
-    <>
-      <SiteHeader navItems={navItems}>
-        <LanguageToggle languages={languages} />
-      </SiteHeader>
-      <Main>
+    <Main>
         <Container as="section" maxWidth="alignwide" contentWidth="alignwide">
           <SectionHeader
             prefix="Kitchen sink"
@@ -197,12 +185,12 @@ export default function KitchenSink() {
           lead="A welcoming, bilingual space for Canada's WordPress developers, designers, writers, and organizers. Find your local meetup, share knowledge, and build together."
           actions={
             <ButtonGroup>
-              <Button text="Find Local Meetups" icon="map-pin" href="/kitchen-sink#groups" isLarge />
+              <Button text="Find Local Meetups" icon="map-pin" href="#groups" isLarge />
               <Button
                 text="Join Canadian Slack"
                 icon="message-circle-more"
                 color="secondary"
-                href="/kitchen-sink#slack"
+                href="#slack"
                 isLarge
               />
             </ButtonGroup>
@@ -225,7 +213,7 @@ export default function KitchenSink() {
           <GroupHeader
             region="Ontario / Great Lakes Region"
             status="Active Chapter"
-            channel={{ label: "#wp-ottawa", href: "/kitchen-sink#slack" }}
+            channel={{ label: "#wp-ottawa", href: "#slack" }}
             title="WordPress Ottawa"
             description="Connecting Ottawa developers, designers, site owners, and beginners since 2011. We host monthly workshops, presentation evenings, and informal coffee hours to learn, troubleshoot, and build better web experiences together."
             stats={[
@@ -242,8 +230,8 @@ export default function KitchenSink() {
             location="George Brown College (Waterfront Campus) & Online Zoom"
             actions={
               <ButtonGroup>
-                <Button text="RSVP on Meetup.com" href="/kitchen-sink#rsvp" />
-                <Button text="Propose a Talk" color="inverse" href="/kitchen-sink#talk" />
+                <Button text="RSVP on Meetup.com" href="#rsvp" />
+                <Button text="Propose a Talk" color="inverse" href="#talk" />
               </ButtonGroup>
             }
           />
@@ -254,7 +242,7 @@ export default function KitchenSink() {
           <ButtonGroup>
             <Button text="Find Local Meetups" />
             <Button text="Join Canadian Slack" color="secondary" />
-            <Button text="Read the guide" href="/kitchen-sink#story" color="secondary" />
+            <Button text="Read the guide" href="#story" color="secondary" />
             <Button text="Small" isSmall />
             <Button text="Disabled" disabled />
           </ButtonGroup>
@@ -286,11 +274,11 @@ export default function KitchenSink() {
             </Eyebrow>
           </FlexGroup>
           <FlexGroup gap="large" align="center">
-            <TextLink href="/kitchen-sink#groups">View group details</TextLink>
-            <TextLink href="/kitchen-sink#resources" size="small" hasArrow>
+            <TextLink href="#groups">View group details</TextLink>
+            <TextLink href="#resources" size="small" hasArrow>
               Visit Group Page
             </TextLink>
-            <TextLink href="/kitchen-sink#slack" font="mono" size="small">
+            <TextLink href="#slack" font="mono" size="small">
               #wp-toronto
             </TextLink>
           </FlexGroup>
@@ -319,6 +307,10 @@ export default function KitchenSink() {
               <Icon key={name} name={name} size="heading-small" label={name} />
             ))}
           </FlexGroup>
+          <FlexGroup gap="large" align="center">
+            <LanguageToggle languages={languages} />
+            <LanguageToggle languages={languages} variant="list" />
+          </FlexGroup>
           <ButtonGroup>
             <Button text="Find Local Meetups" icon="map-pin" isLarge />
             <Button text="Join Canadian Slack" icon="message-circle-more" color="secondary" isLarge />
@@ -338,7 +330,7 @@ export default function KitchenSink() {
             ))}
           </GridGroup>
           <GridGroup columns={2}>
-            <Card href="/kitchen-sink#cards" shadow>
+            <Card href="#cards" shadow>
               <h3>Linked card</h3>
               <p>The whole card follows the link.</p>
             </Card>
@@ -389,7 +381,7 @@ export default function KitchenSink() {
           <SectionHeader title="FlexGroup" meta="space-between · gap small" level={3} />
           <FlexGroup justify="space-between" align="center" gap="small">
             <Eyebrow>Showing 6 of 23 groups</Eyebrow>
-            <TextLink href="/kitchen-sink#flex">View all groups</TextLink>
+            <TextLink href="#flex">View all groups</TextLink>
           </FlexGroup>
         </Container>
 
@@ -410,16 +402,16 @@ export default function KitchenSink() {
             description="Whether you're new to WordPress or a seasoned developer, there's a place for you in the Canadian community."
           />
           <GridGroup columns={4} dividers="columns">
-            <FeatureItem icon="map-pin" title="Find your meetup" href="/kitchen-sink#groups" linkText="Browse groups">
+            <FeatureItem icon="map-pin" title="Find your meetup" href="#groups" linkText="Browse groups">
               Browse 23 active local groups organized by province. Most groups welcome all skill levels.
             </FeatureItem>
-            <FeatureItem icon="messages-square" title="Join Slack" href="/kitchen-sink#slack" linkText="Get an invite">
+            <FeatureItem icon="messages-square" title="Join Slack" href="#slack" linkText="Get an invite">
               Connect with 2,400+ Canadian WordPress people between events.
             </FeatureItem>
-            <FeatureItem icon="circle-plus" title="Organize a group" href="/kitchen-sink#form" linkText="Submit a group">
+            <FeatureItem icon="circle-plus" title="Organize a group" href="#form" linkText="Submit a group">
               Don&apos;t see your city listed? Submit your group and we&apos;ll help you get set up.
             </FeatureItem>
-            <FeatureItem icon="star" title="Attend a WordCamp" href="/kitchen-sink#wordcamp" linkText="Find a WordCamp">
+            <FeatureItem icon="star" title="Attend a WordCamp" href="#wordcamp" linkText="Find a WordCamp">
               WordCamps are official, volunteer-run WordPress conferences held across Canada.
             </FeatureItem>
           </GridGroup>
@@ -453,8 +445,8 @@ export default function KitchenSink() {
                 }
                 actions={
                   <>
-                    <Button text="Contact Organizer" href="/kitchen-sink#contact" />
-                    <Button text="Find on Slack" color="secondary" href="/kitchen-sink#slack" />
+                    <Button text="Contact Organizer" href="#contact" />
+                    <Button text="Find on Slack" color="secondary" href="#slack" />
                   </>
                 }
               />
@@ -480,7 +472,7 @@ export default function KitchenSink() {
           <SectionHeader title="Local Resources & Chapter Links" meta="04 Essential Touchpoints" hasDivider />
           <GridGroup columns={4} gap="small">
             {resources.map((resource) => (
-              <ResourceCard key={resource.title} href="/kitchen-sink#resources" {...resource} />
+              <ResourceCard key={resource.title} href="#resources" {...resource} />
             ))}
           </GridGroup>
         </Container>
@@ -489,7 +481,7 @@ export default function KitchenSink() {
           <SectionHeader title="Community updates" align="center" />
           <UpdateList>
             {updates.map((update) => (
-              <UpdateList.Item key={update.title} href="/kitchen-sink#updates" {...update} />
+              <UpdateList.Item key={update.title} href="#updates" {...update} />
             ))}
           </UpdateList>
           <FlexGroup justify="center">
@@ -534,7 +526,7 @@ export default function KitchenSink() {
                 Our national Slack workspace is the heartbeat of the community. Ask questions, share
                 resources, find collaborators, and stay connected between meetups.
               </p>
-              <Button text="Get your invite" href="/kitchen-sink#slack" />
+              <Button text="Get your invite" href="#slack" />
             </Column.Content>
             <Column.Content>
               <ChatPreview
@@ -579,7 +571,7 @@ export default function KitchenSink() {
               </p>
             </Column.Content>
             <Column.Content>
-              <form action="/kitchen-sink">
+              <form action="#">
                 <FlexGroup direction="column" gap="large">
                   <Fieldset legend="Your details">
                     <GridGroup columns={2}>
@@ -643,7 +635,7 @@ export default function KitchenSink() {
             <FlexGroup gap="large" align="center">
               <Eyebrow tone="accent">Upcoming Gathering</Eyebrow>
               <Eyebrow>Thursday, November 14</Eyebrow>
-              <TextLink href="/kitchen-sink#tones" hasArrow>
+              <TextLink href="#tones" hasArrow>
                 Read recap
               </TextLink>
             </FlexGroup>
@@ -694,26 +686,5 @@ export default function KitchenSink() {
           </Column>
         </Container>
       </Main>
-      <SiteFooter
-        name="WP Canada"
-        nameHref="/"
-        description="A bilingual community for Canada's WordPress people."
-        navItems={[
-          { href: "/", label: "Meetup Groups" },
-          { href: "/kitchen-sink#slack", label: "Join Slack" },
-          { href: "/kitchen-sink#submit", label: "Submit a Group" },
-          { href: "/kitchen-sink#start", label: "Getting Started" },
-          { href: "/kitchen-sink#faq", label: "FAQ" },
-        ]}
-        legal="WP Canada Community. Built with WordPress and community care."
-        meta={
-          <>
-            Part of the global <a href="https://wordpress.org">WordPress</a> ecosystem.
-          </>
-        }
-      >
-        <LanguageToggle languages={languages} variant="list" />
-      </SiteFooter>
-    </>
   );
 }

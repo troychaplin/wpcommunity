@@ -44,6 +44,7 @@
             "ink": "#25332c",
             "slate": "#64706a",
             "lichen": { "value": "#5a7165", "cssOnly": true },
+            "lichen-light": { "value": "#8fa79a", "cssOnly": true },
             "mist": "#e4efe8",
             "stone": "#e8e6e1",
             "sage-dark": { "value": "#e2e7e3", "cssOnly": true },
@@ -65,7 +66,7 @@
             "field-border": { "value": "var(--wpc--color-border)", "cssOnly": true },
             "inverse": { "value": "var(--wpc--color-forest)", "cssOnly": true },
             "text-inverse": { "value": "var(--wpc--color-mist)", "cssOnly": true },
-            "text-inverse-muted": { "value": "var(--wpc--color-lichen)", "cssOnly": true },
+            "text-inverse-muted": { "value": "var(--wpc--color-lichen-light)", "cssOnly": true },
             "accent-inverse": { "value": "var(--wpc--color-crimson-light)", "cssOnly": true }
         },
 

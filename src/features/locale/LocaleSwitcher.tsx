@@ -1,0 +1,30 @@
+'use client';
+
+import { usePathname } from 'next/navigation';
+import { LanguageToggle } from '@/components/LanguageToggle';
+import { languageNames, locales } from '@/i18n/config';
+import type { Locale } from '@/i18n/config';
+
+const localePrefix = new RegExp(`^/(${locales.join('|')})(?=/|$)`);
+
+export interface LocaleSwitcherProps {
+    locale: Locale;
+    label: string;
+    variant?: 'segmented' | 'list';
+}
+
+// Swaps the locale segment of the current path, so changing language keeps the reader on the
+// same page: /en/groups/ottawa ↔ /fr/groups/ottawa
+export function LocaleSwitcher({ locale, label, variant }: LocaleSwitcherProps) {
+    const pathname = usePathname();
+    const rest = pathname.replace(localePrefix, '');
+
+    const languages = locales.map((code) => ({
+        code,
+        ...languageNames[code],
+        href: `/${code}${rest}`,
+        isCurrent: code === locale,
+    }));
+
+    return <LanguageToggle languages={languages} variant={variant} label={label} />;
+}

@@ -60,7 +60,7 @@ It's hidden by translating it above the viewport, not with `display: none`, so i
 | `--wpc--radius-md` | Corner radius |
 | `--wpc--transition-fast` | Slide-in |
 
-The hidden position uses `translateY(-100%)`, a relative offset of the link's own height rather than a design value.
+The hidden position uses `translateY(calc(-100% - var(--wpc--spacing-x-small)))`: the link's own height plus a small gap, so a fractional height can't leave a sub-pixel sliver at the top of the page.
 
 ## Accessibility
 

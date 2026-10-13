@@ -52,7 +52,7 @@ import { Container } from '@/components/Container';
 | `white` | `white`, with a border | Light |
 | `tint` | `sage` (#eff4f0), borders `sage-dark` | Light |
 | `blush` | `canvas` + the `blush` gradient | Light |
-| `inverse` | `forest` (#0f251b) | Inverse: mist text, white headings, lichen muted text, light accent for links, eyebrows and focus |
+| `inverse` | `forest` (#0f251b) | Inverse: mist text, white headings, lichen-light muted text, light accent for links, eyebrows and focus |
 
 A tone re-declares the role tokens (`--wpc--color-text`, `-heading`, `-text-muted`, `-border`, `-accent`), so every child that reads a role adapts with no extra props.
 
@@ -87,4 +87,4 @@ Inline padding uses the root padding on small screens and `spacing-large` above 
 
 - `<section>` is a landmark only when it has an accessible name. Add `aria-label` or `aria-labelledby` when the section should be reachable through landmark navigation, and give each named section a distinct label.
 - Use `as="div"` to avoid landmark semantics entirely.
-- Inverse text roles keep body text at about 14:1 (mist on forest). The muted role (lichen) is about 3:1, so use it for secondary or large text only.
+- Inverse text roles keep body text at about 14:1 (mist on forest). The muted role is `lichen-light` (#8fa79a), about 6:1 on forest and 5:1 on forest-light fields, so it passes AA for small text. The design's lichen (about 3:1) is kept as a palette colour but no role uses it.
