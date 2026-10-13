@@ -7,7 +7,7 @@ The page footer on the forest background: the site name and a short description,
 ## When to use
 
 - Once per page, after [`Main`](./main.md), as the counterpart to [`SiteHeader`](./site-header.md).
-- Put the language switcher (planned LanguageToggle) in `children`.
+- Put the [`LanguageToggle`](./language-toggle.md) (`variant="list"`) in `children`.
 
 ## Used in
 
@@ -30,7 +30,7 @@ import { SiteFooter } from '@/components/SiteFooter';
   legal="WP Canada Community. Built with WordPress and community care."
   meta={<>Part of the global <a href="https://wordpress.org">WordPress</a> ecosystem.</>}
 >
-  {/* LanguageToggle */}
+  <LanguageToggle languages={languages} variant="list" />
 </SiteFooter>
 ```
 

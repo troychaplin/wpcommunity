@@ -44,7 +44,7 @@ import { Card } from '@/components/Card';
 | Prop | Type | Default | Description |
 |---|---|---|---|
 | `children` | `ReactNode` | — | Card content |
-| `as` | `'div' \| 'article' \| 'li'` | `'div'` | Root element |
+| `as` | `'div' \| 'article' \| 'li' \| 'header' \| 'section'` | `'div'` | Root element |
 | `backgroundColor` | `'white' \| 'canvas' \| 'tint' \| 'inverse' \| 'blush'` | `'white'` | Surface; sets the role colours for its content |
 | `border` | `boolean` | `true` | 1px border in the surface's border colour |
 | `shadow` | `boolean` | `false` | Subtle shadow |

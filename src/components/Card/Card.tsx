@@ -12,7 +12,7 @@ type spacingKeys = keyof typeof spacingClasses;
 
 export interface CardProps extends React.HTMLAttributes<HTMLElement> {
     children: React.ReactNode;
-    as?: 'div' | 'article' | 'li';
+    as?: 'div' | 'article' | 'li' | 'header' | 'section';
     backgroundColor?: surfaceKeys;
     border?: boolean;
     shadow?: boolean;

@@ -7,7 +7,7 @@ The header at the top of every page: the site title as a link home, the primary 
 ## When to use
 
 - Open every page with it, above [`Main`](./main.md) rather than inside it.
-- Pass extra controls as `children`; they fill the right-hand end of the row. The planned LanguageToggle (EN / FR) goes here.
+- Pass extra controls as `children`; they sit at the end of the row, after the nav. The segmented [`LanguageToggle`](./language-toggle.md) goes here.
 - Not for page or section headings; see [`SectionHeader`](./section-header.md).
 
 ## Used in
@@ -30,7 +30,7 @@ import { SiteHeader } from '@/components/SiteHeader';
     { href: '/story', label: 'Our Story' },
   ]}
 >
-  {/* LanguageToggle */}
+  <LanguageToggle languages={languages} />
 </SiteHeader>
 ```
 
@@ -63,8 +63,12 @@ The row itself is a [`FlexGroup`](./flex-group.md) (`alignwide`, `space-between`
 | `--wpc--color-canvas`, `--wpc--color-stone` | Background and bottom rule |
 | `--wpc--font-family-serif`, `--wpc--font-size-x-large`, `--wpc--font-weight-semibold`, `--wpc--line-height-tight` | Wordmark |
 | `--wpc--color-forest`, `--wpc--color-crimson` | Wordmark colour, accent and hover |
-| `--wpc--font-family-sans`, `--wpc--font-size-small`, `--wpc--font-weight-medium`, `--wpc--color-ink` | Nav links |
-| `--wpc--spacing-small`, `--wpc--spacing-medium`, `--wpc--root-padding-x` | Padding and nav gap |
+| `--wpc--font-family-sans`, `--wpc--font-size-medium`, `--wpc--font-weight-normal` | Nav links |
+| `--wpc--color-text-muted`, `--wpc--color-text` (roles) | Nav links and their hover |
+| `--wpc--spacing-x-small`, `--wpc--spacing-medium`, `--wpc--root-padding-x` | Padding (about 52px tall) and nav gap |
+| `--wpc--transition-fast` | Nav hover |
+
+The nav has `margin-inline-start: auto`, so it sits beside the actions at the end of the row rather than in the middle.
 
 ## Accessibility
 
@@ -76,4 +80,4 @@ The row itself is a [`FlexGroup`](./flex-group.md) (`alignwide`, `space-between`
 
 ## Open questions
 
-- Mobile navigation pattern: the designs don't show one. The nav currently wraps.
+- Mobile navigation pattern: the designs don't show one. On phones the nav and toggle currently wrap onto extra lines (about 126px tall at 375px).

@@ -1,0 +1,79 @@
+.wpc-language-toggle__list {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+.wpc-language-toggle__link {
+    text-decoration: none;
+    transition:
+        color var(--wpc--transition-fast),
+        background-color var(--wpc--transition-fast);
+
+    @media (prefers-reduced-motion: reduce) {
+        transition: none;
+    }
+}
+
+// Segmented: the header's En / Fr pill
+.wpc-language-toggle--segmented {
+    .wpc-language-toggle__list {
+        display: inline-flex;
+        padding: var(--wpc--spacing-2x-small);
+        background-color: color-mix(in srgb, var(--wpc--color-stone) 50%, var(--wpc--color-canvas));
+        border: 1px solid var(--wpc--color-border);
+        border-radius: var(--wpc--radius-full);
+    }
+
+    .wpc-language-toggle__link {
+        display: block;
+        padding: var(--wpc--spacing-2x-small) var(--wpc--spacing-x-small);
+        font-family: var(--wpc--font-family-mono);
+        font-size: var(--wpc--font-size-x-small);
+        font-weight: var(--wpc--font-weight-medium);
+        line-height: var(--wpc--line-height-snug);
+        color: var(--wpc--color-text-muted);
+        border-radius: var(--wpc--radius-full);
+
+        &:hover {
+            color: var(--wpc--color-text);
+        }
+    }
+
+    // Palette tokens, like FilterPill, so the current segment looks the same in any tone
+    .wpc-language-toggle__link--current,
+    .wpc-language-toggle__link--current:hover {
+        color: var(--wpc--color-white);
+        background-color: var(--wpc--color-forest-light);
+    }
+}
+
+// List: the footer's stacked language links
+.wpc-language-toggle--list {
+    display: grid;
+    gap: var(--wpc--spacing-x-small);
+
+    .wpc-language-toggle__label {
+        margin: 0;
+        font-size: var(--wpc--font-size-x-small);
+        color: var(--wpc--color-text-muted);
+    }
+
+    .wpc-language-toggle__list {
+        display: grid;
+        gap: var(--wpc--spacing-x-small);
+    }
+
+    // Doubled class outranks link colours set by a surrounding footer
+    .wpc-language-toggle__link.wpc-language-toggle__link {
+        color: var(--wpc--color-text-muted);
+
+        &:hover {
+            color: var(--wpc--color-text);
+        }
+    }
+
+    .wpc-language-toggle__link.wpc-language-toggle__link--current {
+        color: var(--wpc--color-text);
+    }
+}

@@ -1,0 +1,86 @@
+@use '../../styles/wpc-variables' as *;
+@use '../../styles/mixins/tones';
+
+.wpc-hero {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    border-bottom: 1px solid var(--wpc--color-border);
+}
+
+@include above-tablet {
+    .wpc-hero--has-aside {
+        grid-template-columns: minmax(0, 3fr) minmax(0, 7fr);
+
+        .wpc-hero__aside {
+            grid-row: 1;
+            grid-column: 1;
+        }
+
+        .wpc-hero__content {
+            grid-column: 2;
+        }
+    }
+}
+
+// The blush gradient on canvas. A photo, when given, sits under a softer wash of the same
+// gradient so the heading keeps its contrast. `isolation` makes the column a stacking context,
+// so the photo and wash (negative z-index) paint above its background and below the text.
+.wpc-hero__content {
+    @include tones.light;
+    position: relative;
+    isolation: isolate;
+    display: flex;
+    align-items: center;
+    padding: var(--wpc--spacing-2x-large) var(--wpc--spacing-large);
+    background-color: var(--wpc--color-canvas);
+    background-image: var(--wpc--gradient-blush);
+    overflow: hidden;
+}
+
+.wpc-hero__image {
+    z-index: -2;
+    object-fit: cover;
+}
+
+.wpc-hero__wash {
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    background-image: var(--wpc--gradient-blush);
+    opacity: 0.85;
+}
+
+.wpc-hero__body {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: var(--wpc--spacing-medium);
+
+    > * {
+        margin-block: 0;
+    }
+}
+
+// In em, so the measure follows the lead's own size: about three lines, as in the design
+.wpc-hero__lead {
+    max-width: 32em;
+    text-wrap: pretty;
+    font-size: var(--wpc--font-size-large);
+    color: var(--wpc--color-text-muted);
+}
+
+.wpc-hero__actions {
+    margin-top: var(--wpc--spacing-small);
+}
+
+.wpc-hero__aside {
+    @include tones.light;
+    padding: var(--wpc--spacing-medium);
+    background-color: var(--wpc--color-sage);
+    border-top: 1px solid var(--wpc--color-sage-dark);
+
+    @include above-tablet {
+        border-top: 0;
+        border-inline-end: 1px solid var(--wpc--color-sage-dark);
+    }
+}

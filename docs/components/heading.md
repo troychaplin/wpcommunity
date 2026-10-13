@@ -60,7 +60,7 @@ Other HTML attributes pass through.
 
 | Token | Used for |
 |---|---|
-| `--wpc--font-family-serif`, `--wpc--font-weight-medium`, `--wpc--line-height-tight` | Base heading look |
+| `--wpc--font-family-serif`, `--wpc--font-weight-medium`, `--wpc--line-height-tight` | Base heading look (lines are balanced with `text-wrap: balance`) |
 | `--wpc--color-heading` (role) | Colour: forest on light, white on inverse |
 | `--wpc--color-accent` (role) | Accent word: crimson on light, the light accent on inverse |
 | `--wpc--font-size-display` … `--wpc--font-size-large` | Size modifiers |

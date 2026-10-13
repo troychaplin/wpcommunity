@@ -135,13 +135,13 @@ docs/components/component-name.md
 
 | Component | Used in | Variants / notes | Depends on | Status |
 |---|---|---|---|---|
-| [SiteHeader](./site-header.md) | All pages | serif wordmark, primary nav, actions slot (language toggle) | FlexGroup | complete |
+| [SiteHeader](./site-header.md) | All pages | serif wordmark; muted nav beside the actions slot (language toggle) | FlexGroup | complete |
 | [SiteFooter](./site-footer.md) | All pages | forest; brand + description, nav column, extra slot (language), bottom bar | — | complete |
-| LanguageToggle | Header, footer | segmented EN / FR (header) / vertical list (footer) | — | planned |
-| MeetupIndex | Home hero | sidebar panel: title + version, search, region rows with counts, status meta | SearchField, Eyebrow | planned |
-| Hero | Home | MeetupIndex + display heading with accent word, lead, buttons; blush + image | MeetupIndex, Heading, ButtonGroup, Container | planned |
-| GroupHeader | Group page | pills row + channel link, h1, description, stats in a tint card | Pill, Heading, StatGroup, Card | planned |
-| CTABand | Group page (upcoming gathering) | inverse + forest-glow; eyebrow, title, meta row, location, buttons | Container, SectionHeader, ButtonGroup | planned |
+| [LanguageToggle](./language-toggle.md) | Header, footer | segmented En / Fr pill / labelled list; takes hrefs, `lang` + `aria-current` | — | complete |
+| [MeetupIndex](./meetup-index.md) | Home hero | title + version, search slot, region rows with dotted leaders and counts, meta facts | Eyebrow | complete |
+| [Hero](./hero.md) | Home | full-bleed; display h1 with accent, lead, actions, aside; blush gradient, optional photo under a wash | Heading | complete |
+| [GroupHeader](./group-header.md) | Group page | pills row + channel link, 48px h1, description, stats in a tint card | Card, FlexGroup, Pill, TextLink, Heading, StatGroup | complete |
+| [CTABand](./cta-band.md) | Group page (upcoming gathering) | inverse card with forest glow and raised shadow; eyebrow, title, details, location, actions | Card, Eyebrow, Heading | complete |
 
 ## Alignment (Parlour → wpc)
 
@@ -170,16 +170,15 @@ Each phase only depends on the phases before it.
 1. **Foundations** ✅ Icon, Heading, Eyebrow, TextLink, Pill, FilterPill, Avatar (plus token calibration against the designs)
 2. **Layout:** complete (Container, SectionHeader, GridGroup, Column, FlexGroup)
 3. **Content components** ✅ GroupCard, FeatureItem, StatGroup, PersonCard, ResourceCard, UpdateList, Accordion, Fieldset, TextField, TextArea, Select, SearchField, FilterBar, ChatPreview (plus GridGroup dividers and heading-scale calibration)
-4. **Page sections:** LanguageToggle, MeetupIndex, Hero, GroupHeader, CTABand
+4. **Page sections** ✅ LanguageToggle, MeetupIndex, Hero, GroupHeader, CTABand (plus SiteHeader tuned to the design)
 5. **Pages:** homepage and group detail page, assembled from typed mock data
 
 ## Open questions
 
-- **Bilingual EN / FR:** routing (`/fr`?) and which i18n library.
+- **Bilingual EN / FR:** routing (`/fr`?) and which i18n library. LanguageToggle takes plain hrefs, so it fits either.
 - **Data source:** static typed mock data first; later WP REST, the Meetup API, or something else.
 - **Mobile nav:** the designs don't show one; the header nav currently wraps.
 - **Group form:** where submissions go. The fields exist; the form's action is wired up in Phase 5.
-- **Imagery:** the hero canopy image and the avatars.
-- **Group page title:** it's smaller than the section titles in the design (about 30px vs 34px); pick a size.
+- **Imagery:** the hero's misty-forest photo and the people's avatars. Hero renders the blush gradient until `image` is passed; avatars fall back to initials.
 - **Muted text on forest:** the design's muted colour on dark sections (lichen `#5a7165`) is about 3:1 on forest, below the 4.5:1 AA needs for small text. It's used for footer links and inverse descriptions. A lighter value (around `#8fa79a`, about 6:1) would pass.
 - **Figure widths:** the size widths are raw values carried over from Parlour; add layout tokens if Figure gets used.

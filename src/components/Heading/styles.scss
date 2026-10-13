@@ -2,6 +2,7 @@
 // Heading rendered as a `p` matches. No margin-block-start, so flow spacing still applies.
 .wpc-heading {
     margin-block-end: 0;
+    text-wrap: balance;
     font-family: var(--wpc--font-family-serif);
     font-weight: var(--wpc--font-weight-medium);
     line-height: var(--wpc--line-height-tight);

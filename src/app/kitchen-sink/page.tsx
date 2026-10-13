@@ -8,6 +8,7 @@ import { Button } from "@/components/Button";
 import { ButtonGroup } from "@/components/ButtonGroup";
 import { Card } from "@/components/Card";
 import { Column } from "@/components/Column";
+import { CTABand } from "@/components/CTABand";
 import { ChatPreview } from "@/components/ChatPreview";
 import { Container } from "@/components/Container";
 import { Eyebrow } from "@/components/Eyebrow";
@@ -17,11 +18,15 @@ import { Figure } from "@/components/Figure";
 import { FilterPill } from "@/components/FilterPill";
 import { FlexGroup } from "@/components/FlexGroup";
 import { GridGroup } from "@/components/GridGroup";
+import { GroupHeader } from "@/components/GroupHeader";
 import { Heading } from "@/components/Heading";
+import { Hero } from "@/components/Hero";
 import { Icon } from "@/components/Icon";
 import type { IconName } from "@/components/Icon";
 import { icons } from "@/components/Icon/icons";
+import { LanguageToggle } from "@/components/LanguageToggle";
 import { Main } from "@/components/Main";
+import { MeetupIndex } from "@/components/MeetupIndex";
 import { PersonCard } from "@/components/PersonCard";
 import { Pill } from "@/components/Pill";
 import { ResourceCard } from "@/components/ResourceCard";
@@ -49,6 +54,19 @@ const navItems = [
 ];
 
 const tones = ["canvas", "tint", "blush", "inverse", "white"] as const;
+
+const languages = [
+  { code: "en", label: "English", shortLabel: "En", href: "/kitchen-sink#en", isCurrent: true },
+  { code: "fr", label: "Français", shortLabel: "Fr", href: "/kitchen-sink#fr" },
+];
+
+const meetupRegions = [
+  { label: "British Columbia", count: 4, href: "/kitchen-sink#bc" },
+  { label: "Prairies & North", count: 3, href: "/kitchen-sink#prairies" },
+  { label: "Ontario", count: 9, href: "/kitchen-sink#on" },
+  { label: "Québec", count: 5, href: "/kitchen-sink#qc" },
+  { label: "Atlantic Canada", count: 2, href: "/kitchen-sink#atlantic" },
+];
 
 const headingSizes = [
   "heading-large",
@@ -152,7 +170,9 @@ const cards = [
 export default function KitchenSink() {
   return (
     <>
-      <SiteHeader navItems={navItems} />
+      <SiteHeader navItems={navItems}>
+        <LanguageToggle languages={languages} />
+      </SiteHeader>
       <Main>
         <Container as="section" maxWidth="alignwide" contentWidth="alignwide">
           <SectionHeader
@@ -168,6 +188,64 @@ export default function KitchenSink() {
             description="Used for Community updates and Common questions."
             align="center"
             level={3}
+          />
+        </Container>
+
+        <Hero
+          title="Gather under the canopy"
+          accent="canopy"
+          lead="A welcoming, bilingual space for Canada's WordPress developers, designers, writers, and organizers. Find your local meetup, share knowledge, and build together."
+          actions={
+            <ButtonGroup>
+              <Button text="Find Local Meetups" icon="map-pin" href="/kitchen-sink#groups" isLarge />
+              <Button
+                text="Join Canadian Slack"
+                icon="message-circle-more"
+                color="secondary"
+                href="/kitchen-sink#slack"
+                isLarge
+              />
+            </ButtonGroup>
+          }
+          aside={
+            <MeetupIndex
+              version="v1.4"
+              search={<SearchField label="Search groups by city" placeholder="Search your city..." />}
+              regions={meetupRegions}
+              meta={[
+                { label: "Status", value: "Active Community Hub" },
+                { label: "Connect", value: "2,400+ Members" },
+              ]}
+            />
+          }
+        />
+
+        <Container as="section" maxWidth="alignwide" contentWidth="alignwide">
+          <SectionHeader prefix="Page sections" title="GroupHeader and CTABand" hasDivider />
+          <GroupHeader
+            region="Ontario / Great Lakes Region"
+            status="Active Chapter"
+            channel={{ label: "#wp-ottawa", href: "/kitchen-sink#slack" }}
+            title="WordPress Ottawa"
+            description="Connecting Ottawa developers, designers, site owners, and beginners since 2011. We host monthly workshops, presentation evenings, and informal coffee hours to learn, troubleshoot, and build better web experiences together."
+            stats={[
+              { value: "1,200+", label: "Local Members" },
+              { value: "Monthly", label: "Meeting Cadence" },
+              { value: "Hybrid", label: "In-Person & Online" },
+              { value: "Est. 2011", label: "Community History" },
+            ]}
+          />
+          <CTABand
+            eyebrow="Upcoming Gathering"
+            title="Fall Site Editing & Block Themes Clinic"
+            details={["Thursday, November 14", "6:30 PM EST"]}
+            location="George Brown College (Waterfront Campus) & Online Zoom"
+            actions={
+              <ButtonGroup>
+                <Button text="RSVP on Meetup.com" href="/kitchen-sink#rsvp" />
+                <Button text="Propose a Talk" color="inverse" href="/kitchen-sink#talk" />
+              </ButtonGroup>
+            }
           />
         </Container>
 
@@ -634,7 +712,7 @@ export default function KitchenSink() {
           </>
         }
       >
-        <p>English · Français</p>
+        <LanguageToggle languages={languages} variant="list" />
       </SiteFooter>
     </>
   );

@@ -1,5 +1,5 @@
 .wpc-site-header {
-    padding-block: var(--wpc--spacing-small);
+    padding-block: var(--wpc--spacing-x-small);
     padding-inline: var(--wpc--root-padding-x);
     background-color: var(--wpc--color-canvas);
     border-bottom: 1px solid var(--wpc--color-stone);
@@ -32,6 +32,11 @@
     }
 }
 
+// The auto margin takes the free space, so the nav sits beside the actions at the end of the row
+.wpc-site-header__nav {
+    margin-inline-start: auto;
+}
+
 .wpc-site-header__nav ul {
     display: flex;
     flex-wrap: wrap;
@@ -44,15 +49,20 @@
         margin: 0;
         padding: 0;
         font-family: var(--wpc--font-family-sans);
-        font-size: var(--wpc--font-size-small);
+        font-size: var(--wpc--font-size-medium);
 
         a {
-            font-weight: var(--wpc--font-weight-medium);
-            color: var(--wpc--color-ink);
+            font-weight: var(--wpc--font-weight-normal);
+            color: var(--wpc--color-text-muted);
             text-decoration: none;
+            transition: color var(--wpc--transition-fast);
 
             &:hover {
-                color: var(--wpc--color-crimson);
+                color: var(--wpc--color-text);
+            }
+
+            @media (prefers-reduced-motion: reduce) {
+                transition: none;
             }
         }
     }
