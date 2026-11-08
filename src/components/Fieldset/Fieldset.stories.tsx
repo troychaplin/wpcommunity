@@ -35,7 +35,7 @@ export const GroupForm: Story = {
     parameters: { layout: 'fullscreen' },
     render: (args) => (
         <Container as="section" color="inverse" maxWidth="alignfull" contentWidth="alignwide">
-            <Column cols="1/3" maxWidth="alignwide">
+            <Column cols="1/3">
                 <Column.Content>
                     <Heading size="heading-medium">Start a group in your city</Heading>
                     <p>

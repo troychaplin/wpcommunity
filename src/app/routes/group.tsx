@@ -94,7 +94,7 @@ export default function GroupPage({ params }: Route.ComponentProps) {
 
             {(organizer || team) && (
                 <Container as="section" maxWidth="alignwide" contentWidth="alignwide">
-                    <Column cols={organizer && team ? '1/3' : '1'} maxWidth="alignwide">
+                    <Column cols={organizer && team ? '1/3' : '1'}>
                         {organizer && (
                             <Column.Content>
                                 <PersonCard

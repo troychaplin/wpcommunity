@@ -31,8 +31,14 @@
     isolation: isolate;
     display: flex;
     align-items: center;
-    padding: var(--wpc--spacing-2x-large) var(--wpc--spacing-large);
+    // Stacked (below tablet) the text starts on the page edge, like the header and every section;
+    // in the split layout it takes a wider inset beside the aside
+    padding: var(--wpc--spacing-2x-large) var(--wpc--root-padding-x);
     background-color: var(--wpc--color-canvas);
+
+    @include above-tablet {
+        padding-inline: var(--wpc--spacing-large);
+    }
     background-image: var(--wpc--gradient-blush);
     overflow: hidden;
 }

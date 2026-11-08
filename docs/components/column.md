@@ -23,7 +23,7 @@ import { Column } from '@/components/Column';
 ## Basic usage
 
 ```tsx
-<Column cols="1/3" maxWidth="alignwide">
+<Column cols="1/3">
   <Column.Content>{/* primary contact */}</Column.Content>
   <Column.Content>{/* organizing team */}</Column.Content>
 </Column>
@@ -41,7 +41,7 @@ import { Column } from '@/components/Column';
 |---|---|---|---|
 | `children` | `ReactNode` | — | `Column.Content` elements |
 | `cols` | `'1' \| '2' \| '3' \| '4' \| '1/3' \| '2/3'` | `'2'` | Column split |
-| `maxWidth` | `'aligncontent' \| 'alignwide' \| 'alignfull'` | `'aligncontent'` | Width class |
+| `maxWidth` | `'aligncontent' \| 'alignwide' \| 'alignfull'` | — | Width class. Omit it inside a Container, which sets the width; the Column fills it. Set it only for a Column placed straight in `Main` |
 
 `Column.Content` takes `children` and `isFirst?: boolean`.
 

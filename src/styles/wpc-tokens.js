@@ -101,10 +101,9 @@ export const wpcTokens = {
         '500': '500'
     },
     layout: {
-        contentSize: '1024px',
+        contentSize: '768px',
         wideSize: '1280px',
-        smallSize: '720px',
-        maxSize: '1440px',
+        smallSize: '600px',
         fullSize: '100vw',
         avatarSmall: '2.25rem',
         avatarMedium: '3.5rem',
@@ -137,7 +136,7 @@ export const wpcTokenKeys = {
     radius: { sm: 'sm', md: 'md', lg: 'lg', full: 'full' },
     transition: { fast: 'fast', normal: 'normal' },
     z: { '100': '100', '200': '200', '500': '500' },
-    layout: { 'content-size': 'content-size', 'wide-size': 'wide-size', 'small-size': 'small-size', 'max-size': 'max-size', 'full-size': 'full-size', 'avatar-small': 'avatar-small', 'avatar-medium': 'avatar-medium', 'avatar-large': 'avatar-large' },
+    layout: { 'content-size': 'content-size', 'wide-size': 'wide-size', 'small-size': 'small-size', 'full-size': 'full-size', 'avatar-small': 'avatar-small', 'avatar-medium': 'avatar-medium', 'avatar-large': 'avatar-large' },
     viewport: { mobile: 'mobile', tablet: 'tablet' }
 };
 

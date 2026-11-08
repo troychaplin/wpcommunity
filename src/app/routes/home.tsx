@@ -113,7 +113,7 @@ export default function Home() {
             </DirectoryProvider>
 
             <Container as="section" id="slack" color="tint" maxWidth="alignfull" contentWidth="alignwide">
-                <Column cols="2" maxWidth="alignwide">
+                <Column cols="2">
                     <Column.Content>
                         <SectionHeader prefix={t.home.slack.eyebrow} title={t.home.slack.title} />
                         <p>{t.home.slack.body}</p>
@@ -161,7 +161,7 @@ export default function Home() {
                 maxWidth="alignfull"
                 contentWidth="alignwide"
             >
-                <Column cols="1/3" maxWidth="alignwide">
+                <Column cols="1/3">
                     <Column.Content>
                         <Heading size="heading-medium">{t.home.startGroup.title}</Heading>
                         <p>{t.home.startGroup.body}</p>

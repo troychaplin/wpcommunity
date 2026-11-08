@@ -154,7 +154,7 @@ Page and section headings.
 | [Article](./article.md) | Content pages | JSX children or an HTML string (`content`) | — | complete |
 | [Aside](./aside.md) | Content pages | optional sticky content | — | complete |
 | [Column](./column.md) | Slack section, "Start a group", contact + team | halves, thirds, quarters, one-third / two-thirds; `Column.Content isFirst` reordering | — | complete |
-| [Container](./container.md) | Every page band | tone: canvas / tint / inverse / blush / white (re-declares role tokens); width and content width from the WP alignment classes | — | complete |
+| [Container](./container.md) | Every page band | tone: canvas / tint / inverse / blush / white (re-declares role tokens); width and content width from the WP alignment classes; a plain width wrapper without a tone; optional `border` rules in the tone's colour | — | complete |
 | [FlexGroup](./flex-group.md) | Header row, "Showing 6 of 23" row, card meta rows | direction, wrap, justify, align, token gap / padding / margin | — | complete |
 | [GridGroup](./grid-group.md) | Group cards (3), features (4), resources (4), team (3), form rows (2) | 1–4 responsive columns, token gaps; `dividers` (columns / all) draws lines between cells | — | complete |
 

@@ -17,10 +17,9 @@
 
     "tokens": {
         "layout": {
-            "contentSize": "1024px",
+            "contentSize": "768px",
             "wideSize": "1280px",
-            "smallSize": { "value": "720px", "cssOnly": true },
-            "maxSize": { "value": "1440px", "cssOnly": true },
+            "smallSize": { "value": "600px", "cssOnly": true },
             "fullSize": { "value": "100vw", "cssOnly": true },
             "avatarSmall": { "value": "2.25rem", "cssOnly": true },
             "avatarMedium": { "value": "3.5rem", "cssOnly": true },

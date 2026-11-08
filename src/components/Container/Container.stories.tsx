@@ -6,6 +6,7 @@ import { Eyebrow } from '../Eyebrow';
 import { FlexGroup } from '../FlexGroup';
 import { GridGroup } from '../GridGroup';
 import { Heading } from '../Heading';
+import { Main } from '../Main';
 import { SectionHeader } from '../SectionHeader';
 import { TextLink } from '../TextLink';
 import { Container } from './Container';
@@ -77,5 +78,46 @@ export const AllTones: Story = {
                 </Container>
             ))}
         </>
+    ),
+};
+
+// `border` rules a toned band in its tone's border colour. Full-width bands never get side
+// borders, and two stacked bands share one rule where they meet.
+export const BorderedBands: Story = {
+    render: (args) => (
+        <>
+            <Container {...args} color="white" border="both">
+                <SectionHeader title="White, border both" meta='border="both"' />
+            </Container>
+            <Container {...args} color="white" border="top">
+                <SectionHeader title="White, border top" meta="shares the rule above" />
+            </Container>
+            <Container {...args} color="inverse" border="top">
+                <SectionHeader title="Inverse, border top" meta="pine" />
+            </Container>
+            <Container {...args} color="tint" border="all">
+                <SectionHeader title="Tint, border all" meta="sage-dark; no side borders at full width" />
+            </Container>
+        </>
+    ),
+};
+
+// A toned Container at content or wide width is a panel: its edges sit on the page edge and its
+// content is inset to clear the background. Without a colour it adds no padding at all. Main
+// supplies the page edge, as on the site.
+export const BoxedPanel: Story = {
+    args: { maxWidth: 'alignwide', contentWidth: 'alignwide', color: 'tint', border: 'all' },
+    render: (args) => (
+        <Main>
+            <Container as="section" maxWidth="alignwide" contentWidth="alignwide">
+                <SectionHeader title="A plain Container" meta="content on the page edge" />
+            </Container>
+            <Container {...args}>
+                <SectionHeader title="A boxed tint panel" meta="edges on the page edge, content inset" />
+                <p>
+                    A paragraph with an <a href="#tones">inline link</a>.
+                </p>
+            </Container>
+        </Main>
     ),
 };
