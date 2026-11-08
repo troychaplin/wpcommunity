@@ -1,15 +1,6 @@
-import Image from 'next/image';
-import { wpcTokens } from '../../styles/wpc-tokens';
 import './styles.scss';
 
 type AvatarSize = 'small' | 'medium' | 'large';
-
-// The rendered sizes come from the layout tokens, so the image `sizes` hint and the CSS agree
-const sizeTokens: Record<AvatarSize, string> = {
-    small: wpcTokens.layout.avatarSmall,
-    medium: wpcTokens.layout.avatarMedium,
-    large: wpcTokens.layout.avatarLarge,
-};
 
 // First letters of the first two words: "Sophie L." → "SL", "Marie-Ange" → "MA"
 const getInitials = (name: string) =>
@@ -51,7 +42,7 @@ export const Avatar = ({
     if (src) {
         return (
             <span className={classes} {...rest}>
-                <Image className="wpc-avatar__image" src={src} alt={alt} fill sizes={sizeTokens[size]} />
+                <img className="wpc-avatar__image" src={src} alt={alt} loading="lazy" decoding="async" />
             </span>
         );
     }

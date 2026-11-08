@@ -1,6 +1,6 @@
 'use client';
 
-import { usePathname } from 'next/navigation';
+import { useLocation } from 'react-router';
 import { LanguageToggle } from '@/components/LanguageToggle';
 import { languageNames, locales } from '@/i18n/config';
 import type { Locale } from '@/i18n/config';
@@ -16,7 +16,7 @@ export interface LocaleSwitcherProps {
 // Swaps the locale segment of the current path, so changing language keeps the reader on the
 // same page: /en/groups/ottawa ↔ /fr/groups/ottawa
 export function LocaleSwitcher({ locale, label, variant }: LocaleSwitcherProps) {
-    const pathname = usePathname();
+    const { pathname } = useLocation();
     const rest = pathname.replace(localePrefix, '');
 
     const languages = locales.map((code) => ({

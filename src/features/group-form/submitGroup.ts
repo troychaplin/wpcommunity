@@ -1,5 +1,5 @@
-'use server';
-
+// Runs in the browser: the site is static, so useActionState calls this directly instead of a
+// server action. Validation messages come from the same dictionaries as before.
 import { provinces } from '@/data/content';
 import { defaultLocale, hasLocale } from '@/i18n/config';
 import { dictionaryFor } from '@/i18n/dictionaries';
@@ -9,8 +9,8 @@ import type { GroupFormState, GroupFormValues } from './types';
 const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 const provinceCodes = new Set(provinces.map((province) => province.code));
 
-// The seam where a backend plugs in: an email, a CRM, a WordPress endpoint. Nothing is stored or
-// logged yet.
+// The seam where a backend plugs in: a Spacefast Function, a WordPress REST endpoint, an email
+// service. Nothing is sent, stored or logged yet.
 async function deliverGroupSubmission(values: GroupFormValues): Promise<void> {
     void values;
 }

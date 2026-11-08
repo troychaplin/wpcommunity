@@ -1,9 +1,9 @@
-import Link from 'next/link';
 import {
     backgroundColorClasses,
     borderRadiusClasses,
     spacingClasses,
 } from '../../utils/propClasses';
+import { Link } from '../LinkProvider';
 import './styles.scss';
 
 type surfaceKeys = keyof typeof backgroundColorClasses;
@@ -20,7 +20,7 @@ export interface CardProps extends React.HTMLAttributes<HTMLElement> {
     paddingInline?: spacingKeys;
     paddingBlock?: spacingKeys;
     href?: string;
-    linkProps?: Omit<React.ComponentPropsWithoutRef<typeof Link>, 'href' | 'className' | 'children'>;
+    linkProps?: Omit<React.ComponentPropsWithoutRef<'a'>, 'href' | 'className' | 'children'>;
 }
 
 export const Card = ({

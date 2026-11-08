@@ -1,6 +1,6 @@
 # Avatar
 
-A person's photo in a ringed circle, or their initials in a tinted tile. Renders a `<span>`, holding a `next/image` when there's a photo.
+A person's photo in a ringed circle, or their initials in a tinted tile. Renders a `<span>`, holding an `<img>` when there's a photo.
 
 **Status:** complete
 
@@ -58,7 +58,7 @@ Initials are the first letters of the first two words, split on spaces and hyphe
 
 | Token | Used for |
 |---|---|
-| `--wpc--layout-avatar-small`, `-medium`, `-large` | Sizes (also passed to the image `sizes` hint through `wpcTokens.layout`) |
+| `--wpc--layout-avatar-small`, `-medium`, `-large` | Sizes |
 | `--wpc--radius-full`, `--wpc--radius-sm` | Circle and square |
 | `--wpc--color-white`, `--wpc--color-border` (role) | Photo ring and outline |
 | `--wpc--color-surface-tint` | Photo placeholder and initials background |
@@ -75,4 +75,4 @@ The photo ring is a 2px border with a 1px outline: structural widths, like the 1
 
 ## Open questions
 
-- Remote photos (Gravatar, WordPress profiles) need their hosts added to `images.remotePatterns` in `next.config.ts` once a data source is chosen.
+- Photos load lazily. Remote photos (Gravatar, WordPress profiles) work as plain URLs; there is no image optimizer on a static host, so request a size close to the rendered one.

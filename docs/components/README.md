@@ -9,7 +9,7 @@ The first set of components came from [Parlour UI](https://github.com/troychapli
 - **One doc per component.** Each component has its own file in this folder (e.g. [`button.md`](./button.md)), following [`_template.md`](./_template.md). The inventory links to each doc.
 - **Status** moves through `planned` → `specced` → `complete`.
 - **Designs** live in [`docs/design/`](../design/) as the original 2× exports. **Crops** for individual docs are cut from those and saved in `docs/components/images/`.
-- **Review** components on the [`/kitchen-sink`](../../src/app/[lang]/kitchen-sink/page.tsx) route (`pnpm dev`, then open `/en/kitchen-sink`).
+- **Review** components on the [`/kitchen-sink`](../../src/app/routes/kitchen-sink/kitchen-sink.tsx) route (`pnpm dev`, then open `/en/kitchen-sink`).
 - **Tokens** come from [`c2b.config.json`](../../c2b.config.json) (prefix `wpc`). Docs refer to tokens by role (`--wpc--color-text`, `--wpc--spacing-medium`) rather than raw values.
 - **Design scale:** the exports are 2×. The homepage is 1277 CSS px wide and the group page 1371, so halve pixel measurements taken from them.
 
@@ -36,7 +36,7 @@ docs/components/component-name.md
 - Every visual value comes from a `--wpc--*` token. If a value has no token, add it to `c2b.config.json` and run `pnpm tokens`. Never edit the generated `src/styles/wpc-*` files.
 - Breakpoints use the generated mixins, mobile-first: `@use '../../styles/wpc-variables' as *;` then `@include above-mobile { … }` / `above-tablet` (600px / 960px).
 - Modifier classes for a token scale are generated from the `$wpc-spacing` and `$wpc-radius` maps, so new token steps get classes with no component edit.
-- Global styles live in `src/styles/main.scss`, imported once by the root layout (`src/app/[lang]/layout.tsx`): modern-normalize, the generated tokens, `base/*` (focus, selection, alignment widths, `.sr-only`) and the generated base, layout and typography CSS.
+- Global styles live in `src/styles/main.scss`, imported once by the root route (`src/app/root.tsx`): modern-normalize, the generated tokens, `base/*` (focus, selection, alignment widths, `.sr-only`) and the generated base, layout and typography CSS.
 
 ### Tones
 
@@ -62,8 +62,8 @@ docs/components/component-name.md
 
 ### Links and client code
 
-- Links use `next/link` directly. Components are Server Components by default; add `'use client'` only for state, effects or context.
-- Interactive components are controlled (`value` + `onChange`) and hold no state. A small client wrapper owns the state, as in `src/app/[lang]/kitchen-sink/FilterDemo.tsx`.
+- Components never import a router. Links render `Link` from [`src/components/LinkProvider`](../../src/components/LinkProvider/), a plain `<a>` by default; the app hands it React Router's `Link` through `LinkProvider` in `src/app/root.tsx`. That keeps components working in Storybook and c2b. `'use client'` marks components with state, effects or context, for any Server Components consumer.
+- Interactive components are controlled (`value` + `onChange`) and hold no state. A small client wrapper owns the state, as in `src/app/routes/kitchen-sink/FilterDemo.tsx`.
 - App-level client code that wires components to data lives in `src/features/`, not in `src/components/` (see [Pages](#pages)).
 - Components take their user-facing strings as props with English defaults, so the pages can pass translations.
 
@@ -154,21 +154,21 @@ Phase 5 assembled the designs into real routes, in English and French.
 
 | Route | Page | Notes |
 |---|---|---|
-| `/` | Redirect | [`src/proxy.ts`](../../src/proxy.ts) sends any path without a locale to `/en…` or `/fr…`, picked from `Accept-Language` (English by default) |
+| `/` | Redirect | [`locale-redirect.tsx`](../../src/app/routes/locale-redirect.tsx) sends `/` to `/en` or `/fr`, picked from the browser's languages (English by default). Once hosted, `_redirects` rules will do this at the edge |
 | `/{lang}` | Homepage | Hero with the Meetup Index, group grid (first 6), Slack, "New here?", the group form, updates, FAQ |
 | `/{lang}/groups` | Groups directory | Every group, with search and region filters; the "View all groups" target |
 | `/{lang}/groups/{slug}` | Group page | Header and stats, organizer and team, resources, next event. Sections without data are left out; unknown slugs return a 404 |
 | `/{lang}/kitchen-sink` | Component review | `noindex` |
 
-Every route is prerendered for both locales (`generateStaticParams` in the root layout and the group page). The localized `not-found.tsx` covers unknown slugs and paths.
+Routes are declared in [`src/app/routes.ts`](../../src/app/routes.ts) and every page is prerendered to static HTML for both locales (the `prerender` list in [`react-router.config.ts`](../../react-router.config.ts)). The localized [`NotFoundPage`](../../src/app/NotFoundPage.tsx) covers unknown slugs and paths in development; the static host serves its own 404 for anything not prerendered.
 
 ### i18n
 
 - [`src/i18n/config.ts`](../../src/i18n/config.ts): `locales`, `defaultLocale`, `localeTags` (`en-CA`, `fr-CA` for `Intl`) and each language's name in its own language.
 - [`src/i18n/dictionaries/`](../../src/i18n/dictionaries/): one TypeScript dictionary per language. `en.ts` defines the `Dictionary` type and `fr.ts` is typed against it, so a key missing in French fails the build.
-- [`getDictionary.ts`](../../src/i18n/getDictionary.ts): `getI18n()` reads the locale with `next/root-params`, so Server Components get `{ locale, tag, t }` without prop drilling. Server Actions can't read root params; they take the locale from a hidden form field and call `dictionaryFor(locale)`.
+- [`useI18n.ts`](../../src/i18n/useI18n.ts): `useI18n()` reads the `:lang` route param, so pages get `{ locale, tag, t }` without prop drilling. `i18nFor(locale)` returns the same object outside a route. The group form takes the locale from a hidden field and calls `dictionaryFor(locale)`.
 - [`format.ts`](../../src/i18n/format.ts): `format()` fills `{name}` placeholders and `plural()` picks a form with `Intl.PluralRules`. Templates let word order differ between languages (`'{cadence} meetups'` / `'Rencontres {cadence}'`).
-- [`paths.ts`](../../src/i18n/paths.ts): `localeHref()` prefixes internal paths and `alternatesFor()` builds the canonical and hreflang links each page passes to `generateMetadata`.
+- [`paths.ts`](../../src/i18n/paths.ts): `localeHref()` prefixes internal paths and `alternatesFor()` builds the canonical and hreflang links that [`PageMeta`](../../src/app/PageMeta.tsx) renders for each page.
 - The `LocaleSwitcher` swaps the locale segment of the current path, so changing language keeps you on the same page.
 
 ### Data
@@ -183,7 +183,7 @@ Every route is prerendered for both locales (`generateStaticParams` in the root 
 
 - `locale/LocaleSwitcher`: the header and footer language toggles.
 - `directory/`: `DirectoryProvider` shares the search query and region across sections that sit apart on the page (the hero search and the group grid). A `#region-bc` link from the Meetup Index selects that region and scrolls to the results. `DirectorySearch` and `DirectoryResults` read the context. Search ignores case and accents ("montreal" finds Montréal).
-- `group-form/`: `GroupForm` with `useActionState` and the `submitGroup` Server Action. It validates and returns localized errors, keeps what was typed, moves focus to the first invalid field, and announces the result in a live region. Nothing is stored yet: `deliverGroupSubmission()` is where a backend plugs in.
+- `group-form/`: `GroupForm` with `useActionState` and `submitGroup`, which runs in the browser (the site is static). It validates and returns localized errors, keeps what was typed, moves focus to the first invalid field, and announces the result in a live region. Nothing is stored yet: `deliverGroupSubmission()` is where a backend plugs in.
 
 ## Alignment (Parlour → wpc)
 

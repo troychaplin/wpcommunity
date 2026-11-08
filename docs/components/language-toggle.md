@@ -1,6 +1,6 @@
 # LanguageToggle
 
-Links between the English and French versions of a page: a segmented En / Fr pill for the header, or a labelled list for the footer. Renders a `<nav>` of `next/link`s.
+Links between the English and French versions of a page: a segmented En / Fr pill for the header, or a labelled list for the footer. Renders a `<nav>` of router-aware [`Link`](../../src/components/LinkProvider/)s.
 
 **Status:** complete
 

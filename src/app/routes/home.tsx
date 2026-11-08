@@ -1,4 +1,3 @@
-import type { Metadata } from 'next';
 import { Accordion } from '@/components/Accordion';
 import { Button } from '@/components/Button';
 import { ButtonGroup } from '@/components/ButtonGroup';
@@ -35,27 +34,19 @@ import { DirectoryResults } from '@/features/directory/DirectoryResults';
 import { DirectorySearch } from '@/features/directory/DirectorySearch';
 import { GroupForm } from '@/features/group-form/GroupForm';
 import { format, plural } from '@/i18n/format';
-import { getI18n } from '@/i18n/getDictionary';
-import { alternatesFor, localeHref } from '@/i18n/paths';
+import { localeHref } from '@/i18n/paths';
+import { useI18n } from '@/i18n/useI18n';
+import { PageMeta } from '../PageMeta';
 
-export async function generateMetadata(): Promise<Metadata> {
-    const { locale, t } = await getI18n();
-
-    // The layout's title template only reaches child segments, so the homepage spells it out
-    return {
-        title: { absolute: `${t.home.metaTitle} | ${t.meta.siteName}` },
-        alternates: alternatesFor(locale, ''),
-    };
-}
-
-export default async function Home() {
-    const { locale, tag, t } = await getI18n();
+export default function Home() {
+    const { locale, tag, t } = useI18n();
     const groups = getDirectoryGroups(locale, (cadence) => t.cadences[cadence].inCard);
     const regions = getRegions(locale);
     const number = new Intl.NumberFormat(tag);
 
     return (
         <Main hasPadding={false}>
+            <PageMeta locale={locale} absoluteTitle={`${t.home.metaTitle} | ${t.meta.siteName}`} path="" />
             <DirectoryProvider groups={groups} resultsId="groups">
                 <Hero
                     title={t.home.hero.title}
