@@ -1,4 +1,3 @@
-import Image from 'next/image';
 import { Heading } from '../Heading';
 import './styles.scss';
 
@@ -29,13 +28,12 @@ export const Hero = ({ title, accent, lead, actions, aside, image, className }: 
             <div className="wpc-hero__content">
                 {image && (
                     <>
-                        <Image
+                        <img
                             className="wpc-hero__image"
                             src={image.src}
                             alt={image.alt ?? ''}
-                            fill
-                            sizes="70vw"
-                            priority
+                            fetchPriority="high"
+                            decoding="async"
                         />
                         <span className="wpc-hero__wash" aria-hidden="true" />
                     </>

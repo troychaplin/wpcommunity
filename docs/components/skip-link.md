@@ -64,7 +64,7 @@ The hidden position uses `translateY(calc(-100% - var(--wpc--spacing-x-small)))`
 
 ## Accessibility
 
-- A native `<a>` with an in-page `href`, so it works without JavaScript. It deliberately isn't a `next/link`: router links navigate between pages, not to a fragment.
+- A native `<a>` with an in-page `href`, so it works without JavaScript. It deliberately doesn't use the router-aware `Link`: router links navigate between pages, not to a fragment.
 - It must be the first focusable element so the first Tab lands on it.
 - `Main` has `tabIndex={-1}` so following the link moves focus into the content, not just the scroll position. Give any other target `tabIndex={-1}` too.
 - It sits outside every landmark, which axe's `region` rule flags; skip links are the accepted exception.

@@ -35,7 +35,7 @@ import { SiteHeader } from '@/components/SiteHeader';
 </SiteHeader>
 ```
 
-The root layout (`src/app/[lang]/layout.tsx`) renders it with the dictionary's labels.
+The `:lang` layout route (`src/app/routes/lang-layout.tsx`) renders it with the dictionary's labels and the router's current path.
 
 ## Props
 
@@ -44,6 +44,7 @@ The root layout (`src/app/[lang]/layout.tsx`) renders it with the dictionary's l
 | `siteTitle` | `string` | `'WP Canada'` | Text of the home link |
 | `siteTitleAccent` | `string` | — | Part of the title shown in crimson |
 | `homeHref` | `string` | `'/'` | Target of the title link (the locale's homepage) |
+| `currentPath` | `string` | `''` | The current path; the mobile menu closes when it changes. Pass the router's pathname |
 | `navItems` | `{ href: string; label: string }[]` | — | Primary navigation links |
 | `navLabel` | `string` | `'Primary'` | Accessible name of the nav |
 | `menuLabel` | `string` | `'Menu'` | Menu button text while the panel is closed |
@@ -64,7 +65,7 @@ The root layout (`src/app/[lang]/layout.tsx`) renders it with the dictionary's l
 | `wpc-site-header__nav` | `navItems` is non-empty |
 | `wpc-site-header__actions` | `children` is set |
 
-The row itself is a [`FlexGroup`](./flex-group.md) (`alignwide`, `space-between`, gap `small`). `SiteHeader` stays a Server Component; the toggle state lives in a small client component, `SiteHeaderMenu`, that wraps the nav and actions.
+The row itself is a [`FlexGroup`](./flex-group.md) (`alignwide`, `space-between`, gap `small`). The toggle state lives in a small client component, `SiteHeaderMenu`, that wraps the nav and actions. It records the path the menu was opened on, so a change to `currentPath` closes it.
 
 ## Design tokens
 

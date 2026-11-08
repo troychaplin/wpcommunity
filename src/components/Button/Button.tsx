@@ -1,7 +1,7 @@
-import Link from 'next/link';
 import type { ComponentPropsWithoutRef } from 'react';
 import { borderRadiusClasses } from '../../utils/propClasses';
 import { Icon } from '../Icon';
+import { Link } from '../LinkProvider';
 import type { IconName } from '../Icon';
 import './styles.scss';
 
@@ -24,7 +24,7 @@ type ButtonElementProps = ButtonBaseProps &
     };
 
 type ButtonLinkProps = ButtonBaseProps &
-    Omit<ComponentPropsWithoutRef<typeof Link>, keyof ButtonBaseProps | 'type'> & {
+    Omit<ComponentPropsWithoutRef<'a'>, keyof ButtonBaseProps | 'type'> & {
         href: string;
         type?: never;
         disabled?: never;

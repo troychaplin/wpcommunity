@@ -1,0 +1,8 @@
+// The font stacks in wpc-tokens.css start with these variables. They have to be defined: an
+// undefined var() would void the whole font-family declaration. The @font-face rules come from
+// the @fontsource packages imported in src/styles/fonts.ts.
+:root {
+    --font-cormorant: 'Cormorant Garamond Variable';
+    --font-jakarta: 'Plus Jakarta Sans Variable';
+    --font-plex-mono: 'IBM Plex Mono';
+}

@@ -1,21 +1,20 @@
 'use client';
 
 import { useEffect, useId, useRef, useState } from 'react';
-import { usePathname } from 'next/navigation';
 import { Icon } from '../Icon';
 
 export interface SiteHeaderMenuProps {
     children: React.ReactNode;
     menuLabel: string;
     closeLabel: string;
+    currentPath: string;
 }
 
 // Below the tablet breakpoint the nav and actions collapse behind a Menu button. The menu
 // records the path it was opened on, so navigating anywhere closes it with no effect to sync.
-export const SiteHeaderMenu = ({ children, menuLabel, closeLabel }: SiteHeaderMenuProps) => {
-    const pathname = usePathname();
+export const SiteHeaderMenu = ({ children, menuLabel, closeLabel, currentPath }: SiteHeaderMenuProps) => {
     const [openOn, setOpenOn] = useState<string | null>(null);
-    const isOpen = openOn === pathname;
+    const isOpen = openOn === currentPath;
     const panelId = useId();
     const buttonRef = useRef<HTMLButtonElement>(null);
 
@@ -47,7 +46,7 @@ export const SiteHeaderMenu = ({ children, menuLabel, closeLabel }: SiteHeaderMe
                 className="wpc-site-header__toggle"
                 aria-expanded={isOpen}
                 aria-controls={panelId}
-                onClick={() => setOpenOn(isOpen ? null : pathname)}
+                onClick={() => setOpenOn(isOpen ? null : currentPath)}
             >
                 <Icon name={isOpen ? 'x' : 'menu'} />
                 {isOpen ? closeLabel : menuLabel}

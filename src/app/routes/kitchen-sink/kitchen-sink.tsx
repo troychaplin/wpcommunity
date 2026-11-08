@@ -1,5 +1,3 @@
-import type { Metadata } from "next";
-import Image from "next/image";
 import { Accordion } from "@/components/Accordion";
 import { Article } from "@/components/Article";
 import { Aside } from "@/components/Aside";
@@ -38,12 +36,9 @@ import { TextArea } from "@/components/TextArea";
 import { TextField } from "@/components/TextField";
 import { TextLink } from "@/components/TextLink";
 import { UpdateList } from "@/components/UpdateList";
+import { useI18n } from "@/i18n/useI18n";
+import { PageMeta } from "../../PageMeta";
 import { FilterDemo } from "./FilterDemo";
-
-export const metadata: Metadata = {
-  title: "Kitchen sink",
-  robots: { index: false, follow: false },
-};
 
 const tones = ["canvas", "tint", "blush", "inverse", "white"] as const;
 
@@ -160,8 +155,11 @@ const cards = [
 ] as const;
 
 export default function KitchenSink() {
+  const { locale } = useI18n();
+
   return (
     <Main>
+        <PageMeta locale={locale} title="Kitchen sink" noIndex />
         <Container as="section" maxWidth="alignwide" contentWidth="alignwide">
           <SectionHeader
             prefix="Kitchen sink"
@@ -669,7 +667,7 @@ export default function KitchenSink() {
                   work through real problems together.
                 </p>
                 <Figure caption="A figure with a caption" size="md">
-                  <Image src="/globe.svg" alt="Globe illustration" width={480} height={480} />
+                  <img src="/globe.svg" alt="Globe illustration" width={480} height={480} />
                 </Figure>
                 <p>
                   Prose links in Main are <a href="#article">semibold</a> and underline on hover.

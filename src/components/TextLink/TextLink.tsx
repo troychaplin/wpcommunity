@@ -1,9 +1,9 @@
-import Link from 'next/link';
 import type { ComponentPropsWithoutRef } from 'react';
 import { Icon } from '../Icon';
+import { Link } from '../LinkProvider';
 import './styles.scss';
 
-export interface TextLinkProps extends Omit<ComponentPropsWithoutRef<typeof Link>, 'href'> {
+export interface TextLinkProps extends Omit<ComponentPropsWithoutRef<'a'>, 'href'> {
     href: string;
     children: React.ReactNode;
     hasArrow?: boolean;

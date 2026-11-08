@@ -1,13 +1,13 @@
 # Button
 
-An action trigger that renders a native `<button>`, or a Next.js `Link` styled as a button when an `href` is provided. Comes in three colour variants, an optional leading icon, and size, width and disabled states.
+An action trigger that renders a native `<button>`, or a link styled as a button when an `href` is provided. Comes in three colour variants, an optional leading icon, and size, width and disabled states.
 
 **Status:** complete
 
 ## When to use
 
 - Trigger an in-page action: submitting a form, opening a dialog, starting a process.
-- Pass `href` for a call to action that should look like a button, such as "Find Local Meetups" or "RSVP on Meetup.com". It renders through `next/link`.
+- Pass `href` for a call to action that should look like a button, such as "Find Local Meetups" or "RSVP on Meetup.com". It renders through [`Link`](../../src/components/LinkProvider/), so the app's router handles it.
 - Don't use it for links inside running text; a plain link reads as part of the sentence.
 - Wrap two or more buttons side by side in a [`ButtonGroup`](./button-group.md) rather than managing spacing by hand.
 

@@ -1,6 +1,6 @@
 # TextLink
 
-A standalone call-to-action link: crimson and semibold, with an optional trailing arrow, or in mono for channel names. Renders a `next/link`.
+A standalone call-to-action link: crimson and semibold, with an optional trailing arrow, or in mono for channel names. Renders a router-aware [`Link`](../../src/components/LinkProvider/).
 
 **Status:** complete
 
@@ -45,7 +45,7 @@ import { TextLink } from '@/components/TextLink';
 | `font` | `'sans' \| 'mono'` | `'sans'` | Typeface |
 | `size` | `'small' \| 'medium'` | `'medium'` | Font size |
 
-Other `next/link` props pass through.
+Other `<a>` props pass through.
 
 ## CSS classes
 

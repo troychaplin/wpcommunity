@@ -1,5 +1,4 @@
-import type { Metadata } from 'next';
-import { notFound } from 'next/navigation';
+import { data } from 'react-router';
 import { Button } from '@/components/Button';
 import { ButtonGroup } from '@/components/ButtonGroup';
 import { Card } from '@/components/Card';
@@ -14,45 +13,40 @@ import { Main } from '@/components/Main';
 import { PersonCard } from '@/components/PersonCard';
 import { ResourceCard } from '@/components/ResourceCard';
 import { SectionHeader } from '@/components/SectionHeader';
-import { formatEventDetails, getGroup, getGroups, meetupUrl, regionLabel, slackInviteUrl } from '@/data';
+import { formatEventDetails, getGroup, meetupUrl, regionLabel, slackInviteUrl } from '@/data';
 import { format } from '@/i18n/format';
-import { getI18n } from '@/i18n/getDictionary';
-import { alternatesFor } from '@/i18n/paths';
+import { useI18n } from '@/i18n/useI18n';
+import { PageMeta } from '../PageMeta';
+import type { Route } from './+types/group';
+import { NotFoundPage } from '../NotFoundPage';
 
-// Every group is prerendered, so navigating here waits only for a static payload. Reading the slug
-// outside Suspense keeps a real 404 status for unknown slugs; inside Suspense the shell would
-// already have streamed with a 200.
-export const instant = false;
-
-export async function generateStaticParams() {
-    return getGroups().map((group) => ({ slug: group.slug }));
-}
-
-export async function generateMetadata({ params }: PageProps<'/[lang]/groups/[slug]'>): Promise<Metadata> {
-    const { slug } = await params;
-    const group = getGroup(slug);
-    const { locale } = await getI18n();
-
-    if (!group) {
-        notFound();
+// Every group is prerendered (see react-router.config.ts), so this runs at build time. An unknown
+// slug only reaches it in development; the static host answers those with its own 404.
+export function loader({ params }: Route.LoaderArgs) {
+    if (!getGroup(params.slug)) {
+        throw data(null, { status: 404 });
     }
 
-    return {
-        title: group.name,
-        description: group.summary[locale],
-        alternates: alternatesFor(locale, `/groups/${slug}`),
-    };
+    return null;
 }
 
-export default async function GroupPage({ params }: PageProps<'/[lang]/groups/[slug]'>) {
-    const { slug } = await params;
-    const group = getGroup(slug);
+// Renders inside the :lang layout, so the 404 keeps the site header and footer
+export function ErrorBoundary() {
+    const { locale } = useI18n();
 
+    return <NotFoundPage locale={locale} />;
+}
+
+export default function GroupPage({ params }: Route.ComponentProps) {
+    const { slug } = params;
+    const group = getGroup(slug);
+    const { locale, tag, t } = useI18n();
+
+    // The loader has already rejected unknown slugs
     if (!group) {
-        notFound();
+        return null;
     }
 
-    const { locale, tag, t } = await getI18n();
     const meetup = meetupUrl(group);
     const { resources } = t.group;
     const { organizer, team, nextEvent } = group;
@@ -70,6 +64,12 @@ export default async function GroupPage({ params }: PageProps<'/[lang]/groups/[s
 
     return (
         <Main>
+            <PageMeta
+                locale={locale}
+                title={group.name}
+                description={group.summary[locale]}
+                path={`/groups/${slug}`}
+            />
             <Container as="section" maxWidth="alignwide" contentWidth="alignwide">
                 <GroupHeader
                     region={regionLabel(group.region, locale)}

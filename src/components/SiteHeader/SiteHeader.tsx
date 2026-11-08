@@ -1,7 +1,7 @@
 import React from 'react';
-import Link from 'next/link';
 
 import { FlexGroup } from '../FlexGroup/FlexGroup';
+import { Link } from '../LinkProvider';
 import { splitTitle } from '../../utils/splitTitle';
 import { SiteHeaderMenu } from './SiteHeaderMenu';
 
@@ -17,6 +17,8 @@ export interface SiteHeaderProps {
     siteTitle?: string;
     siteTitleAccent?: string;
     homeHref?: string;
+    // The current path. The mobile menu closes when it changes, so pass the router's pathname.
+    currentPath?: string;
     navItems?: SiteHeaderNavItem[];
     navLabel?: string;
     menuLabel?: string;
@@ -30,6 +32,7 @@ export const SiteHeader = ({
     siteTitle = 'WP Canada',
     siteTitleAccent,
     homeHref = '/',
+    currentPath = '',
     navItems,
     navLabel = 'Primary',
     menuLabel = 'Menu',
@@ -54,7 +57,7 @@ export const SiteHeader = ({
                     </p>
                 </div>
                 {(hasNav || children) && (
-                    <SiteHeaderMenu menuLabel={menuLabel} closeLabel={closeLabel}>
+                    <SiteHeaderMenu menuLabel={menuLabel} closeLabel={closeLabel} currentPath={currentPath}>
                         {hasNav && (
                             <nav className="wpc-site-header__nav" aria-label={navLabel}>
                                 <ul>

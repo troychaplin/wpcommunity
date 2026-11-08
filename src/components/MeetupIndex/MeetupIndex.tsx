@@ -1,5 +1,5 @@
-import Link from 'next/link';
 import { Eyebrow } from '../Eyebrow';
+import { Link } from '../LinkProvider';
 import './styles.scss';
 
 export interface MeetupIndexRegion {
