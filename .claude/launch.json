@@ -4,14 +4,34 @@
     {
       "name": "dev",
       "runtimeExecutable": "pnpm",
-      "runtimeArgs": ["dev", "--port", "5173", "--strictPort"],
+      "runtimeArgs": [
+        "dev",
+        "--port",
+        "5173",
+        "--strictPort"
+      ],
       "port": 5173
     },
     {
       "name": "static-build",
       "runtimeExecutable": "pnpm",
-      "runtimeArgs": ["preview", "--port", "4173", "--strictPort"],
+      "runtimeArgs": [
+        "preview",
+        "--port",
+        "4173",
+        "--strictPort"
+      ],
       "port": 4173
+    },
+    {
+      "name": "storybook",
+      "runtimeExecutable": "pnpm",
+      "runtimeArgs": [
+        "storybook",
+        "--ci",
+        "--no-open"
+      ],
+      "port": 6006
     }
   ]
 }

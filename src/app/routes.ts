@@ -8,7 +8,6 @@ export default [
         index('./routes/home.tsx'),
         route('groups', './routes/groups.tsx'),
         route('groups/:slug', './routes/group.tsx'),
-        route('kitchen-sink', './routes/kitchen-sink/kitchen-sink.tsx'),
         route('*', './routes/not-found.tsx'),
     ]),
 ] satisfies RouteConfig;

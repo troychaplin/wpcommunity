@@ -34,7 +34,7 @@ const visible = groups.filter((group) => region === 'all' || group.region === re
 <Eyebrow aria-live="polite">Showing {visible.length} of {groups.length} groups</Eyebrow>
 ```
 
-`src/app/routes/kitchen-sink/FilterDemo.tsx` is a working example, combined with a SearchField. The pages use `src/features/directory/`, where `DirectoryProvider` shares the query and region between the hero search and the group grid.
+The **Filtering A List** story (`FilterBar.stories.tsx`) is a working example, combined with a SearchField. The pages use `src/features/directory/`, where `DirectoryProvider` shares the query and region between the hero search and the group grid.
 
 ## Props
 

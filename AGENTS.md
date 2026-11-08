@@ -13,3 +13,6 @@ Vite + React Router 8.5.1 in framework mode, prerendered to static HTML (`ssr: f
 - Components in `src/components/` must stay router-free: render links with `Link` from
   `src/components/LinkProvider`, never `react-router`'s, so the same components work in Storybook
   and c2b. The app supplies React Router's Link through `LinkProvider` in `src/app/root.tsx`.
+- Every component has a `ComponentName.stories.tsx` beside it. Shared sample content lives in
+  `src/stories/fixtures.ts`; reference static files with relative paths (`globe.svg`) so they resolve
+  under the GitHub Pages base path.
