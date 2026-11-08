@@ -3,7 +3,7 @@ import { Card } from '../Card';
 import { SearchField } from './SearchField';
 
 const meta = {
-    title: 'Content/SearchField',
+    title: 'Components/Forms/Search Field',
     component: SearchField,
     args: { label: 'Search groups by city', placeholder: 'Search your city...' },
 } satisfies Meta<typeof SearchField>;

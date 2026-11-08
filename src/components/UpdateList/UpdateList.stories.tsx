@@ -3,7 +3,7 @@ import { updates } from '../../stories/fixtures';
 import { UpdateList } from './UpdateList';
 
 const meta = {
-    title: 'Content/UpdateList',
+    title: 'Components/Content/Update List',
     component: UpdateList,
     args: {
         children: updates.map((update) => <UpdateList.Item key={update.title} href="#updates" {...update} />),

@@ -2,7 +2,7 @@ import type { Meta, StoryObj } from '@storybook/react-vite';
 import { SkipLink } from './SkipLink';
 
 const meta = {
-    title: 'Foundations/SkipLink',
+    title: 'Components/Utilities/Skip Link',
     component: SkipLink,
     parameters: {
         docs: {

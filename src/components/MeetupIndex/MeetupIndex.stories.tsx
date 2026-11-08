@@ -4,7 +4,7 @@ import { meetupRegions } from '../../stories/fixtures';
 import { MeetupIndex } from './MeetupIndex';
 
 const meta = {
-    title: 'Sections/MeetupIndex',
+    title: 'Components/Navigation/Meetup Index',
     component: MeetupIndex,
     args: {
         version: 'v1.4',

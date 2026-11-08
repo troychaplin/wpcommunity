@@ -4,7 +4,7 @@ import { footerNav, languages } from '../../stories/fixtures';
 import { SiteFooter } from './SiteFooter';
 
 const meta = {
-    title: 'Sections/SiteFooter',
+    title: 'Components/Template Parts/Site Footer',
     component: SiteFooter,
     parameters: { layout: 'fullscreen' },
     args: {

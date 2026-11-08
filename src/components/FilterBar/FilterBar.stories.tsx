@@ -8,7 +8,7 @@ import { groups, regionOptions } from '../../stories/fixtures';
 import { FilterBar } from './FilterBar';
 
 const meta = {
-    title: 'Content/FilterBar',
+    title: 'Components/Forms/Filter Bar',
     component: FilterBar,
     args: { label: 'Region', options: regionOptions, value: 'all', onChange: () => {} },
 } satisfies Meta<typeof FilterBar>;

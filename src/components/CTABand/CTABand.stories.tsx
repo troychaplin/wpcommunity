@@ -4,7 +4,7 @@ import { ButtonGroup } from '../ButtonGroup';
 import { CTABand } from './CTABand';
 
 const meta = {
-    title: 'Sections/CTABand',
+    title: 'Components/Content/CTA Band',
     component: CTABand,
     args: {
         eyebrow: 'Upcoming Gathering',

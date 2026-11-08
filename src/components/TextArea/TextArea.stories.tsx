@@ -2,7 +2,7 @@ import type { Meta, StoryObj } from '@storybook/react-vite';
 import { TextArea } from './TextArea';
 
 const meta = {
-    title: 'Content/TextArea',
+    title: 'Components/Forms/Text Area',
     component: TextArea,
     args: {
         label: 'Tell us about your group',

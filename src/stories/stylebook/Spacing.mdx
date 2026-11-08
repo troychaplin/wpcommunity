@@ -1,0 +1,18 @@
+import { Meta } from '@storybook/addon-docs/blocks';
+import { SpacingScale, PaddingScale } from './components/SpacingScale';
+
+<Meta title="Overview/Stylebook/Spacing" />
+
+# Spacing
+
+Seven spacing levels from `2x-small` to `2x-large`. The four largest use viewport-relative `clamp()` values, so section spacing tightens on phones.
+
+<SpacingScale
+    title="Gap Scale"
+    description="Two blocks separated by a gap equal to the token value — how spacing reads when used as flex/grid gap."
+/>
+
+<PaddingScale
+    title="Padding Scale"
+    description="A content block wrapped in padding equal to the token value — how spacing reads when used inside a container."
+/>

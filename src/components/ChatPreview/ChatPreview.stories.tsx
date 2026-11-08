@@ -3,7 +3,7 @@ import { chatMessages, chatStats } from '../../stories/fixtures';
 import { ChatPreview } from './ChatPreview';
 
 const meta = {
-    title: 'Content/ChatPreview',
+    title: 'Components/Content/Chat Preview',
     component: ChatPreview,
     args: { channel: 'wp-canada-general', messages: chatMessages, stats: chatStats },
 } satisfies Meta<typeof ChatPreview>;

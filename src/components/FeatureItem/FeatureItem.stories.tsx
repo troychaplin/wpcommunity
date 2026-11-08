@@ -3,7 +3,7 @@ import { GridGroup } from '../GridGroup';
 import { FeatureItem } from './FeatureItem';
 
 const meta = {
-    title: 'Content/FeatureItem',
+    title: 'Components/Content/Feature Item',
     component: FeatureItem,
     args: {
         icon: 'map-pin',

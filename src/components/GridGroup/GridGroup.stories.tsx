@@ -5,7 +5,7 @@ import { groups } from '../../stories/fixtures';
 import { GridGroup } from './GridGroup';
 
 const meta = {
-    title: 'Layout/GridGroup',
+    title: 'Components/Layout/Grid Group',
     component: GridGroup,
     args: {
         columns: 3,

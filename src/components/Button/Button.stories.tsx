@@ -3,7 +3,7 @@ import { Container } from '../Container';
 import { Button } from './Button';
 
 const meta = {
-    title: 'Foundations/Button',
+    title: 'Components/Elements/Button',
     component: Button,
     args: { text: 'Find Local Meetups' },
 } satisfies Meta<typeof Button>;

@@ -5,7 +5,7 @@ import { Heading } from './Heading';
 const sizes = ['display', 'heading-large', 'heading-medium', 'heading-small', '2x-large', 'x-large', 'large'] as const;
 
 const meta = {
-    title: 'Foundations/Heading',
+    title: 'Components/Elements/Heading',
     component: Heading,
     args: { children: 'Gather under the canopy', as: 'h2', size: 'heading-large' },
 } satisfies Meta<typeof Heading>;

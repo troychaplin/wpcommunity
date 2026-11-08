@@ -3,7 +3,7 @@ import { Figure } from '../Figure';
 import { Article } from './Article';
 
 const meta = {
-    title: 'Page Structure/Article',
+    title: 'Components/Layout/Article',
     component: Article,
 } satisfies Meta<typeof Article>;
 

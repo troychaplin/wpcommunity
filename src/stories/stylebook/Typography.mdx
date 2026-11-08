@@ -1,0 +1,23 @@
+import { Meta } from '@storybook/addon-docs/blocks';
+import { FontFamilies, BaseStyles, FontSizeTokens } from './components/TypographyScale';
+
+<Meta title="Overview/Stylebook/Typography" />
+
+# Typography
+
+Typography from `c2b.config.json`: the three font families, the element styles applied by `baseStyles`, and the fluid size scale behind them. The fonts are self-hosted from fontsource (`src/styles/fonts.ts`).
+
+<FontFamilies
+    title="Font Families"
+    description="Cormorant Garamond for headings, Plus Jakarta Sans for text and IBM Plex Mono for labels and eyebrows."
+/>
+
+<BaseStyles
+    title="Base Styles"
+    description="Typography applied to body and h1–h6 by baseStyles, showing the font-size token behind each element."
+/>
+
+<FontSizeTokens
+    title="Font Size Tokens"
+    description="The full size scale, from x-small to display. Each token is a clamp() value that scales between a min and a max across 320px to 1280px viewports."
+/>

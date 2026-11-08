@@ -3,7 +3,7 @@ import { Button } from '../Button';
 import { ButtonGroup } from './ButtonGroup';
 
 const meta = {
-    title: 'Foundations/ButtonGroup',
+    title: 'Components/Elements/Button Group',
     component: ButtonGroup,
     args: {
         children: (

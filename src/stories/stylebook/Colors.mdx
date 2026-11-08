@@ -1,0 +1,33 @@
+import { Meta } from '@storybook/addon-docs/blocks';
+import { ColorSwatches } from './components/ColorSwatches';
+
+<Meta title="Overview/Stylebook/Colors" />
+
+# Colors
+
+Color tokens are defined in `c2b.config.json` and generate CSS custom properties prefixed with `--wpc--color-*`. Components read the **role** colours, so they adapt when a `Container` or `Card` sets a tone; the **palette** is what the roles point at.
+
+<ColorSwatches
+    kind="palette"
+    title="Palette"
+    description="The named colours of the canopy palette, from crimson and forest to the stone and canvas neutrals."
+/>
+
+<ColorSwatches
+    kind="roles"
+    title="Roles"
+    description="What each colour is for. Each points at a palette colour, and the tones (canvas, tint, blush, inverse, white) re-declare them for their section."
+/>
+
+<ColorSwatches gradient title="Gradients" description="The hero's blush wash and the forest glow behind the event band." />
+
+## Usage
+
+Use roles for anything that sits on a toned surface, and palette colours only where a value must stay fixed (buttons do this so they look the same in every section).
+
+```css
+.my-element {
+    color: var(--wpc--color-text);
+    border-color: var(--wpc--color-border);
+}
+```

@@ -4,7 +4,7 @@ import { resources } from '../../stories/fixtures';
 import { ResourceCard } from './ResourceCard';
 
 const meta = {
-    title: 'Content/ResourceCard',
+    title: 'Components/Cards/Resource Card',
     component: ResourceCard,
     args: { ...resources[0], href: '#resources' },
 } satisfies Meta<typeof ResourceCard>;

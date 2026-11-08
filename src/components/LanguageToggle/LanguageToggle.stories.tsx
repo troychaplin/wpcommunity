@@ -3,7 +3,7 @@ import { languages } from '../../stories/fixtures';
 import { LanguageToggle } from './LanguageToggle';
 
 const meta = {
-    title: 'Sections/LanguageToggle',
+    title: 'Components/Navigation/Language Toggle',
     component: LanguageToggle,
     args: { languages },
 } satisfies Meta<typeof LanguageToggle>;

@@ -3,7 +3,7 @@ import { FlexGroup } from '../FlexGroup';
 import { Avatar } from './Avatar';
 
 const meta = {
-    title: 'Foundations/Avatar',
+    title: 'Components/Elements/Avatar',
     component: Avatar,
     args: { name: 'Elena Rostova' },
 } satisfies Meta<typeof Avatar>;

@@ -8,7 +8,7 @@ import { volunteers } from '../../stories/fixtures';
 import { PersonCard } from './PersonCard';
 
 const meta = {
-    title: 'Content/PersonCard',
+    title: 'Components/Cards/Person Card',
     component: PersonCard,
     args: {
         label: 'primary group contact',
