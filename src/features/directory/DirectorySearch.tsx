@@ -1,20 +1,18 @@
 'use client';
 
 import { SearchField } from '@/components/SearchField';
+import { useI18n } from '@/i18n/useI18n';
 import { useDirectory } from './DirectoryProvider';
 
-export interface DirectorySearchProps {
-    label: string;
-    placeholder: string;
-}
-
-export function DirectorySearch({ label, placeholder }: DirectorySearchProps) {
+// The directory's search field, labelled in the page locale
+export function DirectorySearch() {
+    const { t } = useI18n();
     const { query, setQuery } = useDirectory();
 
     return (
         <SearchField
-            label={label}
-            placeholder={placeholder}
+            label={t.directory.searchLabel}
+            placeholder={t.directory.searchPlaceholder}
             value={query}
             onChange={(event) => setQuery(event.target.value)}
         />

@@ -5,12 +5,15 @@ import { SkipLink } from '@/components/SkipLink';
 import { LocaleSwitcher } from '@/features/locale/LocaleSwitcher';
 import { defaultLocale, hasLocale } from '@/i18n/config';
 import { useI18n } from '@/i18n/useI18n';
+// The ids alone, not the barrel, so the layout doesn't pull in the homepage's sections
+import { homeSections } from '@/patterns/home/sections';
 import { NotFoundPage } from '../NotFoundPage';
 
 export default function LangLayout() {
     const { lang } = useParams();
     const { locale, t } = useI18n();
     const { pathname } = useLocation();
+    const homeSection = (id: string) => `/${locale}#${id}`;
 
     // Anything outside /en and /fr. This can't be a loader: with ssr:false a parent route's loader
     // needs every child path prerendered, and the catch-all isn't. Only development reaches this;
@@ -27,8 +30,8 @@ export default function LangLayout() {
                 currentPath={pathname}
                 navItems={[
                     { href: `/${locale}/groups`, label: t.header.nav.meetups },
-                    { href: `/${locale}#start-a-group`, label: t.header.nav.submit },
-                    { href: `/${locale}#new-here`, label: t.header.nav.story },
+                    { href: homeSection(homeSections.startGroup), label: t.header.nav.submit },
+                    { href: homeSection(homeSections.newHere), label: t.header.nav.story },
                 ]}
                 navLabel={t.header.navLabel}
                 menuLabel={t.header.menu}
@@ -44,10 +47,10 @@ export default function LangLayout() {
                 navLabel={t.footer.navLabel}
                 navItems={[
                     { href: `/${locale}/groups`, label: t.footer.nav.groups },
-                    { href: `/${locale}#slack`, label: t.footer.nav.slack },
-                    { href: `/${locale}#start-a-group`, label: t.footer.nav.submit },
-                    { href: `/${locale}#new-here`, label: t.footer.nav.gettingStarted },
-                    { href: `/${locale}#faq`, label: t.footer.nav.faq },
+                    { href: homeSection(homeSections.slack), label: t.footer.nav.slack },
+                    { href: homeSection(homeSections.startGroup), label: t.footer.nav.submit },
+                    { href: homeSection(homeSections.newHere), label: t.footer.nav.gettingStarted },
+                    { href: homeSection(homeSections.faq), label: t.footer.nav.faq },
                 ]}
                 legal={t.footer.legal}
                 meta={
