@@ -3,7 +3,7 @@ import { getGroups } from './src/data';
 import { locales } from './src/i18n/config';
 
 // Every page is rendered to static HTML at build time; there is no runtime server
-const localizedPaths = ['', '/groups', '/kitchen-sink', ...getGroups().map((group) => `/groups/${group.slug}`)];
+const localizedPaths = ['', '/groups', ...getGroups().map((group) => `/groups/${group.slug}`)];
 
 export default {
     appDirectory: 'src/app',

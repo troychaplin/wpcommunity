@@ -17,6 +17,10 @@
 /build/
 /.react-router/
 
+# storybook
+/storybook-static/
+*storybook.log
+
 # misc
 .DS_Store
 *.pem

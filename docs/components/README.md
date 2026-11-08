@@ -9,7 +9,7 @@ The first set of components came from [Parlour UI](https://github.com/troychapli
 - **One doc per component.** Each component has its own file in this folder (e.g. [`button.md`](./button.md)), following [`_template.md`](./_template.md). The inventory links to each doc.
 - **Status** moves through `planned` → `specced` → `complete`.
 - **Designs** live in [`docs/design/`](../design/) as the original 2× exports. **Crops** for individual docs are cut from those and saved in `docs/components/images/`.
-- **Review** components on the [`/kitchen-sink`](../../src/app/routes/kitchen-sink/kitchen-sink.tsx) route (`pnpm dev`, then open `/en/kitchen-sink`).
+- **Review** components in Storybook: `pnpm storybook` locally, or the deployed copy on GitHub Pages. Each component has a `ComponentName.stories.tsx` beside it; shared sample content is in [`src/stories/fixtures.ts`](../../src/stories/fixtures.ts).
 - **Tokens** come from [`c2b.config.json`](../../c2b.config.json) (prefix `wpc`). Docs refer to tokens by role (`--wpc--color-text`, `--wpc--spacing-medium`) rather than raw values.
 - **Design scale:** the exports are 2×. The homepage is 1277 CSS px wide and the group page 1371, so halve pixel measurements taken from them.
 
@@ -23,6 +23,7 @@ Adapted from Parlour's `build-component` skill.
 src/components/ComponentName/
 ├── ComponentName.tsx   # implementation
 ├── index.ts            # barrel: export { ComponentName } and type { ComponentNameProps }
+├── ComponentName.stories.tsx  # Storybook stories, titled by inventory group
 └── styles.scss         # component styles (omit if none)
 docs/components/component-name.md
 ```
@@ -63,7 +64,7 @@ docs/components/component-name.md
 ### Links and client code
 
 - Components never import a router. Links render `Link` from [`src/components/LinkProvider`](../../src/components/LinkProvider/), a plain `<a>` by default; the app hands it React Router's `Link` through `LinkProvider` in `src/app/root.tsx`. That keeps components working in Storybook and c2b. `'use client'` marks components with state, effects or context, for any Server Components consumer.
-- Interactive components are controlled (`value` + `onChange`) and hold no state. A small client wrapper owns the state, as in `src/app/routes/kitchen-sink/FilterDemo.tsx`.
+- Interactive components are controlled (`value` + `onChange`) and hold no state. A small client wrapper owns the state, as in the FilterBar story (`src/components/FilterBar/FilterBar.stories.tsx`).
 - App-level client code that wires components to data lives in `src/features/`, not in `src/components/` (see [Pages](#pages)).
 - Components take their user-facing strings as props with English defaults, so the pages can pass translations.
 
@@ -158,7 +159,6 @@ Phase 5 assembled the designs into real routes, in English and French.
 | `/{lang}` | Homepage | Hero with the Meetup Index, group grid (first 6), Slack, "New here?", the group form, updates, FAQ |
 | `/{lang}/groups` | Groups directory | Every group, with search and region filters; the "View all groups" target |
 | `/{lang}/groups/{slug}` | Group page | Header and stats, organizer and team, resources, next event. Sections without data are left out; unknown slugs return a 404 |
-| `/{lang}/kitchen-sink` | Component review | `noindex` |
 
 Routes are declared in [`src/app/routes.ts`](../../src/app/routes.ts) and every page is prerendered to static HTML for both locales (the `prerender` list in [`react-router.config.ts`](../../react-router.config.ts)). The localized [`NotFoundPage`](../../src/app/NotFoundPage.tsx) covers unknown slugs and paths in development; the static host serves its own 404 for anything not prerendered.
 

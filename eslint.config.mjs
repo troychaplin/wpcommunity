@@ -2,6 +2,7 @@ import js from '@eslint/js';
 import jsxA11y from 'eslint-plugin-jsx-a11y';
 import react from 'eslint-plugin-react';
 import reactHooks from 'eslint-plugin-react-hooks';
+import storybook from 'eslint-plugin-storybook';
 import { defineConfig, globalIgnores } from 'eslint/config';
 import globals from 'globals';
 import tseslint from 'typescript-eslint';
@@ -36,5 +37,6 @@ export default defineConfig([
             'jsx-a11y/no-redundant-roles': ['error', { nav: ['navigation'], ul: ['list'], ol: ['list'] }],
         },
     },
+    ...storybook.configs['flat/recommended'],
     globalIgnores(['build/', '.react-router/', '.c2b/', 'storybook-static/']),
 ]);
