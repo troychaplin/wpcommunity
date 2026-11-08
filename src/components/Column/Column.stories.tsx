@@ -7,7 +7,6 @@ const meta = {
     component: Column,
     args: {
         cols: '2',
-        maxWidth: 'alignwide',
         children: (
             <>
                 <Column.Content>

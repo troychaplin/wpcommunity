@@ -24,7 +24,7 @@ export const Default: Story = {};
 export const Sticky: Story = {
     args: { isSticky: true, topSpace: 24 },
     render: (args) => (
-        <Column cols="2/3" maxWidth="alignwide">
+        <Column cols="2/3">
             <Column.Content>
                 {Array.from({ length: 12 }, (_, index) => (
                     <p key={index}>

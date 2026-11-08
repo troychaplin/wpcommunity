@@ -13,7 +13,7 @@ export declare const wpcTokenKeys: {
     readonly radius: { readonly sm: 'sm'; readonly md: 'md'; readonly lg: 'lg'; readonly full: 'full' };
     readonly transition: { readonly fast: 'fast'; readonly normal: 'normal' };
     readonly z: { readonly '100': '100'; readonly '200': '200'; readonly '500': '500' };
-    readonly layout: { readonly 'content-size': 'content-size'; readonly 'wide-size': 'wide-size'; readonly 'small-size': 'small-size'; readonly 'max-size': 'max-size'; readonly 'full-size': 'full-size'; readonly 'avatar-small': 'avatar-small'; readonly 'avatar-medium': 'avatar-medium'; readonly 'avatar-large': 'avatar-large' };
+    readonly layout: { readonly 'content-size': 'content-size'; readonly 'wide-size': 'wide-size'; readonly 'small-size': 'small-size'; readonly 'full-size': 'full-size'; readonly 'avatar-small': 'avatar-small'; readonly 'avatar-medium': 'avatar-medium'; readonly 'avatar-large': 'avatar-large' };
     readonly viewport: { readonly mobile: 'mobile'; readonly tablet: 'tablet' };
 };
 export default wpcTokens;

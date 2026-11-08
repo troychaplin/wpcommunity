@@ -18,6 +18,8 @@ export interface ContainerProps extends React.HTMLAttributes<HTMLElement> {
     contentWidth?: maxWidthKeys;
     color?: colorKeys;
     borderRadius?: borderRadiusKeys;
+    // Rules in the colour's border colour. Needs `color`; a full-width band never gets side borders.
+    border?: 'none' | 'top' | 'bottom' | 'both' | 'all';
 }
 
 export const Container = ({
@@ -28,6 +30,7 @@ export const Container = ({
     color,
     className,
     borderRadius = 'md',
+    border = 'none',
     ...rest
 }: ContainerProps) => {
     const ContainerWrapper = as;
@@ -37,6 +40,7 @@ export const Container = ({
         'is-layout-constrained',
         maxWidth,
         color && `wpc-container--no-gap wpc-container--${color}`,
+        color && border !== 'none' && `wpc-container--border-${border}`,
         borderRadius && `wpc-container--radius-${borderRadius}`,
         className,
     ]

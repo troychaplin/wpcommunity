@@ -31,9 +31,21 @@
     }
 }
 
-.wpc-container.aligncontent,
-.wpc-container.alignwide,
+// Side padding. Every layer of the page shares one content edge: Main, the site header and the
+// footer all inset by the root padding, so content lines up with them at every width.
+//
+// - A Container without a colour is a plain width wrapper, like Gutenberg's Group and RDS's
+//   Section, and adds no padding of its own (Main's padding already applies).
+// - A full-width Container breaks out of Main's padding to reach the viewport edges, so it puts
+//   the root padding back. Its content then sits on the same edge as everything else.
+// - A boxed Container with a colour (content or wide width) is a card-like panel: its edges sit
+//   on the page edge and its content gets a larger inset so it clears the background.
 .wpc-container.alignfull {
+    padding-right: var(--wpc--root-padding-right);
+    padding-left: var(--wpc--root-padding-left);
+}
+
+.wpc-container--no-gap:is(.alignsmall, .aligncontent, .alignwide) {
     padding-right: var(--wpc--root-padding-right);
     padding-left: var(--wpc--root-padding-left);
 
@@ -59,36 +71,66 @@
     padding-block: var(--wpc--spacing-2x-large);
 }
 
+// Each colour sets the rule colour that `border` draws in
 .wpc-container--white {
     @include tones.light;
+    --wpc-container-border: var(--wpc--color-stone);
     background-color: var(--wpc--color-white);
-    border: 1px solid var(--wpc--color-border);
-
-    &.alignfull {
-        border-inline: none;
-    }
 }
 
 .wpc-container--canvas {
     @include tones.light;
+    --wpc-container-border: var(--wpc--color-stone);
     background-color: var(--wpc--color-canvas);
 }
 
 .wpc-container--tint {
     @include tones.light;
     --wpc--color-border: var(--wpc--color-sage-dark);
+    --wpc-container-border: var(--wpc--color-sage-dark);
     background-color: var(--wpc--color-sage);
 }
 
 .wpc-container--blush {
     @include tones.light;
+    --wpc-container-border: var(--wpc--color-stone);
     background-color: var(--wpc--color-canvas);
     background-image: var(--wpc--gradient-blush);
 }
 
+// Pine rather than the inverse border role (forest-light), which barely shows against forest
 .wpc-container--inverse {
     @include tones.inverse;
+    --wpc-container-border: var(--wpc--color-pine);
     background-color: var(--wpc--color-forest);
+}
+
+.wpc-container--border-top {
+    border-top: 1px solid var(--wpc-container-border);
+}
+
+.wpc-container--border-bottom {
+    border-bottom: 1px solid var(--wpc-container-border);
+}
+
+.wpc-container--border-both {
+    border-block: 1px solid var(--wpc-container-border);
+}
+
+// Side borders on a full-width band would sit against the viewport edges, so `all` keeps only
+// top and bottom there
+.wpc-container--border-all {
+    border: 1px solid var(--wpc-container-border);
+
+    &.alignfull {
+        border-inline: none;
+    }
+}
+
+// Two stacked full-width bands share one rule rather than drawing two where they meet
+.alignfull:is(.wpc-container--border-bottom, .wpc-container--border-both, .wpc-container--border-all)
+    + .alignfull:is(.wpc-container--border-top, .wpc-container--border-both, .wpc-container--border-all) {
+    border-top: none;
 }
 
 .wpc-container--radius-none:not(.alignfull) {
