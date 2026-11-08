@@ -34,6 +34,11 @@ import { GridGroup } from '@/components/GridGroup';
 <GridGroup columns={3} dividers="all">
   <GroupCard … />
 </GridGroup>
+
+// A framed table of dark Cards on a forest section, flush against forest-800 lines
+<GridGroup columns={3} dividers="framed" dividerColor="forest" cellPadding={false}>
+  <Card backgroundColor="forest" border={false} borderRadius="none">…</Card>
+</GridGroup>
 ```
 
 ## Props
@@ -47,7 +52,9 @@ import { GridGroup } from '@/components/GridGroup';
 | `rowGap` | spacing key or `'none'` | — | Overrides the row gap |
 | `align` | `'start' \| 'center' \| 'end' \| 'stretch'` | — | `align-items` |
 | `maxWidth` | `'alignsmall' \| 'aligncontent' \| 'alignwide' \| 'alignfull'` | — | Width class; the grid centres only when one is set |
-| `dividers` | `'none' \| 'columns' \| 'all'` | `'none'` | Lines between cells instead of gaps: `columns` draws vertical lines, `all` adds lines between rows and a bottom rule |
+| `dividers` | `'none' \| 'columns' \| 'all' \| 'framed'` | `'none'` | Lines between cells instead of a gap. `columns`: between side-by-side cells, turning horizontal once the grid stacks. `all`: every row and column, plus a bottom rule. `framed`: every row and column inside a frame, like a table |
+| `dividerColor` | `'stone' \| 'sage' \| 'crimson' \| 'forest'` | — | Draws the lines (and the bottom rule or frame) in that surface's paired border: `stone-200`, `sage-200`, `crimson-700`, `forest-800`. Unset, they follow the section's `border` role |
+| `cellPadding` | `boolean` | `true` | Pads each divided cell (`spacing-large` / `spacing-medium`) so content clears the lines. Turn it off to sit a Card flush against them, with the Card's own padding insetting its content |
 
 ## CSS classes
 
@@ -58,18 +65,28 @@ import { GridGroup } from '@/components/GridGroup';
 | `wpc-grid-group--gap-{step}` | Always |
 | `wpc-grid-group--row-gap-{step}` | `rowGap` is set |
 | `wpc-grid-group--align-{value}` | `align` is set |
-| `wpc-grid-group--dividers`, `wpc-grid-group--dividers-{columns,all}` | `dividers` isn't `none` |
+| `wpc-grid-group--dividers`, `wpc-grid-group--dividers-{columns,all,framed}` | `dividers` isn't `none` |
+| `wpc-grid-group--divider-{surface}` | `dividers` isn't `none` and `dividerColor` is set |
+| `wpc-grid-group--cell-padding` | `dividers` isn't `none` and `cellPadding` is on |
 
 Gap classes are generated from the `$wpc-spacing` map.
 
-With dividers, the gap is replaced by cell padding (`spacing-large` / `spacing-medium`). Each cell draws its own right and bottom lines as box shadows in the `border` role, and the grid clips the ones that fall past its edges, so lines only ever appear between cells at every column count. Cells should have no background, which would paint over the neighbouring lines.
+### How dividers are drawn
+
+A divided grid has no gap. As in parlour-ui, each line is drawn inside a cell's start edge: a cell that isn't first in its row rules its inline-start side, and a cell past the first row rules its top. So lines only ever fall between cells, and an incomplete last row leaves its empty slots unruled.
+
+Each cell draws its lines with a transparent `::after` overlay. Its inline-start and block-start borders are switched on per breakpoint through `--wpc-grid-line-start` and `--wpc-grid-line-top`. The overlay sits above the cell's background, so cells can have one (a forest Card on a forest section). It takes no space, so turning dividers on never shifts the layout.
+
+`::before` stays free for the cell (FeatureItem draws its short rule with it), but a divided grid's direct children shouldn't use `::after`.
 
 ## Design tokens
 
 | Token | Used for |
 |---|---|
 | `--wpc--spacing-*` | Gap and row gap modifiers |
-| `--wpc--color-border` (role), `--wpc--spacing-large`, `--wpc--spacing-medium` | Divider lines and cell padding |
+| `--wpc--color-border` (role) | Default line colour, through `--wpc-grid-group-divider` |
+| `--wpc--color-stone-200`, `--wpc--color-sage-200`, `--wpc--color-crimson-700`, `--wpc--color-forest-800` | `dividerColor` lines, the surfaces' paired borders |
+| `--wpc--spacing-large`, `--wpc--spacing-medium` | Cell padding |
 
 ## Responsive behaviour
 
