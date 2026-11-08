@@ -35,7 +35,7 @@ export const Default: Story = {};
 export const FaqGroups: Story = {
     parameters: { layout: 'fullscreen' },
     render: (args) => (
-        <Container as="section" color="tint" maxWidth="alignfull" contentWidth="aligncontent">
+        <Container as="section" color="sage" maxWidth="alignfull" contentWidth="aligncontent">
             <Accordion {...args} />
             <Accordion label="Slack and online community">
                 <Accordion.Item question="How do I join the WP Canada Slack?">

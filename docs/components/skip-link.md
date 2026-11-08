@@ -56,7 +56,7 @@ It's hidden by translating it above the viewport, not with `display: none`, so i
 | `--wpc--spacing-2x-small` | Focus outline offset |
 | `--wpc--z-500` | Stacking above the header |
 | `--wpc--font-family-sans`, `--wpc--font-size-small`, `--wpc--font-weight-semibold`, `--wpc--line-height-tight` | Typography |
-| `--wpc--color-white`, `--wpc--color-forest` | Text and background |
+| `--wpc--color-white`, `--wpc--color-forest-950` | Text and background |
 | `--wpc--radius-md` | Corner radius |
 | `--wpc--transition-fast` | Slide-in |
 

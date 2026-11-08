@@ -1,12 +1,12 @@
 import {
-    backgroundColorClasses,
+    surfaceClasses,
     borderRadiusClasses,
     spacingClasses,
 } from '../../utils/propClasses';
 import { Link } from '../LinkProvider';
 import './styles.scss';
 
-type surfaceKeys = keyof typeof backgroundColorClasses;
+type surfaceKeys = keyof typeof surfaceClasses;
 type borderRadiusKeys = keyof typeof borderRadiusClasses;
 type spacingKeys = keyof typeof spacingClasses;
 
@@ -41,7 +41,7 @@ export const Card = ({
 
     const rootClasses = [
         'wpc-card',
-        `wpc-card--bg-${backgroundColorClasses[backgroundColor]}`,
+        `wpc-card--bg-${surfaceClasses[backgroundColor]}`,
         border && 'wpc-card--border',
         shadow && 'wpc-card--shadow',
         `wpc-card--radius-${borderRadiusClasses[borderRadius]}`,

@@ -68,10 +68,13 @@ export const flexAlignClasses = {
 
 // Background surfaces shared by Container and Card. inverse switches the role colours
 // (text, heading, border) to their light-on-dark values.
-export const backgroundColorClasses = {
+// The shared surface set: Container `color`, Card `backgroundColor` and Button `color`. Each name
+// is one fill with a paired border and hover, defined once in src/styles/mixins/_surfaces.scss.
+export const surfaceClasses = {
     white: 'white',
-    canvas: 'canvas',
-    tint: 'tint',
-    inverse: 'inverse',
+    stone: 'stone',
+    sage: 'sage',
     blush: 'blush',
+    crimson: 'crimson',
+    forest: 'forest',
 };

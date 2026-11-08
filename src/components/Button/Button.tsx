@@ -6,7 +6,9 @@ import type { IconName } from '../Icon';
 import './styles.scss';
 
 type borderRadiusKeys = keyof typeof borderRadiusClasses;
-type colorKeys = 'primary' | 'secondary' | 'inverse';
+// From the shared surface set (src/styles/mixins/_surfaces.scss), plus the inverse outline for
+// dark sections
+type colorKeys = 'crimson' | 'white' | 'forest' | 'inverse';
 
 interface ButtonBaseProps {
     text: string;
@@ -34,7 +36,7 @@ export type ButtonProps = ButtonElementProps | ButtonLinkProps;
 
 export const Button = ({
     text = 'Button',
-    color = 'primary',
+    color = 'crimson',
     rounded = 'sm',
     type = 'button',
     icon,

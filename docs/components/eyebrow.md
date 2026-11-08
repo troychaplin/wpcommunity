@@ -60,4 +60,4 @@ Other HTML attributes pass through.
 
 - Write labels in normal sentence case; the design doesn't transform them, and text typed in capitals can be read out letter by letter.
 - Use `as="time"` with `dateTime` for dates so they're machine-readable.
-- Muted eyebrows are about 5:1 on light surfaces and about 6:1 on inverse ones (`lichen-light` on forest).
+- Muted eyebrows are about 5:1 on light surfaces and about 6:1 on inverse ones (`forest-400` on `forest-950`).

@@ -1,6 +1,6 @@
 @use 'sass:map';
 @use '../../styles/wpc-variables' as vars;
-@use '../../styles/mixins/tones';
+@use '../../styles/mixins/surfaces';
 
 .wpc-card {
     min-width: 0;
@@ -20,38 +20,18 @@ li.wpc-card {
     list-style: none;
 }
 
-// Each background re-declares the role colours that go with it, so the card reads correctly in
-// any section: a white card inside an inverse Container keeps dark text.
-.wpc-card--bg-white {
-    @include tones.light;
-    background-color: var(--wpc--color-white);
+// Each background is a surface from the shared set. It re-declares the role colours that go with
+// it, so the card reads correctly in any section: a white card inside a forest Container keeps
+// dark text.
+@each $name in surfaces.$surface-names {
+    .wpc-card--bg-#{$name} {
+        @include surfaces.surface($name);
+    }
 }
 
-.wpc-card--bg-canvas {
-    @include tones.light;
-    background-color: var(--wpc--color-canvas);
-}
-
-.wpc-card--bg-tint {
-    @include tones.light;
-    --wpc--color-border: var(--wpc--color-sage-dark);
-    background-color: var(--wpc--color-sage);
-}
-
-.wpc-card--bg-blush {
-    @include tones.light;
-    background-color: var(--wpc--color-canvas);
-    background-image: var(--wpc--gradient-blush);
-}
-
-.wpc-card--bg-inverse {
-    @include tones.inverse;
-    background-color: var(--wpc--color-forest);
-}
-
-// Reads the role, so the border follows the background: stone on light, forest-light on inverse
+// The rule colour paired with the background: stone on light surfaces, forest-800 on forest
 .wpc-card--border {
-    border: 1px solid var(--wpc--color-border);
+    border: 1px solid var(--wpc-surface-border);
 }
 
 .wpc-card--shadow {
@@ -99,7 +79,7 @@ li.wpc-card {
     transition: border-color var(--wpc--transition-fast);
 
     &:hover {
-        border-color: var(--wpc--color-text-muted);
+        border-color: var(--wpc-surface-hover-border);
     }
 
     @media (prefers-reduced-motion: reduce) {
@@ -132,13 +112,10 @@ li.wpc-card {
         text-decoration: none;
     }
 
+    // The accent role keeps 3:1 on every surface: crimson on light, the light accent on forest,
+    // white on crimson
     &:focus-visible {
-        outline: 2px solid var(--wpc--color-primary);
+        outline: 2px solid var(--wpc--color-accent);
         outline-offset: var(--wpc--spacing-2x-small);
     }
-}
-
-// crimson falls below the 3:1 a focus outline needs on forest
-.wpc-card--bg-inverse .wpc-card__link:focus-visible {
-    outline-color: var(--wpc--color-accent-inverse);
 }

@@ -57,7 +57,7 @@ export const GroupHeader = ({
             </Heading>
             {description && <p className="wpc-group-header__description">{description}</p>}
             {stats && stats.length > 0 && (
-                <Card backgroundColor="tint" borderRadius="md" paddingInline="medium" paddingBlock="medium">
+                <Card backgroundColor="sage" borderRadius="md" paddingInline="medium" paddingBlock="medium">
                     <StatGroup>
                         {stats.map(({ value, label }) => (
                             <StatGroup.Item key={label} value={value} label={label} />

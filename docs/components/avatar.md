@@ -63,7 +63,7 @@ Initials are the first letters of the first two words, split on spaces and hyphe
 | `--wpc--color-white`, `--wpc--color-border` (role) | Photo ring and outline |
 | `--wpc--color-surface-tint` | Photo placeholder and initials background |
 | `--wpc--font-family-mono`, `--wpc--font-size-x-small`, `--wpc--font-weight-medium`, `--wpc--line-height-flat` | Initials |
-| `--wpc--color-moss`, `--wpc--color-sage-dark` | Initials text and border |
+| `--wpc--color-forest-800`, `--wpc--color-sage-200` | Initials text and border |
 
 The photo ring is a 2px border with a 1px outline: structural widths, like the 1px borders elsewhere.
 

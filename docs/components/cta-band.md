@@ -7,7 +7,7 @@ A dark call-to-action band for an upcoming event: an eyebrow, a title, date and 
 ## When to use
 
 - Highlighting the next gathering on a group page.
-- One per page; for full-width dark sections without the boxed look, use a [`Container`](./container.md) with `color="inverse"`.
+- One per page; for full-width dark sections without the boxed look, use a [`Container`](./container.md) with `color="forest"`.
 
 ## Used in
 
@@ -66,7 +66,7 @@ import { CTABand } from '@/components/CTABand';
 | `--wpc--color-text-muted` (role) | Separators |
 | `--wpc--spacing-x-small` … `--wpc--spacing-large` | Gaps |
 
-The Card supplies the forest background, `md` radius, padding and the inverse roles: white heading, mist text, rose eyebrow.
+The Card supplies the forest background, `md` radius, padding and the forest surface's inverse roles: white heading, `forest-100` text, rose eyebrow.
 
 ## Responsive behaviour
 
@@ -76,4 +76,4 @@ The content and actions sit in one row when there's room and wrap, with the acti
 
 - A `<section>` with a heading.
 - The middle-dot separators are `aria-hidden`.
-- On forest, the rose eyebrow is about 8:1 and mist text about 14:1.
+- On forest, the rose eyebrow is about 8:1 and `forest-100` text about 14:1.

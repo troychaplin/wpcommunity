@@ -48,7 +48,7 @@ export const PersonCard = ({
         return (
             <Card
                 as="article"
-                backgroundColor="canvas"
+                backgroundColor="stone"
                 paddingInline="small"
                 paddingBlock="small"
                 className={classes}

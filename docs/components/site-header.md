@@ -71,9 +71,9 @@ The row itself is a [`FlexGroup`](./flex-group.md) (`alignwide`, `space-between`
 
 | Token | Used for |
 |---|---|
-| `--wpc--color-canvas`, `--wpc--color-stone` | Background and bottom rule |
+| `--wpc--color-stone-50`, `--wpc--color-stone-200` | Background and bottom rule |
 | `--wpc--font-family-serif`, `--wpc--font-size-x-large`, `--wpc--font-weight-semibold`, `--wpc--line-height-tight` | Wordmark |
-| `--wpc--color-forest`, `--wpc--color-crimson` | Wordmark colour, accent and hover |
+| `--wpc--color-forest-950`, `--wpc--color-crimson-600` | Wordmark colour, accent and hover |
 | `--wpc--font-family-sans`, `--wpc--font-size-medium`, `--wpc--font-weight-normal` | Nav links |
 | `--wpc--color-text-muted`, `--wpc--color-text` (roles) | Nav links and their hover |
 | `--wpc--spacing-x-small`, `--wpc--spacing-medium`, `--wpc--root-padding-x` | Padding (about 52px tall) and nav gap |

@@ -5,29 +5,52 @@ import { ColorSwatches } from './components/ColorSwatches';
 
 # Colors
 
-Color tokens are defined in `c2b.config.json` and generate CSS custom properties prefixed with `--wpc--color-*`. Components read the **role** colours, so they adapt when a `Container` or `Card` sets a tone; the **palette** is what the roles point at.
+Color tokens are defined in `c2b.config.json` and generate CSS custom properties prefixed with `--wpc--color-*`. The **palette** is four colour families on one lightness scale. **Roles** say what a colour is for and point at a palette step. Components read roles, or a [surface](?path=/docs/overview-stylebook-surfaces--docs), so they adapt when a section changes tone.
+
+## Palette
+
+Each family is named `{family}-{step}`, and a step means the same lightness in every family (measured in OKLCH): `200` is a light border colour whether it's stone or sage, and `900` is a deep text-weight colour in both greens. Gaps in the numbering are left free for later steps.
+
+<ColorSwatches family="crimson" title="Crimson" description="The brand accent: buttons, links, eyebrows and tags." />
 
 <ColorSwatches
-    kind="palette"
-    title="Palette"
-    description="The named colours of the canopy palette, from crimson and forest to the stone and canvas neutrals."
+    family="forest"
+    title="Forest"
+    description="The vivid greens, from the dark forest bands down to the light text that sits on them."
 />
+
+<ColorSwatches
+    family="sage"
+    title="Sage"
+    description="The muted grey-greens: body and muted text, and the quiet sage surfaces and their borders. Each matches a forest step for lightness, with less saturation."
+/>
+
+<ColorSwatches family="stone" title="Stone" description="The warm neutrals: the page canvas and its borders." />
+
+<ColorSwatches names={['white']} title="White" />
+
+## Roles
 
 <ColorSwatches
     kind="roles"
-    title="Roles"
-    description="What each colour is for. Each points at a palette colour, and the tones (canvas, tint, blush, inverse, white) re-declare them for their section."
+    description="What each colour is for. Each points at a palette step, and the light, inverse and crimson tones re-declare them for their sections."
 />
 
-<ColorSwatches gradient title="Gradients" description="The hero's blush wash and the forest glow behind the event band." />
+## Gradients
+
+<ColorSwatches gradient description="The hero's blush wash and the forest glow behind the event band." />
 
 ## Usage
 
-Use roles for anything that sits on a toned surface, and palette colours only where a value must stay fixed (buttons do this so they look the same in every section).
+Use roles for anything that sits on a toned surface, surfaces for anything with a background, and palette steps only where a value must stay fixed.
 
 ```css
 .my-element {
     color: var(--wpc--color-text);
     border-color: var(--wpc--color-border);
+}
+
+.my-element:hover {
+    border-color: var(--wpc--color-border-hover);
 }
 ```

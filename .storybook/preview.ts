@@ -49,7 +49,7 @@ const preview: Preview = {
             storySort: {
                 order: [
                     'Overview',
-                    ['About', 'Stylebook', ['Colors', 'Typography', 'Spacing', 'Effects', 'Content Flow'], 'Templates'],
+                    ['About', 'Stylebook', ['Colors', 'Surfaces', 'Typography', 'Spacing', 'Effects', 'Content Flow'], 'Templates'],
                     'Components',
                     [
                         'Elements',

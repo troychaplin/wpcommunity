@@ -18,7 +18,7 @@ type Story = StoryObj<typeof meta>;
 export const Serif: Story = {
     decorators: [
         (Story) => (
-            <Card backgroundColor="tint" borderRadius="md">
+            <Card backgroundColor="sage" borderRadius="md">
                 <Story />
             </Card>
         ),

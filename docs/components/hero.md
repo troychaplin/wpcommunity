@@ -31,7 +31,7 @@ import { Hero } from '@/components/Hero';
   actions={
     <ButtonGroup>
       <Button text="Find Local Meetups" icon="map-pin" href="#groups" isLarge />
-      <Button text="Join Canadian Slack" icon="message-circle-more" color="secondary" href="#slack" isLarge />
+      <Button text="Join Canadian Slack" icon="message-circle-more" color="white" href="#slack" isLarge />
     </ButtonGroup>
   }
   aside={<MeetupIndex regions={regions} />}
@@ -65,8 +65,8 @@ import { Hero } from '@/components/Hero';
 
 | Token | Used for |
 |---|---|
-| `--wpc--color-canvas`, `--wpc--gradient-blush` | Content background, and the wash over a photo (at 85% opacity) |
-| `--wpc--color-sage`, `--wpc--color-sage-dark` | Aside background and its rule |
+| `--wpc--color-stone-50`, `--wpc--gradient-blush` | Content background, and the wash over a photo (at 85% opacity) |
+| `--wpc--color-sage-50`, `--wpc--color-sage-200` | Aside background and its rule |
 | `--wpc--color-border`, `--wpc--color-text-muted` (roles) | Bottom rule, lead |
 | `--wpc--font-size-large` | Lead |
 | `--wpc--spacing-small` … `--wpc--spacing-2x-large` | Padding and gaps |

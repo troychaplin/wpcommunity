@@ -24,7 +24,7 @@ const meta = {
         actions: (
             <>
                 <Button text="Contact Organizer" href="#contact" />
-                <Button text="Find on Slack" color="secondary" href="#slack" />
+                <Button text="Find on Slack" color="white" href="#slack" />
             </>
         ),
     },

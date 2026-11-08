@@ -34,7 +34,7 @@ import { PersonCard } from '@/components/PersonCard';
   actions={
     <>
       <Button text="Contact Organizer" href="/contact" />
-      <Button text="Find on Slack" color="secondary" href="/slack" />
+      <Button text="Find on Slack" color="white" href="/slack" />
     </>
   }
 />
@@ -68,12 +68,12 @@ import { PersonCard } from '@/components/PersonCard';
 | Token | Used for |
 |---|---|
 | `--wpc--color-accent` (role) | Featured role |
-| `--wpc--color-moss` | Compact role |
+| `--wpc--color-forest-800` | Compact role |
 | `--wpc--color-border` (role) | Label rule |
 | `--wpc--font-family-sans`, `--wpc--font-weight-medium`, `--wpc--font-size-medium`, `--wpc--font-size-small` | Role line |
 | `--wpc--spacing-2x-small` … `--wpc--spacing-small` | Gaps |
 
-Featured is a white Card with a shadow and `medium` padding; compact is a canvas Card with `small` padding.
+Featured is a white Card with a shadow and `medium` padding; compact is a stone Card with `small` padding.
 
 ## Accessibility
 

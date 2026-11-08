@@ -14,7 +14,7 @@ A page-level band that controls width, background tone and vertical rhythm. Nest
 
 ## Used in
 
-Every section of both pages: canvas sections, the sage Slack and FAQ sections, the blush hero, the forest "Start a group" section and the Upcoming Gathering band.
+Every section of both pages: plain sections on the stone page, the sage Slack and FAQ sections, the forest "Start a group" section and the Upcoming Gathering band.
 
 ## Import
 
@@ -29,10 +29,10 @@ import { Container } from '@/components/Container';
 <Container as="section">...</Container>
 
 // Full-bleed sage section with wide content
-<Container as="section" color="tint" maxWidth="alignfull" contentWidth="alignwide">...</Container>
+<Container as="section" color="sage" maxWidth="alignfull" contentWidth="alignwide">...</Container>
 
 // Dark band, boxed at content width with rounded corners
-<Container color="inverse" borderRadius="md">...</Container>
+<Container color="forest" borderRadius="md">...</Container>
 
 // White band ruled top and bottom (full-width bands never get side borders)
 <Container color="white" maxWidth="alignfull" contentWidth="alignwide" border="both">...</Container>
@@ -46,21 +46,24 @@ import { Container } from '@/components/Container';
 | `as` | `'div' \| 'section' \| 'header' \| 'main' \| 'footer' \| 'article' \| 'nav' \| 'aside' \| 'ul' \| 'ol'` | `'div'` | Root element |
 | `maxWidth` | `'alignsmall' \| 'aligncontent' \| 'alignwide' \| 'alignfull'` | `'aligncontent'` | Width of the band |
 | `contentWidth` | same as `maxWidth` | `'aligncontent'` | Width of the content inside |
-| `color` | `'white' \| 'canvas' \| 'tint' \| 'inverse' \| 'blush'` | — | Background tone; sets the role colours and section padding |
+| `color` | `'white' \| 'stone' \| 'sage' \| 'blush' \| 'crimson' \| 'forest'` | — | A [surface](../../src/styles/mixins/_surfaces.scss): fill, paired border and tone; adds section padding |
 | `borderRadius` | `'none' \| 'sm' \| 'md' \| 'lg' \| 'full'` | `'md'` | Corner radius (ignored on `alignfull`) |
 | `border` | `'none' \| 'top' \| 'bottom' \| 'both' \| 'all'` | `'none'` | Rules in the tone's border colour. Needs `color`; `all` keeps only top and bottom on `alignfull` |
 
-## Tones
+## Surfaces
 
-| `color` | Background | `border` colour | Text roles |
+`color` takes a name from the shared surface set, the same names `Card` and `Button` use.
+
+| `color` | Fill | `border` colour | Text roles |
 |---|---|---|---|
-| `canvas` | `canvas` (#faf8f4) | `stone` | Light |
-| `white` | `white` | `stone` | Light |
-| `tint` | `sage` (#eff4f0) | `sage-dark` (also its border role) | Light |
-| `blush` | `canvas` + the `blush` gradient | `stone` | Light |
-| `inverse` | `forest` (#0f251b) | `pine` | Inverse: mist text, white headings, lichen-light muted text, light accent for links, eyebrows and focus |
+| `white` | `white` | `stone-200` | Light |
+| `stone` | `stone-50` (#faf8f4) | `stone-200` | Light |
+| `sage` | `sage-50` (#eff4f0) | `sage-200` (also its border role) | Light |
+| `blush` | `stone-50` + the `blush` gradient | `stone-200` | Light |
+| `crimson` | `crimson-600` (#b01d33) | `crimson-700` | Crimson: white text, headings, links and focus; `crimson-100` muted text |
+| `forest` | `forest-950` (#0f251b) | `forest-800` | Inverse: `forest-100` text, white headings, `forest-400` muted text, the light accent for links, eyebrows and focus |
 
-A tone re-declares the role tokens (`--wpc--color-text`, `-heading`, `-text-muted`, `-border`, `-accent`), so every child that reads a role adapts with no extra props.
+A surface's tone re-declares the role tokens (`--wpc--color-text`, `-heading`, `-text-muted`, `-border`, `-border-hover`, `-accent`), so every child that reads a role adapts with no extra props.
 
 ## CSS classes
 
@@ -78,8 +81,7 @@ The inner `<div>` carries `has-global-padding` and the `contentWidth` class, plu
 
 | Token | Used for |
 |---|---|
-| `--wpc--color-white`, `--wpc--color-canvas`, `--wpc--color-sage`, `--wpc--color-forest`, `--wpc--gradient-blush` | Tone backgrounds |
-| `--wpc--color-stone`, `--wpc--color-sage-dark`, `--wpc--color-pine` | `border` rules, set per tone in `--wpc-container-border` |
+| `--wpc-surface-fill`, `--wpc-surface-border` | The surface's fill and the colour `border` rules are drawn in, set by `@include surface()` |
 | `--wpc--spacing-2x-large` | Block padding of toned sections |
 | `--wpc--root-padding-left`, `--wpc--root-padding-right` | Inline padding of full-width Containers, and of boxed toned ones on small screens |
 | `--wpc--spacing-large` | Inline padding of boxed toned Containers above the tablet breakpoint |
@@ -103,4 +105,5 @@ So wide content in a plain section, a full-width toned band and the header all l
 
 - `<section>` is a landmark only when it has an accessible name. Add `aria-label` or `aria-labelledby` when the section should be reachable through landmark navigation, and give each named section a distinct label.
 - Use `as="div"` to avoid landmark semantics entirely.
-- Inverse text roles keep body text at about 14:1 (mist on forest). The muted role is `lichen-light` (#8fa79a), about 6:1 on forest and 5:1 on forest-light fields, so it passes AA for small text. The design's lichen (about 3:1) is kept as a palette colour but no role uses it.
+- On forest, body text is about 14:1 (`forest-100` on `forest-950`). The muted role is `forest-400` (#8fa79a), about 6:1 on forest and 5:1 on `forest-900` fields, so it passes AA for small text. The design's lichen (`forest-600`, about 3:1) stays in the palette but no role uses it.
+- On crimson, text is white (6.84:1) and muted text `crimson-100` (5.85:1). The inverse tone's muted text and links would fail there, which is why crimson has its own tone.

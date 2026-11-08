@@ -62,9 +62,9 @@ const languages = [
 
 | Token | Used for |
 |---|---|
-| `--wpc--color-stone`, `--wpc--color-canvas` (mixed 50/50) | Segmented pill fill |
+| `--wpc--color-stone-200`, `--wpc--color-stone-50` (mixed 50/50) | Segmented pill fill |
 | `--wpc--color-border` (role), `--wpc--radius-full` | Pill border and shape |
-| `--wpc--color-forest-light`, `--wpc--color-white` | Current segment |
+| `--wpc--color-forest-900`, `--wpc--color-white` | Current segment |
 | `--wpc--color-text`, `--wpc--color-text-muted` (roles) | Links (and the list's current / other links) |
 | `--wpc--font-family-mono`, `--wpc--font-size-x-small`, `--wpc--font-weight-medium`, `--wpc--line-height-snug` | Segment labels |
 | `--wpc--spacing-2x-small`, `--wpc--spacing-x-small` | Padding and gaps |

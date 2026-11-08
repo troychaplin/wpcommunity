@@ -63,7 +63,7 @@ import { SiteFooter } from '@/components/SiteFooter';
 
 | Token | Used for |
 |---|---|
-| `--wpc--color-forest` | Background |
+| `--wpc--color-forest-950` | Background |
 | `--wpc--color-text`, `--wpc--color-text-muted`, `--wpc--color-border` (roles, inverse values) | Name and highlighted links, links and secondary text, bottom rule |
 | `--wpc--font-family-serif`, `--wpc--font-size-x-large`, `--wpc--font-weight-semibold`, `--wpc--line-height-tight` | Site name |
 | `--wpc--font-size-small`, `--wpc--font-size-x-small` | Body and bottom bar text |
@@ -81,4 +81,4 @@ Stacked on small screens. Above the tablet breakpoint: brand (2fr), nav (1fr), t
 
 - A top-level `<footer>` is the `contentinfo` landmark; keep it outside `Main`.
 - The nav is labelled by `navLabel` ("Footer") so it's distinct from the header's "Primary" nav.
-- Links use the inverse muted role, `lichen-light` (#8fa79a), about 6:1 on forest. The design's lichen (#5a7165) is about 3:1, below the 4.5:1 AA needs for small text, so the role was lightened.
+- Links use the inverse muted role, `forest-400` (#8fa79a), about 6:1 on forest. The design's lichen (`forest-600`, #5a7165) is about 3:1, below the 4.5:1 AA needs for small text, so the role was lightened.

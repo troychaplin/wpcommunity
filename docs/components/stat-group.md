@@ -6,7 +6,7 @@ A row of label-and-value statistics. Renders a description list (`<dl>`), with `
 
 ## When to use
 
-- `serif`: headline facts about a group (members, cadence, format, history), usually inside a tint [`Card`](./card.md).
+- `serif`: headline facts about a group (members, cadence, format, history), usually inside a sage [`Card`](./card.md).
 - `mono`: small counts, such as the footer of the Slack [`ChatPreview`](./chat-preview.md).
 
 ## Used in
@@ -24,7 +24,7 @@ import { StatGroup } from '@/components/StatGroup';
 ## Basic usage
 
 ```tsx
-<Card backgroundColor="tint" borderRadius="md">
+<Card backgroundColor="sage" borderRadius="md">
   <StatGroup>
     <StatGroup.Item value="1,200+" label="Local Members" />
     <StatGroup.Item value="Monthly" label="Meeting Cadence" />

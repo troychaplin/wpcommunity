@@ -11,10 +11,17 @@ const meta = {
 export default meta;
 type Story = StoryObj<typeof meta>;
 
-export const Primary: Story = {};
+// The default: the crimson surface, darkening to crimson-700 on hover
+export const Crimson: Story = {};
 
-export const Secondary: Story = {
-    args: { text: 'Join Canadian Slack', color: 'secondary' },
+// The white surface: stone-200 border, darkening to sage-600 on hover
+export const White: Story = {
+    args: { text: 'Join Canadian Slack', color: 'white' },
+};
+
+// The forest surface, lightening to forest-900 on hover
+export const Forest: Story = {
+    args: { text: 'Contact Organizer', color: 'forest' },
 };
 
 // The outline variant for dark sections, as in the group page's event band
@@ -22,7 +29,7 @@ export const Inverse: Story = {
     args: { text: 'Propose a Talk', color: 'inverse' },
     decorators: [
         (Story) => (
-            <Container color="inverse" maxWidth="alignfull" contentWidth="alignwide">
+            <Container color="forest" maxWidth="alignfull" contentWidth="alignwide">
                 <Story />
             </Container>
         ),
@@ -47,5 +54,5 @@ export const Disabled: Story = {
 
 // With `href` it renders a link styled as a button
 export const AsLink: Story = {
-    args: { text: 'Read the guide', color: 'secondary', href: '#story' },
+    args: { text: 'Read the guide', color: 'white', href: '#story' },
 };

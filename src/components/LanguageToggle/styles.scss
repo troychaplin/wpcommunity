@@ -20,7 +20,7 @@
     .wpc-language-toggle__list {
         display: inline-flex;
         padding: var(--wpc--spacing-2x-small);
-        background-color: color-mix(in srgb, var(--wpc--color-stone) 50%, var(--wpc--color-canvas));
+        background-color: var(--wpc--color-stone-100);
         border: 1px solid var(--wpc--color-border);
         border-radius: var(--wpc--radius-full);
     }
@@ -44,7 +44,7 @@
     .wpc-language-toggle__link--current,
     .wpc-language-toggle__link--current:hover {
         color: var(--wpc--color-white);
-        background-color: var(--wpc--color-forest-light);
+        background-color: var(--wpc--color-forest-900);
     }
 }
 

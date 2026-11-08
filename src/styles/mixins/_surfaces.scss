@@ -1,0 +1,123 @@
+@use 'sass:map';
+@use 'tones';
+
+// The shared surface set. Container (`color`), Card (`backgroundColor`) and Button (`color`) take
+// these names, and each name means the same fill, border and hover everywhere. Values are palette
+// steps, resolved to --wpc--color-{step}.
+//
+// fill          background
+// image         optional background image layered over the fill
+// border        the rule colour paired with the fill: Container `border`, Card border, light buttons
+// hover-border  border on hover: linked Cards, light buttons
+// hover-fill    fill on hover: solid buttons
+// text          colour for a single-colour element placed straight on the fill (a button label)
+// tone          the role set children read: light, inverse or crimson (see tones.scss)
+// border-role   optional override of the tone's --wpc--color-border, for dividers inside
+// solid         a saturated fill: buttons draw their border in the fill colour, not `border`
+$surfaces: (
+    white: (
+        fill: white,
+        border: stone-200,
+        hover-border: sage-600,
+        hover-fill: white,
+        text: forest-950,
+        tone: light,
+    ),
+    stone: (
+        fill: stone-50,
+        border: stone-200,
+        hover-border: sage-600,
+        hover-fill: stone-100,
+        text: forest-950,
+        tone: light,
+    ),
+    sage: (
+        fill: sage-50,
+        border: sage-200,
+        hover-border: sage-600,
+        hover-fill: sage-200,
+        text: forest-950,
+        tone: light,
+        border-role: sage-200,
+    ),
+    blush: (
+        fill: stone-50,
+        image: var(--wpc--gradient-blush),
+        border: stone-200,
+        hover-border: sage-600,
+        hover-fill: stone-100,
+        text: forest-950,
+        tone: light,
+    ),
+    crimson: (
+        fill: crimson-600,
+        border: crimson-700,
+        hover-border: crimson-300,
+        hover-fill: crimson-700,
+        text: white,
+        tone: crimson,
+        solid: true,
+    ),
+    forest: (
+        fill: forest-950,
+        border: forest-800,
+        hover-border: forest-400,
+        hover-fill: forest-900,
+        text: white,
+        tone: inverse,
+        solid: true,
+    ),
+);
+
+$surface-names: map.keys($surfaces);
+
+@function surface-get($name, $key) {
+    $surface: map.get($surfaces, $name);
+
+    @if not $surface {
+        @error 'Unknown surface "#{$name}". Use one of: #{$surface-names}.';
+    }
+
+    @return map.get($surface, $key);
+}
+
+@function is-solid($name) {
+    @return surface-get($name, solid) == true;
+}
+
+@function colour-var($step) {
+    @return var(--wpc--color-#{$step});
+}
+
+// Only the custom properties, for components that colour themselves from them (Button)
+@mixin surface-vars($name) {
+    --wpc-surface-fill: #{colour-var(surface-get($name, fill))};
+    --wpc-surface-border: #{colour-var(surface-get($name, border))};
+    --wpc-surface-hover-border: #{colour-var(surface-get($name, hover-border))};
+    --wpc-surface-hover-fill: #{colour-var(surface-get($name, hover-fill))};
+    --wpc-surface-text: #{colour-var(surface-get($name, text))};
+}
+
+// The whole surface: the tone's roles for children, the pairing variables and the background
+@mixin surface($name) {
+    $tone: surface-get($name, tone);
+
+    @if $tone == light {
+        @include tones.light;
+    } @else if $tone == inverse {
+        @include tones.inverse;
+    } @else if $tone == crimson {
+        @include tones.crimson;
+    }
+
+    @if surface-get($name, border-role) {
+        --wpc--color-border: #{colour-var(surface-get($name, border-role))};
+    }
+
+    @include surface-vars($name);
+    background-color: var(--wpc-surface-fill);
+
+    @if surface-get($name, image) {
+        background-image: surface-get($name, image);
+    }
+}
