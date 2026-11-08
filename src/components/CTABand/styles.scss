@@ -1,0 +1,38 @@
+// The Card supplies the inverse tone (white heading, mist text, rose eyebrow); this adds the
+// crimson glow and the raised shadow.
+.wpc-cta-band {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--wpc--spacing-medium) var(--wpc--spacing-large);
+    background-image: var(--wpc--gradient-forest-glow);
+    box-shadow: var(--wpc--shadow-raised);
+}
+
+.wpc-cta-band__content {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: var(--wpc--spacing-x-small);
+    min-width: 0;
+
+    > * {
+        margin-block: 0;
+    }
+}
+
+.wpc-cta-band__details {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--wpc--spacing-small);
+}
+
+.wpc-cta-band__separator {
+    margin-inline-end: var(--wpc--spacing-small);
+    color: var(--wpc--color-text-muted);
+}
+
+.wpc-cta-band__location {
+    margin-top: var(--wpc--spacing-x-small);
+}

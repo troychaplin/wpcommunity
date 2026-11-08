@@ -13,12 +13,13 @@
 # testing
 /coverage
 
-# next.js
-/.next/
-/out/
+# react-router
+/build/
+/.react-router/
 
-# production
-/build
+# storybook
+/storybook-static/
+*storybook.log
 
 # misc
 .DS_Store
@@ -33,9 +34,8 @@ yarn-error.log*
 # env files (can opt-in for committing if needed)
 .env*
 
-# vercel
-.vercel
-
 # typescript
 *.tsbuildinfo
-next-env.d.ts
+
+# component2block WordPress outputs (not used by the site)
+/.c2b

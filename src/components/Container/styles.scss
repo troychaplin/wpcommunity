@@ -1,0 +1,102 @@
+@use 'sass:map';
+@use '../../styles/wpc-variables' as *;
+@use '../../styles/mixins/tones';
+
+.wpc-container > * {
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.wpc-container > * + * {
+    margin-block-start: var(--wpc--spacing-medium);
+    margin-block-end: 0;
+}
+
+.wpc-container > .has-global-padding,
+.has-global-padding > .wpc-container.alignfull > .has-global-padding {
+    padding-left: 0;
+    padding-right: 0;
+
+    // Vertical rhythm between the blocks inside a Container
+    > * + * {
+        margin-block-start: var(--wpc--root-block-gap);
+    }
+
+    > *:first-child {
+        margin-top: 0;
+    }
+
+    > *:last-child {
+        margin-bottom: 0;
+    }
+}
+
+.wpc-container.aligncontent,
+.wpc-container.alignwide,
+.wpc-container.alignfull {
+    padding-right: var(--wpc--root-padding-right);
+    padding-left: var(--wpc--root-padding-left);
+
+    @include above-tablet {
+        padding-right: var(--wpc--spacing-large);
+        padding-left: var(--wpc--spacing-large);
+    }
+}
+
+.wpc-main > div > .wpc-container--no-gap + .wpc-container--no-gap {
+    margin-top: var(--wpc--spacing-large);
+}
+
+.wpc-main > div > .wpc-container--no-gap.alignfull + .wpc-container--no-gap.alignfull {
+    margin-top: 0;
+}
+
+.wpc-container--white,
+.wpc-container--canvas,
+.wpc-container--tint,
+.wpc-container--inverse,
+.wpc-container--blush {
+    padding-block: var(--wpc--spacing-2x-large);
+}
+
+.wpc-container--white {
+    @include tones.light;
+    background-color: var(--wpc--color-white);
+    border: 1px solid var(--wpc--color-border);
+
+    &.alignfull {
+        border-inline: none;
+    }
+}
+
+.wpc-container--canvas {
+    @include tones.light;
+    background-color: var(--wpc--color-canvas);
+}
+
+.wpc-container--tint {
+    @include tones.light;
+    --wpc--color-border: var(--wpc--color-sage-dark);
+    background-color: var(--wpc--color-sage);
+}
+
+.wpc-container--blush {
+    @include tones.light;
+    background-color: var(--wpc--color-canvas);
+    background-image: var(--wpc--gradient-blush);
+}
+
+.wpc-container--inverse {
+    @include tones.inverse;
+    background-color: var(--wpc--color-forest);
+}
+
+.wpc-container--radius-none:not(.alignfull) {
+    border-radius: 0;
+}
+
+@each $name in map.keys($wpc-radius) {
+    .wpc-container--radius-#{$name}:not(.alignfull) {
+        border-radius: var(--wpc--radius-#{$name});
+    }
+}

@@ -1,0 +1,111 @@
+@use 'sass:map';
+@use '../../styles/wpc-variables' as vars;
+
+.wpc-button,
+a.wpc-button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--wpc--spacing-x-small);
+    padding: var(--wpc--spacing-x-small) var(--wpc--spacing-small);
+    font-family: var(--wpc--font-family-sans);
+    font-size: var(--wpc--font-size-medium);
+    font-weight: var(--wpc--font-weight-medium);
+    line-height: var(--wpc--line-height-relaxed);
+    text-decoration: none;
+    border-width: 1px;
+    border-style: solid;
+    border-radius: var(--wpc--radius-sm);
+    white-space: nowrap;
+    cursor: pointer;
+    transition:
+        color var(--wpc--transition-fast),
+        background-color var(--wpc--transition-fast),
+        border-color var(--wpc--transition-fast);
+
+    &:hover {
+        text-decoration: none;
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+        transition: none;
+    }
+}
+
+// Kept off `a.wpc-button` above: at that specificity it outranked the colour modifiers below,
+// so a Button with an href lost its border colour.
+.wpc-button {
+    border-color: transparent;
+}
+
+// The variants read palette tokens rather than role tokens, so a button looks the same whichever
+// section tone it sits in.
+.wpc-button--primary {
+    color: var(--wpc--color-white);
+    background-color: var(--wpc--color-crimson);
+    border-color: var(--wpc--color-crimson);
+
+    &:hover {
+        color: var(--wpc--color-white);
+        background-color: var(--wpc--color-crimson-dark);
+        border-color: var(--wpc--color-crimson-dark);
+    }
+}
+
+.wpc-button--secondary {
+    color: var(--wpc--color-forest);
+    background-color: var(--wpc--color-white);
+    border-color: var(--wpc--color-stone);
+
+    &:hover {
+        color: var(--wpc--color-forest);
+        border-color: var(--wpc--color-slate);
+    }
+}
+
+// Outline for dark sections
+.wpc-button--inverse {
+    color: var(--wpc--color-white);
+    background-color: transparent;
+    border-color: color-mix(in srgb, var(--wpc--color-white) 45%, transparent);
+
+    &:hover {
+        color: var(--wpc--color-white);
+        background-color: color-mix(in srgb, var(--wpc--color-white) 10%, transparent);
+        border-color: var(--wpc--color-white);
+    }
+}
+
+.wpc-button--disabled {
+    color: var(--wpc--color-slate);
+    background-color: var(--wpc--color-sage);
+    border-color: var(--wpc--color-sage-dark);
+    cursor: default;
+}
+
+.wpc-button--small,
+a.wpc-button--small {
+    padding: var(--wpc--spacing-2x-small) var(--wpc--spacing-x-small);
+    font-size: var(--wpc--font-size-small);
+}
+
+.wpc-button--large,
+a.wpc-button--large {
+    padding: var(--wpc--spacing-small) var(--wpc--spacing-medium);
+    font-size: var(--wpc--font-size-large);
+    line-height: var(--wpc--line-height-tight);
+}
+
+.wpc-button--full {
+    width: 100%;
+}
+
+.wpc-button--radius-none {
+    border-radius: 0;
+}
+
+@each $name in map.keys(vars.$wpc-radius) {
+    .wpc-button--radius-#{$name} {
+        border-radius: var(--wpc--radius-#{$name});
+    }
+}

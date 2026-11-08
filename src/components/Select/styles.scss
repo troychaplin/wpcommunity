@@ -1,0 +1,35 @@
+@use '../../styles/mixins/field';
+
+.wpc-select,
+.wpc-select__field {
+    @include field.shell;
+}
+
+.wpc-select__error {
+    @include field.error;
+}
+
+.wpc-select__label {
+    @include field.label;
+}
+
+.wpc-select__control {
+    position: relative;
+    display: block;
+}
+
+// appearance: none drops the native arrow; the chevron icon replaces it
+.wpc-select__input {
+    @include field.control;
+    padding-inline-end: calc(var(--wpc--spacing-small) * 2 + 1em);
+    cursor: pointer;
+}
+
+.wpc-select__icon {
+    position: absolute;
+    top: 50%;
+    inset-inline-end: var(--wpc--spacing-small);
+    color: var(--wpc--color-text-muted);
+    pointer-events: none;
+    transform: translateY(-50%);
+}

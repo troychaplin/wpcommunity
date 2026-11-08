@@ -1,0 +1,45 @@
+// h1–h6 already get the serif heading look from the base styles; the class repeats it so a
+// Heading rendered as a `p` matches. No margin-block-start, so flow spacing still applies.
+.wpc-heading {
+    margin-block-end: 0;
+    text-wrap: balance;
+    font-family: var(--wpc--font-family-serif);
+    font-weight: var(--wpc--font-weight-medium);
+    line-height: var(--wpc--line-height-tight);
+    color: var(--wpc--color-heading);
+}
+
+.wpc-heading--display {
+    font-size: var(--wpc--font-size-display);
+    line-height: var(--wpc--line-height-flat);
+    letter-spacing: -0.02em;
+}
+
+.wpc-heading--heading-large {
+    font-size: var(--wpc--font-size-heading-large);
+}
+
+.wpc-heading--heading-medium {
+    font-size: var(--wpc--font-size-heading-medium);
+}
+
+.wpc-heading--heading-small {
+    font-size: var(--wpc--font-size-heading-small);
+}
+
+.wpc-heading--2x-large {
+    font-size: var(--wpc--font-size-2x-large);
+}
+
+.wpc-heading--x-large {
+    font-size: var(--wpc--font-size-x-large);
+}
+
+.wpc-heading--large {
+    font-size: var(--wpc--font-size-large);
+}
+
+// Reads the accent role: crimson on light surfaces, the light accent on inverse ones
+.wpc-heading__accent {
+    color: var(--wpc--color-accent);
+}

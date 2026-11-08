@@ -1,0 +1,62 @@
+@use '../../styles/wpc-variables' as *;
+
+// Above the mobile breakpoint each item is a subgrid row, so the date-and-tag column takes the
+// width of its widest entry and lines up across every update.
+.wpc-update-list {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    margin: 0;
+    padding: 0;
+    list-style: none;
+
+    @include above-mobile {
+        grid-template-columns: max-content minmax(0, 1fr);
+    }
+}
+
+.wpc-update-list__item {
+    display: grid;
+    gap: var(--wpc--spacing-small);
+    padding-block: var(--wpc--spacing-medium);
+    border-bottom: 1px solid var(--wpc--color-border);
+
+    @include above-mobile {
+        grid-column: 1 / -1;
+        grid-template-columns: subgrid;
+        gap: 0;
+    }
+}
+
+.wpc-update-list__meta {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: var(--wpc--spacing-x-small);
+
+    @include above-mobile {
+        flex-direction: column;
+        align-items: flex-end;
+        padding-inline-end: var(--wpc--spacing-large);
+    }
+}
+
+.wpc-update-list__content {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: var(--wpc--spacing-x-small);
+
+    > * {
+        margin-block: 0;
+    }
+
+    @include above-mobile {
+        padding-inline-start: var(--wpc--spacing-large);
+        border-inline-start: 1px solid var(--wpc--color-border);
+    }
+}
+
+.wpc-update-list__excerpt {
+    max-width: var(--wpc--layout-small-size);
+    color: var(--wpc--color-text-muted);
+}

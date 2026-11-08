@@ -1,0 +1,80 @@
+@use '../../styles/wpc-variables' as *;
+
+.wpc-stat-group {
+    margin: 0;
+}
+
+.wpc-stat-group__item {
+    display: flex;
+    flex-direction: column;
+    gap: var(--wpc--spacing-2x-small);
+    min-width: 0;
+}
+
+.wpc-stat-group__label,
+.wpc-stat-group__value {
+    margin: 0;
+}
+
+.wpc-stat-group__label {
+    order: 1;
+}
+
+// Serif: the group page stats panel. Two by two on small screens; one row with dividers above
+// the tablet breakpoint.
+.wpc-stat-group--serif {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: var(--wpc--spacing-medium);
+
+    @include above-tablet {
+        grid-template-columns: none;
+        grid-auto-columns: minmax(0, 1fr);
+        grid-auto-flow: column;
+        gap: 0;
+
+        .wpc-stat-group__item + .wpc-stat-group__item {
+            padding-inline-start: var(--wpc--spacing-medium);
+            border-inline-start: 1px solid var(--wpc--color-border);
+        }
+
+        .wpc-stat-group__item:not(:last-child) {
+            padding-inline-end: var(--wpc--spacing-medium);
+        }
+    }
+
+    .wpc-stat-group__value {
+        font-family: var(--wpc--font-family-serif);
+        font-size: var(--wpc--font-size-heading-medium);
+        font-weight: var(--wpc--font-weight-medium);
+        line-height: var(--wpc--line-height-tight);
+        color: var(--wpc--color-heading);
+    }
+
+    .wpc-stat-group__label {
+        font-family: var(--wpc--font-family-mono);
+        font-size: var(--wpc--font-size-x-small);
+        color: var(--wpc--color-text-muted);
+    }
+}
+
+// Mono: the Slack preview footer
+.wpc-stat-group--mono {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--wpc--spacing-small) var(--wpc--spacing-large);
+
+    .wpc-stat-group__value {
+        font-family: var(--wpc--font-family-mono);
+        font-size: var(--wpc--font-size-medium);
+        font-weight: var(--wpc--font-weight-medium);
+        line-height: var(--wpc--line-height-snug);
+        color: var(--wpc--color-heading);
+    }
+
+    .wpc-stat-group__label {
+        font-family: var(--wpc--font-family-sans);
+        font-size: var(--wpc--font-size-small);
+        color: var(--wpc--color-text-muted);
+    }
+}

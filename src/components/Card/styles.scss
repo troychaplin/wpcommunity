@@ -1,0 +1,144 @@
+@use 'sass:map';
+@use '../../styles/wpc-variables' as vars;
+@use '../../styles/mixins/tones';
+
+.wpc-card {
+    min-width: 0;
+    padding-inline: var(--wpc-card-padding-inline, 0);
+    padding-block: var(--wpc-card-padding-block, 0);
+
+    > :first-child {
+        margin-top: 0;
+    }
+
+    > :last-child {
+        margin-bottom: 0;
+    }
+}
+
+li.wpc-card {
+    list-style: none;
+}
+
+// Each background re-declares the role colours that go with it, so the card reads correctly in
+// any section: a white card inside an inverse Container keeps dark text.
+.wpc-card--bg-white {
+    @include tones.light;
+    background-color: var(--wpc--color-white);
+}
+
+.wpc-card--bg-canvas {
+    @include tones.light;
+    background-color: var(--wpc--color-canvas);
+}
+
+.wpc-card--bg-tint {
+    @include tones.light;
+    --wpc--color-border: var(--wpc--color-sage-dark);
+    background-color: var(--wpc--color-sage);
+}
+
+.wpc-card--bg-blush {
+    @include tones.light;
+    background-color: var(--wpc--color-canvas);
+    background-image: var(--wpc--gradient-blush);
+}
+
+.wpc-card--bg-inverse {
+    @include tones.inverse;
+    background-color: var(--wpc--color-forest);
+}
+
+// Reads the role, so the border follows the background: stone on light, forest-light on inverse
+.wpc-card--border {
+    border: 1px solid var(--wpc--color-border);
+}
+
+.wpc-card--shadow {
+    box-shadow: var(--wpc--shadow-subtle);
+}
+
+// Radius and spacing modifiers are generated from the token maps, so a change to
+// c2b.config.json propagates here with no edit.
+.wpc-card--radius-none {
+    border-radius: 0;
+}
+
+@each $name in map.keys(vars.$wpc-radius) {
+    .wpc-card--radius-#{$name} {
+        border-radius: var(--wpc--radius-#{$name});
+    }
+}
+
+.wpc-card--padding-inline-none {
+    --wpc-card-padding-inline: 0;
+}
+
+.wpc-card--padding-block-none {
+    --wpc-card-padding-block: 0;
+}
+
+// The padding modifiers set custom properties rather than padding, so a full-card link can take
+// the padding over from the card.
+@each $name in map.keys(vars.$wpc-spacing) {
+    .wpc-card--padding-inline-#{$name} {
+        --wpc-card-padding-inline: var(--wpc--spacing-#{$name});
+    }
+
+    .wpc-card--padding-block-#{$name} {
+        --wpc-card-padding-block: var(--wpc--spacing-#{$name});
+    }
+}
+
+// Full-card link, rendered by Card when `href` is set. The card hands its padding to the link and
+// stretches the link to fill it, so a click anywhere on the card follows the link.
+.wpc-card--linked {
+    display: flex;
+    flex-direction: column;
+    padding: 0;
+    transition: border-color var(--wpc--transition-fast);
+
+    &:hover {
+        border-color: var(--wpc--color-text-muted);
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+        transition: none;
+    }
+}
+
+.wpc-card__link {
+    flex: 1;
+    padding-inline: var(--wpc-card-padding-inline, 0);
+    padding-block: var(--wpc-card-padding-block, 0);
+
+    // The same even padding the card gives its own children
+    > :first-child {
+        margin-top: 0;
+    }
+
+    > :last-child {
+        margin-bottom: 0;
+    }
+}
+
+// Doubled class outranks the tone link colour, so every line of a linked card keeps its own colour
+.wpc-card .wpc-card__link {
+    font-weight: inherit;
+    color: inherit;
+    text-decoration: none;
+
+    &:hover {
+        text-decoration: none;
+    }
+
+    &:focus-visible {
+        outline: 2px solid var(--wpc--color-primary);
+        outline-offset: var(--wpc--spacing-2x-small);
+    }
+}
+
+// crimson falls below the 3:1 a focus outline needs on forest
+.wpc-card--bg-inverse .wpc-card__link:focus-visible {
+    outline-color: var(--wpc--color-accent-inverse);
+}

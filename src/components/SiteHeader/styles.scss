@@ -1,0 +1,129 @@
+@use '../../styles/wpc-variables' as *;
+
+.wpc-site-header {
+    padding-block: var(--wpc--spacing-x-small);
+    padding-inline: var(--wpc--root-padding-x);
+    background-color: var(--wpc--color-canvas);
+    border-bottom: 1px solid var(--wpc--color-stone);
+}
+
+.wpc-site-header__branding p {
+    margin: 0;
+    padding: 0;
+    font-family: var(--wpc--font-family-serif);
+    font-size: var(--wpc--font-size-x-large);
+    font-weight: var(--wpc--font-weight-semibold);
+    line-height: var(--wpc--line-height-tight);
+
+    span {
+        color: var(--wpc--color-crimson);
+    }
+
+    a {
+        color: var(--wpc--color-forest);
+        text-decoration: none;
+
+        &:hover,
+        &:focus-visible {
+            color: var(--wpc--color-crimson);
+
+            span.wpc-site-header__title-accent {
+                color: var(--wpc--color-forest);
+            }
+        }
+    }
+}
+
+.wpc-site-header__nav ul {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--wpc--spacing-medium);
+    margin: 0;
+    padding: 0;
+    list-style: none;
+
+    li {
+        margin: 0;
+        padding: 0;
+        font-family: var(--wpc--font-family-sans);
+        font-size: var(--wpc--font-size-medium);
+
+        a {
+            font-weight: var(--wpc--font-weight-normal);
+            color: var(--wpc--color-text-muted);
+            text-decoration: none;
+            transition: color var(--wpc--transition-fast);
+
+            &:hover {
+                color: var(--wpc--color-text);
+            }
+
+            @media (prefers-reduced-motion: reduce) {
+                transition: none;
+            }
+        }
+    }
+}
+
+// The menu wrapper takes no box of its own, so the toggle and panel join the header row
+.wpc-site-header__menu {
+    display: contents;
+}
+
+.wpc-site-header__toggle {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--wpc--spacing-x-small);
+    margin-inline-start: auto;
+    padding: var(--wpc--spacing-2x-small) var(--wpc--spacing-small);
+    font-family: var(--wpc--font-family-sans);
+    font-size: var(--wpc--font-size-medium);
+    color: var(--wpc--color-text);
+    background-color: transparent;
+    border: 1px solid var(--wpc--color-border);
+    border-radius: var(--wpc--radius-full);
+    cursor: pointer;
+
+    @include above-tablet {
+        display: none;
+    }
+}
+
+// Below tablet: a full-width panel under the header row, shown while the menu is open
+.wpc-site-header__panel {
+    display: none;
+    flex-basis: 100%;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: var(--wpc--spacing-small);
+    padding-block: var(--wpc--spacing-small);
+    border-top: 1px solid var(--wpc--color-border);
+
+    .wpc-site-header__nav ul {
+        flex-direction: column;
+        gap: var(--wpc--spacing-small);
+    }
+}
+
+.wpc-site-header__menu--open .wpc-site-header__panel {
+    display: flex;
+}
+
+// Above tablet: the panel always shows, inline at the end of the row
+@include above-tablet {
+    .wpc-site-header__panel {
+        display: flex;
+        flex-basis: auto;
+        flex-direction: row;
+        align-items: center;
+        gap: var(--wpc--spacing-medium);
+        margin-inline-start: auto;
+        padding-block: 0;
+        border-top: 0;
+
+        .wpc-site-header__nav ul {
+            flex-direction: row;
+            gap: var(--wpc--spacing-medium);
+        }
+    }
+}

@@ -1,0 +1,20 @@
+.wpc-group-header {
+    display: flex;
+    flex-direction: column;
+    gap: var(--wpc--spacing-medium);
+
+    > * {
+        margin-block: 0;
+    }
+}
+
+// Doubled class outranks FlexGroup's own padding modifiers
+.wpc-group-header .wpc-group-header__bar {
+    padding-bottom: var(--wpc--spacing-small);
+    border-bottom: 1px solid var(--wpc--color-border);
+}
+
+.wpc-group-header__description {
+    max-width: var(--wpc--layout-small-size);
+    font-size: var(--wpc--font-size-large);
+}

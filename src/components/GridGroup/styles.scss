@@ -1,0 +1,102 @@
+@use 'sass:map';
+@use '../../styles/wpc-variables' as vars;
+
+// One column on small screens. `columns` takes effect at the viewport breakpoints the rest of
+// the system uses: two columns above the mobile breakpoint, and three or four above the tablet
+// breakpoint. A three-column grid goes straight from one column to three; a four-column grid
+// passes through two.
+.wpc-grid-group {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+}
+
+// Centred only when a width class caps it. Auto margins stop a grid or flex item from stretching,
+// so an uncapped group would shrink to its content inside a grid or flex parent.
+.wpc-grid-group:is(.alignsmall, .aligncontent, .alignwide, .alignfull) {
+    width: 100%;
+    margin-inline: auto;
+}
+
+ul.wpc-grid-group,
+ol.wpc-grid-group {
+    list-style: none;
+    padding-left: 0;
+}
+
+.wpc-grid-group--columns-2 {
+    @include vars.above-mobile {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+}
+
+.wpc-grid-group--columns-3 {
+    @include vars.above-tablet {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+}
+
+.wpc-grid-group--columns-4 {
+    @include vars.above-mobile {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    @include vars.above-tablet {
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+    }
+}
+
+@each $value in start, center, end, stretch {
+    .wpc-grid-group--align-#{$value} {
+        align-items: $value;
+    }
+}
+
+// Spacing modifiers are generated from the scale, so a change to c2b.config.json propagates
+// here with no edit.
+$steps: (
+    none: 0,
+);
+
+@each $name in map.keys(vars.$wpc-spacing) {
+    $steps: map.set($steps, $name, var(--wpc--spacing-#{$name}));
+}
+
+@each $key, $value in $steps {
+    .wpc-grid-group--gap-#{$key} {
+        gap: $value;
+    }
+}
+
+// The row-gap modifiers come after every gap modifier, so `rowGap` overrides the row half of
+// the `gap` shorthand whichever steps are combined.
+@each $key, $value in $steps {
+    .wpc-grid-group--row-gap-#{$key} {
+        row-gap: $value;
+    }
+}
+
+// Lines between cells instead of gaps. Each cell draws its own right (and, for `all`, bottom)
+// line as a shadow; the grid clips the shadows that fall past its right and bottom edges, so
+// lines only ever appear between cells, at every column count. `all` closes with a bottom rule.
+.wpc-grid-group.wpc-grid-group--dividers {
+    gap: 0;
+    overflow: hidden;
+
+    > * {
+        padding: var(--wpc--spacing-large) var(--wpc--spacing-medium);
+    }
+}
+
+.wpc-grid-group--dividers-columns > * {
+    box-shadow: 1px 0 0 var(--wpc--color-border);
+}
+
+.wpc-grid-group--dividers-all {
+    border-bottom: 1px solid var(--wpc--color-border);
+
+    > * {
+        box-shadow:
+            1px 0 0 var(--wpc--color-border),
+            0 1px 0 var(--wpc--color-border);
+    }
+}

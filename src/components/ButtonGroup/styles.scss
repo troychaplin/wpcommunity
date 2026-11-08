@@ -1,0 +1,23 @@
+@use '../../styles/wpc-variables' as *;
+
+.wpc-buttongroup {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--wpc--spacing-x-small);
+
+    @include above-tablet {
+        flex: 1 1 0%;
+    }
+}
+
+.wpc-buttongroup--justify-start {
+    justify-content: flex-start;
+}
+
+.wpc-buttongroup--justify-center {
+    justify-content: center;
+}
+
+.wpc-buttongroup--justify-end {
+    justify-content: flex-end;
+}

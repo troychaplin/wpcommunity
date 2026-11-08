@@ -1,0 +1,91 @@
+.wpc-meetup-index {
+    display: flex;
+    flex-direction: column;
+    gap: var(--wpc--spacing-medium);
+    height: 100%;
+}
+
+.wpc-meetup-index__header {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: var(--wpc--spacing-small);
+    padding-bottom: var(--wpc--spacing-x-small);
+    border-bottom: 1px solid var(--wpc--color-border);
+}
+
+.wpc-meetup-index__title {
+    margin: 0;
+    font-family: var(--wpc--font-family-sans);
+    font-size: var(--wpc--font-size-large);
+    font-weight: var(--wpc--font-weight-semibold);
+    color: var(--wpc--color-heading);
+}
+
+.wpc-meetup-index__regions {
+    display: grid;
+    gap: var(--wpc--spacing-x-small);
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+// Name, a dotted leader that takes the free space, then the count
+.wpc-meetup-index__region {
+    display: flex;
+    align-items: baseline;
+    gap: var(--wpc--spacing-small);
+    color: var(--wpc--color-heading);
+    text-decoration: none;
+}
+
+a.wpc-meetup-index__region:hover .wpc-meetup-index__name {
+    color: var(--wpc--color-accent);
+}
+
+.wpc-meetup-index__name {
+    font-family: var(--wpc--font-family-sans);
+    font-size: var(--wpc--font-size-large);
+    transition: color var(--wpc--transition-fast);
+
+    @media (prefers-reduced-motion: reduce) {
+        transition: none;
+    }
+}
+
+.wpc-meetup-index__leader {
+    flex: 1;
+    min-width: var(--wpc--spacing-small);
+    border-bottom: 1px dotted var(--wpc--color-border);
+}
+
+.wpc-meetup-index__count {
+    font-family: var(--wpc--font-family-mono);
+    font-size: var(--wpc--font-size-x-small);
+    color: var(--wpc--color-text-muted);
+    white-space: nowrap;
+}
+
+// Pushed to the bottom of the panel, below a rule
+.wpc-meetup-index__meta {
+    display: grid;
+    gap: var(--wpc--spacing-x-small);
+    margin: auto 0 0;
+    padding-top: var(--wpc--spacing-medium);
+    border-top: 1px solid var(--wpc--color-border);
+}
+
+.wpc-meetup-index__meta-row {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 2.5fr);
+    gap: var(--wpc--spacing-small);
+
+    dt {
+        color: var(--wpc--color-text-muted);
+    }
+
+    dd {
+        margin: 0;
+        color: var(--wpc--color-text);
+    }
+}

@@ -1,0 +1,21 @@
+// Full height, so the links line up across a row of cards
+.wpc-resource-card {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: var(--wpc--spacing-x-small);
+    height: 100%;
+
+    > * {
+        margin-block: 0;
+    }
+}
+
+.wpc-resource-card__description {
+    font-size: var(--wpc--font-size-small);
+}
+
+.wpc-resource-card .wpc-resource-card__link {
+    margin-top: auto;
+    padding-top: var(--wpc--spacing-small);
+}

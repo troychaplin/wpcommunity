@@ -1,0 +1,28 @@
+.wpc-fieldset {
+    min-width: 0;
+    margin: 0;
+    padding: 0;
+    border: 0;
+}
+
+// Floated so the legend lays out as a full-width block and can carry the rule beneath it
+.wpc-fieldset__legend {
+    float: left;
+    width: 100%;
+    margin-bottom: var(--wpc--spacing-medium);
+    padding: 0 0 var(--wpc--spacing-x-small);
+    font-family: var(--wpc--font-family-mono);
+    font-size: var(--wpc--font-size-x-small);
+    line-height: var(--wpc--line-height-snug);
+    color: var(--wpc--color-text-muted);
+    border-bottom: 1px solid var(--wpc--color-border);
+}
+
+// Block flow rather than grid, so layout children such as a GridGroup of fields keep their full width
+.wpc-fieldset__body {
+    clear: both;
+
+    > * + * {
+        margin-block-start: var(--wpc--spacing-medium);
+    }
+}

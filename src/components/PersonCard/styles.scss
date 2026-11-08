@@ -1,0 +1,60 @@
+.wpc-person-card {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: var(--wpc--spacing-small);
+}
+
+.wpc-person-card--compact {
+    gap: var(--wpc--spacing-x-small);
+}
+
+// Doubled class outranks the Eyebrow's own margin reset
+.wpc-person-card .wpc-person-card__label {
+    align-self: stretch;
+    padding-bottom: var(--wpc--spacing-x-small);
+    border-bottom: 1px solid var(--wpc--color-border);
+}
+
+.wpc-person-card__header {
+    display: flex;
+    align-items: center;
+    gap: var(--wpc--spacing-small);
+}
+
+.wpc-person-card__identity {
+    display: flex;
+    flex-direction: column;
+    gap: var(--wpc--spacing-2x-small);
+    min-width: 0;
+
+    > * {
+        margin-block: 0;
+    }
+}
+
+.wpc-person-card__role {
+    font-family: var(--wpc--font-family-sans);
+    font-weight: var(--wpc--font-weight-medium);
+}
+
+.wpc-person-card--featured .wpc-person-card__role {
+    font-size: var(--wpc--font-size-medium);
+    color: var(--wpc--color-accent);
+}
+
+.wpc-person-card--compact .wpc-person-card__role {
+    font-size: var(--wpc--font-size-small);
+    color: var(--wpc--color-moss);
+}
+
+.wpc-person-card__bio > * {
+    margin-block: 0;
+}
+
+.wpc-person-card__actions {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: var(--wpc--spacing-x-small);
+}

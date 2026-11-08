@@ -1,0 +1,16 @@
+.wpc-eyebrow {
+    margin-block: 0;
+    font-family: var(--wpc--font-family-mono);
+    font-size: var(--wpc--font-size-x-small);
+    font-weight: var(--wpc--font-weight-normal);
+    line-height: var(--wpc--line-height-snug);
+}
+
+// Both tones read roles, so an eyebrow in an inverse section switches colour on its own
+.wpc-eyebrow--muted {
+    color: var(--wpc--color-text-muted);
+}
+
+.wpc-eyebrow--accent {
+    color: var(--wpc--color-accent);
+}

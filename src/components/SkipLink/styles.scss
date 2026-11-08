@@ -1,0 +1,31 @@
+.wpc-skip-link {
+    position: fixed;
+    inset-block-start: 0;
+    inset-inline-start: var(--wpc--spacing-x-small);
+    z-index: var(--wpc--z-500);
+    padding: var(--wpc--spacing-x-small) var(--wpc--spacing-small);
+    font-family: var(--wpc--font-family-sans);
+    font-size: var(--wpc--font-size-small);
+    font-weight: var(--wpc--font-weight-semibold);
+    line-height: var(--wpc--line-height-tight);
+    color: var(--wpc--color-white);
+    background-color: var(--wpc--color-forest);
+    border-radius: var(--wpc--radius-md);
+    text-decoration: none;
+    // Past -100%, so a fractional height can't leave a sub-pixel sliver showing at the top edge
+    transform: translateY(calc(-100% - var(--wpc--spacing-x-small)));
+    transition: transform var(--wpc--transition-fast);
+
+    &:focus {
+        transform: translateY(var(--wpc--spacing-x-small));
+        outline-offset: var(--wpc--spacing-2x-small);
+    }
+
+    &:hover {
+        text-decoration: underline;
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+        transition: none;
+    }
+}

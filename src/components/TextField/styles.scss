@@ -1,0 +1,37 @@
+@use '../../styles/mixins/field';
+
+.wpc-text-field,
+.wpc-text-field__field {
+    @include field.shell;
+}
+
+.wpc-text-field__error {
+    @include field.error;
+}
+
+.wpc-text-field__label {
+    @include field.label;
+}
+
+.wpc-text-field__control {
+    position: relative;
+    display: block;
+}
+
+.wpc-text-field__input {
+    @include field.control;
+}
+
+.wpc-text-field__icon {
+    position: absolute;
+    top: 50%;
+    inset-inline-start: var(--wpc--spacing-small);
+    color: var(--wpc--color-text-muted);
+    pointer-events: none;
+    transform: translateY(-50%);
+}
+
+// Room for the icon: its inset, its 1em width, and the same gap again before the text
+.wpc-text-field--has-icon .wpc-text-field__input {
+    padding-inline-start: calc(var(--wpc--spacing-small) * 2 + 1em);
+}

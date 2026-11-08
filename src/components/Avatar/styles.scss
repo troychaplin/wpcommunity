@@ -1,0 +1,56 @@
+.wpc-avatar {
+    position: relative;
+    display: inline-flex;
+    flex-shrink: 0;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+}
+
+.wpc-avatar--small {
+    width: var(--wpc--layout-avatar-small);
+    height: var(--wpc--layout-avatar-small);
+}
+
+.wpc-avatar--medium {
+    width: var(--wpc--layout-avatar-medium);
+    height: var(--wpc--layout-avatar-medium);
+}
+
+.wpc-avatar--large {
+    width: var(--wpc--layout-avatar-large);
+    height: var(--wpc--layout-avatar-large);
+}
+
+.wpc-avatar--circle {
+    border-radius: var(--wpc--radius-full);
+}
+
+.wpc-avatar--square {
+    border-radius: var(--wpc--radius-sm);
+}
+
+// A white ring with a hairline outline, as on the group page
+.wpc-avatar--photo {
+    background-color: var(--wpc--color-surface-tint);
+    border: 2px solid var(--wpc--color-white);
+    box-shadow: 0 0 0 1px var(--wpc--color-border);
+}
+
+.wpc-avatar__image {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.wpc-avatar--initials {
+    font-family: var(--wpc--font-family-mono);
+    font-size: var(--wpc--font-size-x-small);
+    font-weight: var(--wpc--font-weight-medium);
+    line-height: var(--wpc--line-height-flat);
+    color: var(--wpc--color-moss);
+    background-color: var(--wpc--color-surface-tint);
+    border: 1px solid var(--wpc--color-sage-dark);
+}

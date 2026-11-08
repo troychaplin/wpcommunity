@@ -1,0 +1,21 @@
+html {
+    font-size: 100%;
+    -webkit-text-size-adjust: 100%;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    scroll-behavior: smooth;
+
+    @media (prefers-reduced-motion: reduce) {
+        scroll-behavior: auto;
+    }
+}
+
+:focus-visible {
+    outline: 2px solid var(--wpc--color-primary);
+    outline-offset: 2px;
+}
+
+::selection {
+    background-color: var(--wpc--color-primary);
+    color: var(--wpc--color-white);
+}

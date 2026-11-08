@@ -1,0 +1,10 @@
+// The margin on headers is set as :where in the c2b output so it can easily be overridden.
+// This keeps spacing consistent across the design system while allowing flexibility.
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    margin-bottom: 0 !important;
+}

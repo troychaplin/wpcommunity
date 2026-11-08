@@ -1,3 +1,3 @@
-ignoredBuiltDependencies:
-  - sharp
-  - unrs-resolver
+# esbuild (used by Storybook) runs a postinstall check of its platform binary
+onlyBuiltDependencies:
+  - esbuild
