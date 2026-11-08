@@ -34,6 +34,8 @@ const visible = groups.filter((group) => region === 'all' || group.region === re
 <Eyebrow aria-live="polite">Showing {visible.length} of {groups.length} groups</Eyebrow>
 ```
 
+A divided [`GridGroup`](./grid-group.md) placed straight after the bar butts against its bottom rule, which then doubles as the grid's top line, so the column lines run up to it (the group directory). Any other element after the bar keeps the usual block gap.
+
 The **Filtering A List** story (`FilterBar.stories.tsx`) is a working example, combined with a SearchField. The pages use `src/features/directory/`, where `DirectoryProvider` shares the query and region between the hero search and the group grid.
 
 ## Props
