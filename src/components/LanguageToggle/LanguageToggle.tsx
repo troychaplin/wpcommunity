@@ -13,6 +13,9 @@ export interface LanguageToggleProps {
     languages: LanguageOption[];
     variant?: 'segmented' | 'list';
     label?: string;
+    // The nav's accessible name, when it should differ from the visible `label`. A page with two
+    // toggles (header and footer) needs distinct names, or the two landmarks can't be told apart.
+    navLabel?: string;
     className?: string;
 }
 
@@ -20,6 +23,7 @@ export const LanguageToggle = ({
     languages,
     variant = 'segmented',
     label = 'Language',
+    navLabel,
     className,
 }: LanguageToggleProps) => {
     const classes = ['wpc-language-toggle', `wpc-language-toggle--${variant}`, className]
@@ -27,7 +31,7 @@ export const LanguageToggle = ({
         .join(' ');
 
     return (
-        <nav className={classes} aria-label={label}>
+        <nav className={classes} aria-label={navLabel ?? label}>
             {variant === 'list' && (
                 <p className="wpc-language-toggle__label" aria-hidden="true">
                     {label}

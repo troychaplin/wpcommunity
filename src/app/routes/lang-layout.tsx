@@ -60,7 +60,7 @@ export default function LangLayout() {
                     </>
                 }
             >
-                <LocaleSwitcher locale={locale} label={t.language} variant="list" />
+                <LocaleSwitcher locale={locale} label={t.language} navLabel={t.footer.languageNavLabel} variant="list" />
             </SiteFooter>
         </>
     );

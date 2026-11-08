@@ -35,7 +35,7 @@ const languages = [
 </SiteHeader>
 
 <SiteFooter name="WP Canada">
-  <LanguageToggle languages={languages} variant="list" />
+  <LanguageToggle languages={languages} variant="list" navLabel="Footer language" />
 </SiteFooter>
 ```
 
@@ -45,7 +45,8 @@ const languages = [
 |---|---|---|---|
 | `languages` | `{ code, label, shortLabel?, href, isCurrent? }[]` | — | One entry per language |
 | `variant` | `'segmented' \| 'list'` | `'segmented'` | Header pill or footer list |
-| `label` | `string` | `'Language'` | The nav's accessible name (and the list's visible label) |
+| `label` | `string` | `'Language'` | The nav's accessible name and the list's visible label |
+| `navLabel` | `string` | `label` | The nav's accessible name, when it should differ from the visible label. Set it on one of two toggles on the same page |
 | `className` | `string` | — | Extra classes |
 
 ## CSS classes
@@ -72,6 +73,7 @@ const languages = [
 ## Accessibility
 
 - A `<nav aria-label="Language">`, so it's a navigation landmark distinct from the primary and footer navs.
+- The site renders two toggles, in the header and the footer. The footer one passes `navLabel` ("Footer language" / "Langue du pied de page") so the two landmarks have different names; the visible label stays "Language".
 - Each link has `hrefLang` and `lang`, so screen readers pronounce "Français" in French.
 - Segmented links show "En" / "Fr" but hide them from screen readers and expose the full name ("English", "Français") instead.
 - The current language has `aria-current="true"`, and the filled segment doesn't rely on colour alone (fill plus text colour).

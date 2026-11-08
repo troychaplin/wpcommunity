@@ -10,12 +10,13 @@ const localePrefix = new RegExp(`^/(${locales.join('|')})(?=/|$)`);
 export interface LocaleSwitcherProps {
     locale: Locale;
     label: string;
+    navLabel?: string;
     variant?: 'segmented' | 'list';
 }
 
 // Swaps the locale segment of the current path, so changing language keeps the reader on the
 // same page: /en/groups/ottawa ↔ /fr/groups/ottawa
-export function LocaleSwitcher({ locale, label, variant }: LocaleSwitcherProps) {
+export function LocaleSwitcher({ locale, label, navLabel, variant }: LocaleSwitcherProps) {
     const { pathname } = useLocation();
     const rest = pathname.replace(localePrefix, '');
 
@@ -26,5 +27,5 @@ export function LocaleSwitcher({ locale, label, variant }: LocaleSwitcherProps) 
         isCurrent: code === locale,
     }));
 
-    return <LanguageToggle languages={languages} variant={variant} label={label} />;
+    return <LanguageToggle languages={languages} variant={variant} label={label} navLabel={navLabel} />;
 }
