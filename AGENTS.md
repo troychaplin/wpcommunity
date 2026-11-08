@@ -10,6 +10,13 @@ Vite + React Router 8.5.1 in framework mode, prerendered to static HTML (`ssr: f
 - With `ssr: false`, route modules can't export `action` or `headers`. Loaders run at build time.
 - Page metadata uses React 19's built-in `<title>`, `<meta>` and `<link>` elements through
   `src/app/PageMeta.tsx`, not the route `meta` export.
+- Colours: the palette is `{family}-{step}` (crimson, forest, sage, stone, plus white), and a step
+  means the same lightness in every family. Components read roles (`--wpc--color-text`, `-border`,
+  `-border-hover`…) or a surface, never a palette step, for anything that should follow its
+  section. The surfaces (white, stone, sage, blush, crimson, forest) are defined once in
+  `src/styles/mixins/_surfaces.scss`; Container `color`, Card `backgroundColor` and Button `color`
+  take those names. Apply one with `@include surface(name)`, or `surface-vars(name)` for the
+  `--wpc-surface-*` variables only.
 - Components in `src/components/` must stay router-free: render links with `Link` from
   `src/components/LinkProvider`, never `react-router`'s, so the same components work in Storybook
   and c2b. The app supplies React Router's Link through `LinkProvider` in `src/app/root.tsx`.

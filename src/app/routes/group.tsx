@@ -113,7 +113,7 @@ export default function GroupPage({ params }: Route.ComponentProps) {
                                             <Button text={t.group.contact} href={meetup} />
                                             <Button
                                                 text={t.group.findOnSlack}
-                                                color="secondary"
+                                                color="white"
                                                 href={slackInviteUrl}
                                             />
                                         </>

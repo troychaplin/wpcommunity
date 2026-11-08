@@ -2,14 +2,14 @@ import {
     maxWidthClasses,
     elementClasses,
     borderRadiusClasses,
-    backgroundColorClasses,
+    surfaceClasses,
 } from '../../utils/propClasses';
 import './styles.scss';
 
 type maxWidthKeys = keyof typeof maxWidthClasses;
 type elementKeys = keyof typeof elementClasses;
 type borderRadiusKeys = keyof typeof borderRadiusClasses;
-type colorKeys = keyof typeof backgroundColorClasses;
+type colorKeys = keyof typeof surfaceClasses;
 
 export interface ContainerProps extends React.HTMLAttributes<HTMLElement> {
     children?: React.ReactNode;

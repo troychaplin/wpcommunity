@@ -1,0 +1,45 @@
+import { Meta, Unstyled } from '@storybook/addon-docs/blocks';
+import { SurfaceButtons, SurfaceSamples } from './components/SurfaceSamples';
+
+<Meta title="Overview/Stylebook/Surfaces" />
+
+# Surfaces
+
+Surfaces are the shared colour set behind `Container`'s `color`, `Card`'s `backgroundColor` and `Button`'s `color`. Each name means the same fill everywhere, and brings its paired border, its hover and the tone that children read: light text roles on white, stone, sage and blush; white text on crimson; the inverse roles on forest.
+
+They're defined once in `src/styles/mixins/_surfaces.scss`. Components apply them with `@include surface(name)`, or `surface-vars(name)` when they colour themselves.
+
+{/* Unstyled keeps Storybook's docs typography off the samples, so they render as on the site */}
+
+<Unstyled>
+    <SurfaceSamples
+        title="Surfaces"
+        description="A linked Card in each surface; hover one to see its hover border. The pairing under each is read from the rendered card, so it always matches the code."
+    />
+
+    <SurfaceButtons
+        title="Buttons"
+        description="Solid surfaces (crimson, forest) darken their fill on hover; light ones (white) darken their border. The inverse outline is for dark bands."
+    />
+</Unstyled>
+
+## Usage
+
+```tsx
+<Container color="sage" maxWidth="alignfull" contentWidth="alignwide" border="both">…</Container>
+<Card backgroundColor="forest" href="/en/groups">…</Card>
+<Button text="Contact Organizer" color="forest" />
+```
+
+```scss
+@use '../../styles/mixins/surfaces';
+
+.my-panel {
+    @include surfaces.surface(stone);
+    border: 1px solid var(--wpc-surface-border);
+
+    &:hover {
+        border-color: var(--wpc-surface-hover-border);
+    }
+}
+```

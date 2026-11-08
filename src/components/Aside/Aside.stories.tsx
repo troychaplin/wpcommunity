@@ -8,7 +8,7 @@ const meta = {
     component: Aside,
     args: {
         children: (
-            <Card backgroundColor="tint" border={false}>
+            <Card backgroundColor="sage" border={false}>
                 <p>A sticky aside</p>
             </Card>
         ),

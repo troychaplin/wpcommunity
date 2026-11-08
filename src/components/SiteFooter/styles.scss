@@ -1,12 +1,11 @@
 @use '../../styles/wpc-variables' as *;
-@use '../../styles/mixins/tones';
+@use '../../styles/mixins/surfaces';
 
 .wpc-site-footer {
-    @include tones.inverse;
+    @include surfaces.surface(forest);
     padding-block: var(--wpc--spacing-x-large) var(--wpc--spacing-medium);
     padding-inline: var(--wpc--root-padding-x);
     font-size: var(--wpc--font-size-small);
-    background-color: var(--wpc--color-forest);
 
     p {
         margin: 0;

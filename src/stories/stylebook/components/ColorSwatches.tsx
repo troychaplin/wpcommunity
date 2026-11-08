@@ -18,12 +18,17 @@ type ColorKind = 'palette' | 'roles';
 
 const rolePattern = new RegExp(`^var\\(--${prefix}--color-([a-z0-9-]+)\\)$`);
 
-function parseColors(names?: string[], kind?: ColorKind): SwatchEntry[] {
+function parseColors(names?: string[], kind?: ColorKind, family?: string): SwatchEntry[] {
     const entries = Object.entries(colors).flatMap(([name, value]) => {
         const raw = typeof value === 'string' ? value : value.value;
         const target = raw.match(rolePattern)?.[1];
 
         if ((kind === 'palette' && target) || (kind === 'roles' && !target)) {
+            return [];
+        }
+
+        // A family is the palette steps named {family}-{step}: crimson-100 … crimson-700
+        if (family && (target || !name.startsWith(`${family}-`))) {
             return [];
         }
 
@@ -59,13 +64,17 @@ type ColorSwatchesProps = {
     gradient?: boolean;
     /** Show only palette colours or only role colours. Ignored with `names`. */
     kind?: ColorKind;
+    /** Show one palette family's steps (crimson, forest, sage, stone). Ignored with `names`. */
+    family?: string;
     names?: string[];
     title?: string;
     description?: string;
 };
 
-export function ColorSwatches({ gradient, kind, names, title, description }: ColorSwatchesProps) {
-    const entries = gradient ? parseGradients() : parseColors(names, names ? undefined : kind);
+export function ColorSwatches({ gradient, kind, family, names, title, description }: ColorSwatchesProps) {
+    const entries = gradient
+        ? parseGradients()
+        : parseColors(names, names ? undefined : kind, names ? undefined : family);
 
     return (
         <section className="sb-section">

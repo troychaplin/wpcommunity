@@ -58,7 +58,7 @@ export default function Home() {
                             <Button
                                 text={t.home.hero.joinSlack}
                                 icon="message-circle-more"
-                                color="secondary"
+                                color="white"
                                 href="#slack"
                                 isLarge
                             />
@@ -112,7 +112,7 @@ export default function Home() {
                 </Container>
             </DirectoryProvider>
 
-            <Container as="section" id="slack" color="tint" maxWidth="alignfull" contentWidth="alignwide">
+            <Container as="section" id="slack" color="sage" maxWidth="alignfull" contentWidth="alignwide">
                 <Column cols="2">
                     <Column.Content>
                         <SectionHeader prefix={t.home.slack.eyebrow} title={t.home.slack.title} />
@@ -157,7 +157,7 @@ export default function Home() {
             <Container
                 as="section"
                 id="start-a-group"
-                color="inverse"
+                color="forest"
                 maxWidth="alignfull"
                 contentWidth="alignwide"
             >
@@ -200,7 +200,7 @@ export default function Home() {
                 </FlexGroup>
             </Container>
 
-            <Container as="section" id="faq" color="tint" maxWidth="alignfull" contentWidth="aligncontent">
+            <Container as="section" id="faq" color="sage" maxWidth="alignfull" contentWidth="aligncontent">
                 <SectionHeader title={t.home.faq.title} description={t.home.faq.description} />
                 {faq.map((group, groupIndex) => (
                     <Accordion key={group.label.en} label={group.label[locale]}>

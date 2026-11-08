@@ -1,6 +1,6 @@
 @use 'sass:map';
 @use '../../styles/wpc-variables' as *;
-@use '../../styles/mixins/tones';
+@use '../../styles/mixins/surfaces';
 
 .wpc-container > * {
     margin-left: auto;
@@ -63,64 +63,30 @@
     margin-top: 0;
 }
 
-.wpc-container--white,
-.wpc-container--canvas,
-.wpc-container--tint,
-.wpc-container--inverse,
-.wpc-container--blush {
-    padding-block: var(--wpc--spacing-2x-large);
-}
-
-// Each colour sets the rule colour that `border` draws in
-.wpc-container--white {
-    @include tones.light;
-    --wpc-container-border: var(--wpc--color-stone);
-    background-color: var(--wpc--color-white);
-}
-
-.wpc-container--canvas {
-    @include tones.light;
-    --wpc-container-border: var(--wpc--color-stone);
-    background-color: var(--wpc--color-canvas);
-}
-
-.wpc-container--tint {
-    @include tones.light;
-    --wpc--color-border: var(--wpc--color-sage-dark);
-    --wpc-container-border: var(--wpc--color-sage-dark);
-    background-color: var(--wpc--color-sage);
-}
-
-.wpc-container--blush {
-    @include tones.light;
-    --wpc-container-border: var(--wpc--color-stone);
-    background-color: var(--wpc--color-canvas);
-    background-image: var(--wpc--gradient-blush);
-}
-
-// Pine rather than the inverse border role (forest-light), which barely shows against forest
-.wpc-container--inverse {
-    @include tones.inverse;
-    --wpc-container-border: var(--wpc--color-pine);
-    background-color: var(--wpc--color-forest);
+// Each colour is a surface from the shared set: its tone, fill and the rule colour `border` draws in
+@each $name in surfaces.$surface-names {
+    .wpc-container--#{$name} {
+        @include surfaces.surface($name);
+        padding-block: var(--wpc--spacing-2x-large);
+    }
 }
 
 .wpc-container--border-top {
-    border-top: 1px solid var(--wpc-container-border);
+    border-top: 1px solid var(--wpc-surface-border);
 }
 
 .wpc-container--border-bottom {
-    border-bottom: 1px solid var(--wpc-container-border);
+    border-bottom: 1px solid var(--wpc-surface-border);
 }
 
 .wpc-container--border-both {
-    border-block: 1px solid var(--wpc-container-border);
+    border-block: 1px solid var(--wpc-surface-border);
 }
 
 // Side borders on a full-width band would sit against the viewport edges, so `all` keeps only
 // top and bottom there
 .wpc-container--border-all {
-    border: 1px solid var(--wpc-container-border);
+    border: 1px solid var(--wpc-surface-border);
 
     &.alignfull {
         border-inline: none;

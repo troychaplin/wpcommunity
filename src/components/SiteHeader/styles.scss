@@ -1,10 +1,11 @@
 @use '../../styles/wpc-variables' as *;
+@use '../../styles/mixins/surfaces';
 
 .wpc-site-header {
     padding-block: var(--wpc--spacing-x-small);
     padding-inline: var(--wpc--root-padding-x);
-    background-color: var(--wpc--color-canvas);
-    border-bottom: 1px solid var(--wpc--color-stone);
+    @include surfaces.surface(stone);
+    border-bottom: 1px solid var(--wpc-surface-border);
 }
 
 .wpc-site-header__branding p {
@@ -16,19 +17,19 @@
     line-height: var(--wpc--line-height-tight);
 
     span {
-        color: var(--wpc--color-crimson);
+        color: var(--wpc--color-crimson-600);
     }
 
     a {
-        color: var(--wpc--color-forest);
+        color: var(--wpc--color-forest-950);
         text-decoration: none;
 
         &:hover,
         &:focus-visible {
-            color: var(--wpc--color-crimson);
+            color: var(--wpc--color-crimson-600);
 
             span.wpc-site-header__title-accent {
-                color: var(--wpc--color-forest);
+                color: var(--wpc--color-forest-950);
             }
         }
     }

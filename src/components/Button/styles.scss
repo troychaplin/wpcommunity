@@ -1,5 +1,6 @@
 @use 'sass:map';
 @use '../../styles/wpc-variables' as vars;
+@use '../../styles/mixins/surfaces';
 
 .wpc-button,
 a.wpc-button {
@@ -38,28 +39,32 @@ a.wpc-button {
     border-color: transparent;
 }
 
-// The variants read palette tokens rather than role tokens, so a button looks the same whichever
-// section tone it sits in.
-.wpc-button--primary {
-    color: var(--wpc--color-white);
-    background-color: var(--wpc--color-crimson);
-    border-color: var(--wpc--color-crimson);
+// Colours come from the shared surface set, so a crimson Button matches a crimson Container. They
+// read palette steps, not roles, so a button looks the same whichever section it sits in. Solid
+// surfaces draw the border in the fill and darken the fill on hover; light ones draw the paired
+// border and darken it on hover.
+@each $name in (crimson, white, forest) {
+    .wpc-button--#{$name} {
+        @include surfaces.surface-vars($name);
+        color: var(--wpc-surface-text);
+        background-color: var(--wpc-surface-fill);
 
-    &:hover {
-        color: var(--wpc--color-white);
-        background-color: var(--wpc--color-crimson-dark);
-        border-color: var(--wpc--color-crimson-dark);
-    }
-}
+        @if surfaces.is-solid($name) {
+            border-color: var(--wpc-surface-fill);
 
-.wpc-button--secondary {
-    color: var(--wpc--color-forest);
-    background-color: var(--wpc--color-white);
-    border-color: var(--wpc--color-stone);
+            &:hover {
+                color: var(--wpc-surface-text);
+                background-color: var(--wpc-surface-hover-fill);
+                border-color: var(--wpc-surface-hover-fill);
+            }
+        } @else {
+            border-color: var(--wpc-surface-border);
 
-    &:hover {
-        color: var(--wpc--color-forest);
-        border-color: var(--wpc--color-slate);
+            &:hover {
+                color: var(--wpc-surface-text);
+                border-color: var(--wpc-surface-hover-border);
+            }
+        }
     }
 }
 
@@ -76,10 +81,12 @@ a.wpc-button {
     }
 }
 
+// The sage surface's pairing, with muted text
 .wpc-button--disabled {
-    color: var(--wpc--color-slate);
-    background-color: var(--wpc--color-sage);
-    border-color: var(--wpc--color-sage-dark);
+    @include surfaces.surface-vars(sage);
+    color: var(--wpc--color-sage-600);
+    background-color: var(--wpc-surface-fill);
+    border-color: var(--wpc-surface-border);
     cursor: default;
 }
 

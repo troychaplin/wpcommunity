@@ -52,7 +52,7 @@ Other `<button>` props pass through (`onClick`, `disabled`…). `type` is always
 |---|---|
 | `--wpc--font-family-sans`, `--wpc--font-size-medium`, `--wpc--font-weight-normal`, `--wpc--line-height-flat` | Typography |
 | `--wpc--color-text-muted`, `--wpc--color-text`, `--wpc--color-border` (roles) | Inactive text, hover text, border |
-| `--wpc--color-forest-light`, `--wpc--color-white` | Pressed background and text |
+| `--wpc--color-forest-900`, `--wpc--color-white` | Pressed background and text |
 | `--wpc--spacing-x-small`, `--wpc--spacing-small`, `--wpc--radius-full` | Padding and shape |
 | `--wpc--transition-fast` | State transitions |
 

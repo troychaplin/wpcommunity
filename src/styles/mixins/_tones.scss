@@ -4,13 +4,14 @@
 // inverse section switches back to dark text.
 
 @mixin light {
-    --wpc--color-text: var(--wpc--color-ink);
-    --wpc--color-heading: var(--wpc--color-forest);
-    --wpc--color-text-muted: var(--wpc--color-slate);
-    --wpc--color-border: var(--wpc--color-stone);
-    --wpc--color-accent: var(--wpc--color-crimson);
+    --wpc--color-text: var(--wpc--color-sage-900);
+    --wpc--color-heading: var(--wpc--color-forest-950);
+    --wpc--color-text-muted: var(--wpc--color-sage-600);
+    --wpc--color-border: var(--wpc--color-stone-200);
+    --wpc--color-border-hover: var(--wpc--color-sage-600);
+    --wpc--color-accent: var(--wpc--color-crimson-600);
     --wpc--color-field: var(--wpc--color-white);
-    // Resolves against this element's border role, so a tint surface's sage-dark border applies
+    // Resolves against this element's border role, so a sage surface's sage-200 border applies
     --wpc--color-field-border: var(--wpc--color-border);
     color: var(--wpc--color-text);
     color-scheme: light;
@@ -22,14 +23,16 @@
 }
 
 @mixin inverse {
-    --wpc--color-text: var(--wpc--color-mist);
+    --wpc--color-text: var(--wpc--color-forest-100);
     --wpc--color-heading: var(--wpc--color-white);
-    // Lighter than the design's lichen, which is only ~3:1 on forest; this is ~6:1
-    --wpc--color-text-muted: var(--wpc--color-lichen-light);
-    --wpc--color-border: var(--wpc--color-forest-light);
+    // forest-400 rather than the design's forest-600 (lichen), which is only ~3:1 on forest-950;
+    // this is ~6:1
+    --wpc--color-text-muted: var(--wpc--color-forest-400);
+    --wpc--color-border: var(--wpc--color-forest-900);
+    --wpc--color-border-hover: var(--wpc--color-forest-400);
     --wpc--color-accent: var(--wpc--color-accent-inverse);
-    --wpc--color-field: var(--wpc--color-forest-light);
-    --wpc--color-field-border: var(--wpc--color-pine);
+    --wpc--color-field: var(--wpc--color-forest-900);
+    --wpc--color-field-border: var(--wpc--color-sage-800);
     color: var(--wpc--color-text);
     // Native control parts (select menus, search clear buttons) render dark to match
     color-scheme: dark;
@@ -41,5 +44,29 @@
 
     :where(&) :focus-visible {
         outline-color: var(--wpc--color-accent-inverse);
+    }
+}
+
+// Solid crimson. The inverse roles fail here (forest-400 muted text is 2.66:1, crimson-300 links
+// 3.40:1), so text, headings, links and focus rings are white (6.84:1) and muted text crimson-100
+// (5.85:1).
+@mixin crimson {
+    --wpc--color-text: var(--wpc--color-white);
+    --wpc--color-heading: var(--wpc--color-white);
+    --wpc--color-text-muted: var(--wpc--color-crimson-100);
+    --wpc--color-border: var(--wpc--color-crimson-700);
+    --wpc--color-border-hover: var(--wpc--color-crimson-300);
+    --wpc--color-accent: var(--wpc--color-white);
+    --wpc--color-field: var(--wpc--color-crimson-700);
+    --wpc--color-field-border: var(--wpc--color-crimson-300);
+    color: var(--wpc--color-text);
+    color-scheme: dark;
+
+    :where(&) a {
+        color: var(--wpc--color-white);
+    }
+
+    :where(&) :focus-visible {
+        outline-color: var(--wpc--color-white);
     }
 }

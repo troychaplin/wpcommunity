@@ -17,7 +17,7 @@ export const Default: Story = {};
 export const OnTint: Story = {
     decorators: [
         (Story) => (
-            <Card backgroundColor="tint" border={false}>
+            <Card backgroundColor="sage" border={false}>
                 <Story />
             </Card>
         ),

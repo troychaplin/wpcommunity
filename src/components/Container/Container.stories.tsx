@@ -11,13 +11,14 @@ import { SectionHeader } from '../SectionHeader';
 import { TextLink } from '../TextLink';
 import { Container } from './Container';
 
-const tones = ['canvas', 'tint', 'blush', 'inverse', 'white'] as const;
+// The shared surface set (src/styles/mixins/_surfaces.scss)
+const tones = ['white', 'stone', 'sage', 'blush', 'crimson', 'forest'] as const;
 
 const meta = {
     title: 'Components/Layout/Container',
     component: Container,
     parameters: { layout: 'fullscreen' },
-    args: { as: 'section', maxWidth: 'alignfull', contentWidth: 'alignwide', color: 'canvas' },
+    args: { as: 'section', maxWidth: 'alignfull', contentWidth: 'alignwide', color: 'stone' },
 } satisfies Meta<typeof Container>;
 
 export default meta;
@@ -47,19 +48,19 @@ export const Tone: Story = {
                 </TextLink>
             </FlexGroup>
             <ButtonGroup>
-                <Button text="RSVP on Meetup.com" />
-                {args.color === 'inverse' ? (
+                <Button text="RSVP on Meetup.com" color={args.color === 'crimson' ? 'white' : 'crimson'} />
+                {args.color === 'forest' || args.color === 'crimson' ? (
                     <Button text="Propose a Talk" color="inverse" />
                 ) : (
-                    <Button text="Find on Slack" color="secondary" />
+                    <Button text="Find on Slack" color="white" />
                 )}
             </ButtonGroup>
             <GridGroup columns={2}>
                 <Card>
                     <p>A white card keeps dark text in any tone.</p>
                 </Card>
-                <Card backgroundColor="inverse">
-                    <p>An inverse card switches to light text.</p>
+                <Card backgroundColor="forest">
+                    <p>A forest card switches to light text.</p>
                 </Card>
             </GridGroup>
         </Container>
@@ -92,10 +93,10 @@ export const BorderedBands: Story = {
             <Container {...args} color="white" border="top">
                 <SectionHeader title="White, border top" meta="shares the rule above" />
             </Container>
-            <Container {...args} color="inverse" border="top">
-                <SectionHeader title="Inverse, border top" meta="pine" />
+            <Container {...args} color="forest" border="top">
+                <SectionHeader title="Forest, border top" meta="forest-800" />
             </Container>
-            <Container {...args} color="tint" border="all">
+            <Container {...args} color="sage" border="all">
                 <SectionHeader title="Tint, border all" meta="sage-dark; no side borders at full width" />
             </Container>
         </>
@@ -106,7 +107,7 @@ export const BorderedBands: Story = {
 // content is inset to clear the background. Without a colour it adds no padding at all. Main
 // supplies the page edge, as on the site.
 export const BoxedPanel: Story = {
-    args: { maxWidth: 'alignwide', contentWidth: 'alignwide', color: 'tint', border: 'all' },
+    args: { maxWidth: 'alignwide', contentWidth: 'alignwide', color: 'sage', border: 'all' },
     render: (args) => (
         <Main>
             <Container as="section" maxWidth="alignwide" contentWidth="alignwide">

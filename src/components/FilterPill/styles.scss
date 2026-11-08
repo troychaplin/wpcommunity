@@ -19,7 +19,7 @@
 
     &:hover {
         color: var(--wpc--color-text);
-        border-color: var(--wpc--color-text-muted);
+        border-color: var(--wpc--color-border-hover);
     }
 
     @media (prefers-reduced-motion: reduce) {
@@ -31,6 +31,6 @@
 .wpc-filter-pill--pressed,
 .wpc-filter-pill--pressed:hover {
     color: var(--wpc--color-white);
-    background-color: var(--wpc--color-forest-light);
-    border-color: var(--wpc--color-forest-light);
+    background-color: var(--wpc--color-forest-900);
+    border-color: var(--wpc--color-forest-900);
 }

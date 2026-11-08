@@ -22,16 +22,19 @@ type Story = StoryObj<typeof meta>;
 
 export const Default: Story = {};
 
+// Every surface in the shared set, each with its paired border
 const surfaces = [
     { backgroundColor: 'white', label: 'White, with shadow', shadow: true },
-    { backgroundColor: 'canvas', label: 'Canvas', shadow: false },
-    { backgroundColor: 'tint', label: 'Tint', shadow: false },
-    { backgroundColor: 'inverse', label: 'Inverse', shadow: false },
+    { backgroundColor: 'stone', label: 'Stone', shadow: false },
+    { backgroundColor: 'sage', label: 'Sage', shadow: false },
+    { backgroundColor: 'blush', label: 'Blush', shadow: false },
+    { backgroundColor: 'crimson', label: 'Crimson', shadow: false },
+    { backgroundColor: 'forest', label: 'Forest', shadow: false },
 ] as const;
 
 export const Surfaces: Story = {
     render: (args) => (
-        <GridGroup as="ul" columns={4}>
+        <GridGroup as="ul" columns={3}>
             {surfaces.map(({ backgroundColor, label, shadow }) => (
                 <Card key={label} {...args} as="li" backgroundColor={backgroundColor} shadow={shadow}>
                     <h3>{label}</h3>
@@ -60,5 +63,5 @@ export const Linked: Story = {
 
 // Like the stats panel on the group page
 export const BorderlessTint: Story = {
-    args: { backgroundColor: 'tint', border: false, borderRadius: 'md' },
+    args: { backgroundColor: 'sage', border: false, borderRadius: 'md' },
 };

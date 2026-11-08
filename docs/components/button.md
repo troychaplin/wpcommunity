@@ -32,10 +32,13 @@ import { Button } from '@/components/Button';
 // Call to action link
 <Button text="Find Local Meetups" href="/meetups" />
 
-// Secondary, on a light surface
-<Button text="Join Canadian Slack" color="secondary" href="/slack" />
+// White, the quieter choice on a light surface
+<Button text="Join Canadian Slack" color="white" href="/slack" />
 
-// Outline, on an inverse (forest) surface
+// Solid forest
+<Button text="Contact Organizer" color="forest" href="/contact" />
+
+// Outline, on a dark (forest or crimson) surface
 <Button text="Propose a Talk" color="inverse" href="/talks" />
 
 // Hero: large, with a leading icon
@@ -47,7 +50,7 @@ import { Button } from '@/components/Button';
 | Prop | Type | Default | Description |
 |---|---|---|---|
 | `text` | `string` | — | Button label and accessible name (required) |
-| `color` | `'primary' \| 'secondary' \| 'inverse'` | `'primary'` | Colour variant |
+| `color` | `'crimson' \| 'white' \| 'forest' \| 'inverse'` | `'crimson'` | A surface from the shared set (the names `Container` and `Card` use), or `inverse`, the outline for dark sections |
 | `href` | `string` | — | Renders a `Link` instead of a `<button>` |
 | `type` | `'button' \| 'submit' \| 'reset'` | `'button'` | Button type (button form only) |
 | `icon` | `IconName` | — | Leading [`Icon`](./icon.md) |
@@ -77,10 +80,10 @@ The variants read palette tokens (crimson, forest, white…) rather than role to
 
 | Token | Used for |
 |---|---|
-| `--wpc--color-crimson`, `--wpc--color-crimson-dark` | Primary background and hover |
-| `--wpc--color-forest`, `--wpc--color-white`, `--wpc--color-stone`, `--wpc--color-slate` | Secondary text, background, border and hover border |
+| `--wpc-surface-fill`, `--wpc-surface-text`, `--wpc-surface-hover-fill` | Crimson and forest: fill and border, label, and the darker fill on hover (`crimson-700`, `forest-900`) |
+| `--wpc-surface-fill`, `--wpc-surface-text`, `--wpc-surface-border`, `--wpc-surface-hover-border` | White: fill, `forest-950` label, `stone-200` border, `sage-600` border on hover |
 | `--wpc--color-white` (mixed with transparent) | Inverse text, border and hover background |
-| `--wpc--color-sage`, `--wpc--color-sage-dark`, `--wpc--color-slate` | Disabled background, border and text |
+| The sage surface, `--wpc--color-sage-600` | Disabled background and border, and text |
 | `--wpc--font-family-sans`, `--wpc--font-size-medium`, `--wpc--font-weight-medium`, `--wpc--line-height-relaxed` | Typography (about 44px tall) |
 | `--wpc--font-size-small` | Small variant |
 | `--wpc--font-size-large`, `--wpc--line-height-tight`, `--wpc--spacing-medium` | Large variant |

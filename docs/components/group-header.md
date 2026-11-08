@@ -45,7 +45,7 @@ import { GroupHeader } from '@/components/GroupHeader';
 | `channel` | `{ label: string; href: string }` | — | Mono [`TextLink`](./text-link.md) |
 | `title` | `string` | — | The page h1 |
 | `description` | `ReactNode` | — | Paragraph under the title |
-| `stats` | `{ value: string; label: string }[]` | — | [`StatGroup`](./stat-group.md) in a tint Card |
+| `stats` | `{ value: string; label: string }[]` | — | [`StatGroup`](./stat-group.md) in a sage Card |
 | `className` | `string` | — | Extra classes |
 
 ## CSS classes

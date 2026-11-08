@@ -39,17 +39,18 @@ docs/components/component-name.md
 - Modifier classes for a token scale are generated from the `$wpc-spacing` and `$wpc-radius` maps, so new token steps get classes with no component edit.
 - Global styles live in `src/styles/main.scss`, imported once by the root route (`src/app/root.tsx`): modern-normalize, the generated tokens, `base/*` (focus, selection, alignment widths, `.sr-only`) and the generated base, layout and typography CSS.
 
-### Tones
+### Colour families and surfaces
 
-- Surfaces set a tone, and the tone re-declares the role tokens (`--wpc--color-text`, `-heading`, `-text-muted`, `-border`, `-accent`) through the mixins in `src/styles/mixins/_tones.scss`.
-- Components read roles, not palette colours, for anything that should adapt to light or dark sections. Buttons are the exception: they read palette tokens so they look the same everywhere.
-- `Container` and `Card` take the same `backgroundColor` / `color` values: `white`, `canvas`, `tint`, `inverse`, `blush`.
+- **Palette:** four families on one lightness scale, named `{family}-{step}`: `crimson`, `forest` (vivid greens), `sage` (muted grey-greens) and `stone` (warm neutrals), plus `white`. A step means the same OKLCH lightness in every family, so `sage-200` and `stone-200` are both light border colours and `forest-900` and `sage-900` are a matched pair. See **Overview / Stylebook / Colors**.
+- **Roles** (`--wpc--color-text`, `-heading`, `-text-muted`, `-border`, `-border-hover`, `-accent`…) say what a colour is for and point at palette steps. The tone mixins in `src/styles/mixins/_tones.scss` re-declare them: `light`, `inverse` (on forest) and `crimson`.
+- **Surfaces** are the shared colour set: `white`, `stone`, `sage`, `blush`, `crimson`, `forest`. `Container`'s `color`, `Card`'s `backgroundColor` and `Button`'s `color` take these names, and each means the same fill, paired border, hover and tone everywhere. They're defined once in `src/styles/mixins/_surfaces.scss`: `@include surface(name)` applies one, `surface-vars(name)` only sets `--wpc-surface-fill`, `-border`, `-hover-border`, `-hover-fill` and `-text`. See **Overview / Stylebook / Surfaces**.
+- Components read roles or surfaces, not palette steps, for anything that should follow a section. Buttons read their surface's variables, so they look the same in any section.
 
 ### Forms
 
 - Form controls are wrapped by their `<label>`, which associates the two without ids. `hideLabel` keeps the label for screen readers.
 - TextField, TextArea and Select take an `error` message: it renders under the control in the accent role, sets `aria-invalid` and is linked with `aria-describedby`.
-- Controls share the `control` mixin in `src/styles/mixins/_field.scss` and read the `field` and `field-border` roles, which the tone mixins re-declare (white / stone or sage-dark on light, forest-light / pine on inverse). Placeholders use `text-muted`.
+- Controls share the `control` mixin in `src/styles/mixins/_field.scss` and read the `field` and `field-border` roles, which the tone mixins re-declare (white with a stone-200 or sage-200 border on light, forest-900 with a sage-800 border on forest). Placeholders use `text-muted`.
 
 ### Props
 
@@ -89,12 +90,12 @@ The smallest pieces, used inside everything else.
 | Component | Used in | Variants / notes | Depends on | Status |
 |---|---|---|---|---|
 | [Avatar](./avatar.md) | Contact, volunteers, Slack mock | photo (ringed circle) or initials; small / medium / large; circle / square | — | complete |
-| [Button](./button.md) | Hero, Slack section, contact card, CTA band, group form | primary (crimson), secondary (white + border), inverse (outline on forest); leading icon; small / large; `href` renders a link | Icon | complete |
+| [Button](./button.md) | Hero, Slack section, contact card, CTA band, group form | crimson (default), white (white + border), forest (solid), inverse (outline on dark bands); leading icon; small / large; `href` renders a link | Icon | complete |
 | [ButtonGroup](./button-group.md) | Hero, contact card, CTA band | wrapping row of buttons; align start / center / end | Button | complete |
 | [Eyebrow](./eyebrow.md) | Card regions, section eyebrows, stat / resource / fieldset / FAQ-group labels, dates | mono label; tones muted / accent (both follow the section tone) | — | complete |
 | [Heading](./heading.md) | Hero, page and card titles, stat values | HTML level (`as`) separate from visual size (display … large); `accent` word (the "canopy" span) | — | complete |
 | [Icon](./icon.md) | Feature list, hero buttons, FAQ `+`, arrows, search | Lucide icons behind a registry of the ones the designs use; `em`-sized, decorative unless labelled | — | complete |
-| [Pill](./pill.md) | Group header, update tags | tag (crimson tint), region (sage + dot), status (bordered) | — | complete |
+| [Pill](./pill.md) | Group header, update tags | tag (crimson-100), region (sage surface + dot), status (sage surface, bordered) | — | complete |
 | [TextLink](./text-link.md) | Group cards, resources, updates, "View all groups", channel links | crimson semibold; optional trailing arrow; mono variant | Icon | complete |
 
 ### Headers
@@ -104,7 +105,7 @@ Page and section headings.
 | Component | Used in | Variants / notes | Depends on | Status |
 |---|---|---|---|---|
 | [Hero](./hero.md) | Home | full-bleed; display h1 with accent, lead, actions, aside; blush gradient, optional photo under a wash | Heading | complete |
-| [GroupHeader](./group-header.md) | Group page | pills row + channel link, 48px h1, description, stats in a tint card | Card, FlexGroup, Pill, TextLink, Heading, StatGroup | complete |
+| [GroupHeader](./group-header.md) | Group page | pills row + channel link, 48px h1, description, stats in a sage card | Card, FlexGroup, Pill, TextLink, Heading, StatGroup | complete |
 | [SectionHeader](./section-header.md) | Meetup groups, resources, updates, FAQ, "New here?", Slack, CTA band | eyebrow, serif title, mono meta, description; align start / center; optional divider | Eyebrow | complete |
 
 ### Navigation
@@ -130,7 +131,7 @@ Page and section headings.
 
 | Component | Used in | Variants / notes | Depends on | Status |
 |---|---|---|---|---|
-| [Card](./card.md) | Group header, contact, team panel, resources, Slack mock | surfaces white / canvas / tint / inverse / blush; border, shadow, radius, padding; full-card link | — | complete |
+| [Card](./card.md) | Group header, contact, team panel, resources, Slack mock | surfaces white / stone / sage / blush / crimson / forest, with their paired border and hover; shadow, radius, padding; full-card link | — | complete |
 | [GroupCard](./group-card.md) | Homepage group grid | unboxed; region eyebrow, title, description, meta (members · cadence), link | Eyebrow, Heading, TextLink | complete |
 | [PersonCard](./person-card.md) | Primary contact, volunteers | featured (label, lg avatar, role, handle, bio, actions) / compact | Avatar, Card, Eyebrow, Heading | complete |
 | [ResourceCard](./resource-card.md) | Local resources | eyebrow, title, text, arrow link pinned to the bottom | Card, Eyebrow, Heading, TextLink | complete |
@@ -141,7 +142,7 @@ Page and section headings.
 |---|---|---|---|---|
 | [Fieldset](./fieldset.md) | "Start a group" form | mono legend over a rule | — | complete |
 | [FilterBar](./filter-bar.md) | Meetup groups | controlled client component; label + FilterPill group | Eyebrow, FilterPill | complete |
-| [FilterPill](./filter-pill.md) | Meetup filter bar | stateless toggle (`aria-pressed`): forest-light fill when pressed | — | complete |
+| [FilterPill](./filter-pill.md) | Meetup filter bar | stateless toggle (`aria-pressed`): forest-900 fill when pressed | — | complete |
 | [SearchField](./search-field.md) | Meetup Index sidebar | TextField preset: search icon, hidden label, taller | TextField | complete |
 | [Select](./select.md) | "Start a group" form (province) | native select with a chevron icon | Icon | complete |
 | [TextArea](./text-area.md) | "Start a group" form | wrapping label; vertical resize | — | complete |
@@ -154,7 +155,7 @@ Page and section headings.
 | [Article](./article.md) | Content pages | JSX children or an HTML string (`content`) | — | complete |
 | [Aside](./aside.md) | Content pages | optional sticky content | — | complete |
 | [Column](./column.md) | Slack section, "Start a group", contact + team | halves, thirds, quarters, one-third / two-thirds; `Column.Content isFirst` reordering | — | complete |
-| [Container](./container.md) | Every page band | tone: canvas / tint / inverse / blush / white (re-declares role tokens); width and content width from the WP alignment classes; a plain width wrapper without a tone; optional `border` rules in the tone's colour | — | complete |
+| [Container](./container.md) | Every page band | surfaces white / stone / sage / blush / crimson / forest (re-declare role tokens); width and content width from the WP alignment classes; a plain width wrapper without a tone; optional `border` rules in the tone's colour | — | complete |
 | [FlexGroup](./flex-group.md) | Header row, "Showing 6 of 23" row, card meta rows | direction, wrap, justify, align, token gap / padding / margin | — | complete |
 | [GridGroup](./grid-group.md) | Group cards (3), features (4), resources (4), team (3), form rows (2) | 1–4 responsive columns, token gaps; `dividers` (columns / all) draws lines between cells | — | complete |
 

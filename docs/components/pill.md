@@ -55,9 +55,9 @@ Other HTML attributes pass through.
 | Token | Used for |
 |---|---|
 | `--wpc--font-family-mono`, `--wpc--font-size-x-small`, `--wpc--font-weight-normal`, `--wpc--line-height-tight`, `--wpc--line-height-snug` | Typography |
-| `--wpc--color-crimson-tint`, `--wpc--color-accent` (role), `--wpc--radius-sm` | Tag |
-| `--wpc--color-surface-tint`, `--wpc--color-text-muted` (role), `--wpc--color-moss`, `--wpc--radius-full` | Region and its dot |
-| `--wpc--color-surface-tint`, `--wpc--color-sage-dark`, `--wpc--color-heading` (role) | Status |
+| `--wpc--color-crimson-100`, `--wpc--color-accent` (role), `--wpc--radius-sm` | Tag |
+| The sage surface (`--wpc-surface-fill`), `--wpc--color-text-muted` (role), `--wpc--color-forest-800`, `--wpc--radius-full` | Region and its dot |
+| The sage surface (`--wpc-surface-fill`, `--wpc-surface-border`), `--wpc--color-heading` (role) | Status |
 | `--wpc--spacing-2x-small`, `--wpc--spacing-x-small`, `--wpc--spacing-small` | Padding and dot gap |
 
 The region dot is `0.4em` and the status pill takes 1px off its block padding to make room for its border; both are relative or structural values.
@@ -66,4 +66,4 @@ The region dot is `0.4em` and the status pill takes 1px off its block padding to
 
 - A plain `<span>` with no role: screen readers read the text inline. The dot is a pseudo-element and isn't announced.
 - The colours are decoration; the label text carries the meaning.
-- Tag text is crimson on the crimson tint, about 5.8:1. Pills are designed for light surfaces; inside an inverse section the tag's accent text becomes the light accent and loses contrast on the tint.
+- Tag text is `crimson-600` on `crimson-100`, about 5.8:1. Pills are designed for light surfaces; inside an inverse section the tag's accent text becomes the light accent and loses contrast on the tint.

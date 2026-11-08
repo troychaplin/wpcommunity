@@ -73,4 +73,4 @@ The underline offset is `0.2em`, a relative value.
 - Underlined on hover and keyboard focus, and the global focus ring applies, so focus doesn't rely on colour.
 - The arrow is decorative (`aria-hidden`); the text must say where the link goes. Several "View group details" links on one page need distinct names: add an `aria-label` that starts with the visible text, or `aria-describedby` pointing at the card title.
 - The arrow's hover nudge is turned off under `prefers-reduced-motion`.
-- Crimson on canvas is about 6.5:1.
+- `crimson-600` on `stone-50` is about 6.5:1.

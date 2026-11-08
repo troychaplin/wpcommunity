@@ -1,4 +1,8 @@
+@use '../../styles/mixins/surfaces';
+
+// A forest chip: the forest surface's fill and text
 .wpc-skip-link {
+    @include surfaces.surface-vars(forest);
     position: fixed;
     inset-block-start: 0;
     inset-inline-start: var(--wpc--spacing-x-small);
@@ -8,8 +12,8 @@
     font-size: var(--wpc--font-size-small);
     font-weight: var(--wpc--font-weight-semibold);
     line-height: var(--wpc--line-height-tight);
-    color: var(--wpc--color-white);
-    background-color: var(--wpc--color-forest);
+    color: var(--wpc-surface-text);
+    background-color: var(--wpc-surface-fill);
     border-radius: var(--wpc--radius-md);
     text-decoration: none;
     // Past -100%, so a fractional height can't leave a sub-pixel sliver showing at the top edge

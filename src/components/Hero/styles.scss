@@ -1,5 +1,5 @@
 @use '../../styles/wpc-variables' as *;
-@use '../../styles/mixins/tones';
+@use '../../styles/mixins/surfaces';
 
 .wpc-hero {
     display: grid;
@@ -26,7 +26,7 @@
 // gradient so the heading keeps its contrast. `isolation` makes the column a stacking context,
 // so the photo and wash (negative z-index) paint above its background and below the text.
 .wpc-hero__content {
-    @include tones.light;
+    @include surfaces.surface(blush);
     position: relative;
     isolation: isolate;
     display: flex;
@@ -34,13 +34,11 @@
     // Stacked (below tablet) the text starts on the page edge, like the header and every section;
     // in the split layout it takes a wider inset beside the aside
     padding: var(--wpc--spacing-2x-large) var(--wpc--root-padding-x);
-    background-color: var(--wpc--color-canvas);
+    overflow: hidden;
 
     @include above-tablet {
         padding-inline: var(--wpc--spacing-large);
     }
-    background-image: var(--wpc--gradient-blush);
-    overflow: hidden;
 }
 
 .wpc-hero__image {
@@ -83,14 +81,14 @@
     margin-top: var(--wpc--spacing-small);
 }
 
+// The sage surface: its fill, its rule colour and sage-200 borders for everything inside
 .wpc-hero__aside {
-    @include tones.light;
+    @include surfaces.surface(sage);
     padding: var(--wpc--spacing-medium);
-    background-color: var(--wpc--color-sage);
-    border-top: 1px solid var(--wpc--color-sage-dark);
+    border-top: 1px solid var(--wpc-surface-border);
 
     @include above-tablet {
         border-top: 0;
-        border-inline-end: 1px solid var(--wpc--color-sage-dark);
+        border-inline-end: 1px solid var(--wpc-surface-border);
     }
 }

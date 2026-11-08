@@ -1,3 +1,5 @@
+@use '../../styles/mixins/surfaces';
+
 .wpc-pill {
     display: inline-flex;
     align-items: center;
@@ -18,21 +20,22 @@ li.wpc-pill {
     padding: var(--wpc--spacing-2x-small) var(--wpc--spacing-x-small);
     line-height: var(--wpc--line-height-snug);
     color: var(--wpc--color-accent);
-    background-color: var(--wpc--color-crimson-tint);
+    background-color: var(--wpc--color-crimson-100);
     border-radius: var(--wpc--radius-sm);
 }
 
 .wpc-pill--region {
     padding: var(--wpc--spacing-x-small) var(--wpc--spacing-small);
+    @include surfaces.surface-vars(sage);
     color: var(--wpc--color-text-muted);
-    background-color: var(--wpc--color-surface-tint);
+    background-color: var(--wpc-surface-fill);
     border-radius: var(--wpc--radius-full);
 
     &::before {
         content: '';
         width: 0.4em;
         height: 0.4em;
-        background-color: var(--wpc--color-moss);
+        background-color: var(--wpc--color-forest-800);
         border-radius: var(--wpc--radius-full);
     }
 }
@@ -40,8 +43,9 @@ li.wpc-pill {
 // The 1px border comes off the block padding, so status and region pills share a height
 .wpc-pill--status {
     padding: calc(var(--wpc--spacing-x-small) - 1px) var(--wpc--spacing-small);
+    @include surfaces.surface-vars(sage);
     color: var(--wpc--color-heading);
-    background-color: var(--wpc--color-surface-tint);
-    border: 1px solid var(--wpc--color-sage-dark);
+    background-color: var(--wpc-surface-fill);
+    border: 1px solid var(--wpc-surface-border);
     border-radius: var(--wpc--radius-full);
 }

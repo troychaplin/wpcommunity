@@ -28,7 +28,7 @@ export const CTABand = ({
     return (
         <Card
             as="section"
-            backgroundColor="inverse"
+            backgroundColor="forest"
             border={false}
             borderRadius="md"
             paddingInline="medium"

@@ -31,7 +31,7 @@ import { Card } from '@/components/Card';
 </Card>
 
 // Stats panel
-<Card backgroundColor="tint" border={false} borderRadius="md">...</Card>
+<Card backgroundColor="sage" border={false} borderRadius="md">...</Card>
 
 // Whole card as a link
 <Card href="/groups/ottawa" shadow linkProps={{ 'aria-labelledby': 'ottawa-title' }}>
@@ -45,7 +45,7 @@ import { Card } from '@/components/Card';
 |---|---|---|---|
 | `children` | `ReactNode` | — | Card content |
 | `as` | `'div' \| 'article' \| 'li' \| 'header' \| 'section'` | `'div'` | Root element |
-| `backgroundColor` | `'white' \| 'canvas' \| 'tint' \| 'inverse' \| 'blush'` | `'white'` | Surface; sets the role colours for its content |
+| `backgroundColor` | `'white' \| 'stone' \| 'sage' \| 'blush' \| 'crimson' \| 'forest'` | `'white'` | A surface from the shared set (the names `Container` and `Button` use); sets the role colours for its content |
 | `border` | `boolean` | `true` | 1px border in the surface's border colour |
 | `shadow` | `boolean` | `false` | Subtle shadow |
 | `borderRadius` | `'none' \| 'sm' \| 'md' \| 'lg' \| 'full'` | `'sm'` | Corner radius |
@@ -73,9 +73,10 @@ The radius and padding modifiers are generated from the `$wpc-radius` and `$wpc-
 
 | Token | Used for |
 |---|---|
-| `--wpc--color-white`, `--wpc--color-canvas`, `--wpc--color-sage`, `--wpc--color-forest`, `--wpc--gradient-blush` | Surface backgrounds |
-| `--wpc--color-border` (role) | Border; `--wpc--color-sage-dark` on tint |
-| `--wpc--color-text-muted` (role) | Linked-card hover border |
+| `--wpc-surface-fill` | Background, from the surface (`src/styles/mixins/_surfaces.scss`) |
+| `--wpc-surface-border` | Border: `stone-200` on white, stone and blush, `sage-200` on sage, `crimson-700` on crimson, `forest-800` on forest |
+| `--wpc-surface-hover-border` | Linked-card hover border: `sage-600` on light surfaces, `crimson-300` on crimson, `forest-400` on forest |
+| `--wpc--color-accent` (role) | Focus ring of a linked card, which keeps 3:1 on every surface |
 | `--wpc--shadow-subtle` | Shadow |
 | `--wpc--radius-*`, `--wpc--spacing-*` | Generated radius and padding modifiers |
 | `--wpc--color-primary`, `--wpc--color-accent-inverse` | Link focus outline (light, inverse) |

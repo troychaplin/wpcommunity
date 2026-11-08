@@ -56,7 +56,7 @@ The control look comes from the shared `control` mixin (`src/styles/mixins/_fiel
 
 | Token | Used for |
 |---|---|
-| `--wpc--color-field`, `--wpc--color-field-border` (roles) | Background and border: white with a stone or sage-dark border on light; forest-light with a pine border on inverse |
+| `--wpc--color-field`, `--wpc--color-field-border` (roles) | Background and border: white with a `stone-200` or `sage-200` border on light; `forest-900` with a `sage-800` border on forest; `crimson-700` with a `crimson-300` border on crimson |
 | `--wpc--color-text`, `--wpc--color-text-muted` (roles) | Text and placeholder |
 | `--wpc--font-family-sans`, `--wpc--font-size-medium`, `--wpc--line-height-relaxed` | Input text (about 44px tall) |
 | `--wpc--font-size-small` | Label |

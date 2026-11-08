@@ -24,7 +24,7 @@ export function NotFoundPage({ locale }: { locale: Locale }) {
                     <p>{t.notFound.body}</p>
                     <ButtonGroup>
                         <Button text={t.notFound.home} href={`/${locale}`} />
-                        <Button text={t.notFound.groups} color="secondary" href={`/${locale}/groups`} />
+                        <Button text={t.notFound.groups} color="white" href={`/${locale}/groups`} />
                     </ButtonGroup>
                 </FlexGroup>
             </Container>
