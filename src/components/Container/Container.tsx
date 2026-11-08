@@ -20,6 +20,9 @@ export interface ContainerProps extends React.HTMLAttributes<HTMLElement> {
     borderRadius?: borderRadiusKeys;
     // Rules in the colour's border colour. Needs `color`; a full-width band never gets side borders.
     border?: 'none' | 'top' | 'bottom' | 'both' | 'all';
+    // A rule down the content's start edge, with the content inset beside it (the "New here?" and
+    // FAQ sections). A divided GridGroup inside lines its first column up with the rule.
+    hasRule?: boolean;
 }
 
 export const Container = ({
@@ -31,6 +34,7 @@ export const Container = ({
     className,
     borderRadius = 'md',
     border = 'none',
+    hasRule = false,
     ...rest
 }: ContainerProps) => {
     const ContainerWrapper = as;
@@ -42,6 +46,7 @@ export const Container = ({
         color && `wpc-container--no-gap wpc-container--${color}`,
         color && border !== 'none' && `wpc-container--border-${border}`,
         borderRadius && `wpc-container--radius-${borderRadius}`,
+        hasRule && 'wpc-container--ruled',
         className,
     ]
         .filter(Boolean)

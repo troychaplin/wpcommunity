@@ -49,6 +49,7 @@ import { Container } from '@/components/Container';
 | `color` | `'white' \| 'stone' \| 'sage' \| 'blush' \| 'crimson' \| 'forest'` | — | A [surface](../../src/styles/mixins/_surfaces.scss): fill, paired border and tone; adds section padding |
 | `borderRadius` | `'none' \| 'sm' \| 'md' \| 'lg' \| 'full'` | `'md'` | Corner radius (ignored on `alignfull`) |
 | `border` | `'none' \| 'top' \| 'bottom' \| 'both' \| 'all'` | `'none'` | Rules in the tone's border colour. Needs `color`; `all` keeps only top and bottom on `alignfull` |
+| `hasRule` | `boolean` | `false` | A rule down the content's start edge, with the content inset beside it, as in the "New here?" and FAQ sections. See [Ruled content](#ruled-content) |
 
 ## Surfaces
 
@@ -73,6 +74,7 @@ A surface's tone re-declares the role tokens (`--wpc--color-text`, `-heading`, `
 | `{maxWidth}` (e.g. `alignfull`) | Always |
 | `wpc-container--{color}`, `wpc-container--no-gap` | `color` is set |
 | `wpc-container--border-{border}` | `color` is set and `border` isn't `none` |
+| `wpc-container--ruled` | `hasRule` is set |
 | `wpc-container--radius-{name}` | Always; only takes effect when not `alignfull` |
 
 The inner `<div>` carries `has-global-padding` and the `contentWidth` class, plus `has-root-padding` when `color` is set. Direct children of the inner div are spaced by `--wpc--root-block-gap`.
@@ -100,6 +102,19 @@ Every layer of the page shares one content edge, the root padding: `Main`, the s
 | Boxed (`aligncontent` / `alignwide`) with a `color` | The root padding on small screens, `spacing-large` above the tablet breakpoint | Inset from the panel's edges, which sit on the page edge |
 
 So wide content in a plain section, a full-width toned band and the header all line up, and narrow (`aligncontent`, 768px) content centres on the same axis.
+
+## Ruled content
+
+`hasRule` draws a 1px rule down the content's start edge, in the section's `border` role (`stone-200` on the page, `sage-200` on sage), and insets the content beside it by `spacing-medium`. The rule sits on the page edge and the content moves in, as in the design's "New here?" and "Common questions" sections.
+
+```tsx
+<Container as="section" maxWidth="alignwide" contentWidth="alignwide" hasRule>
+  <SectionHeader title="New here? Start with these." />
+  <GridGroup columns={4} dividers="columns">…</GridGroup>
+</Container>
+```
+
+The inset matches the inline padding a divided [`GridGroup`](./grid-group.md) gives its cells. A divided GridGroup directly inside is pulled back by it, so the rule becomes the grid's first column line and the cells' content lines up with the heading above. When the grid stacks on phones, its rules between cells run from the section rule to the far edge.
 
 ## Accessibility
 

@@ -1,8 +1,10 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
 import { Button } from '../Button';
 import { ButtonGroup } from '../ButtonGroup';
+import { Accordion } from '../Accordion';
 import { Card } from '../Card';
 import { Eyebrow } from '../Eyebrow';
+import { FeatureItem } from '../FeatureItem';
 import { FlexGroup } from '../FlexGroup';
 import { GridGroup } from '../GridGroup';
 import { Heading } from '../Heading';
@@ -118,6 +120,47 @@ export const BoxedPanel: Story = {
                 <p>
                     A paragraph with an <a href="#tones">inline link</a>.
                 </p>
+            </Container>
+        </Main>
+    ),
+};
+
+// `hasRule` rules the content's start edge and insets the content beside it. A divided GridGroup
+// inside lines its first column up with the rule, so the heading and the first feature share an
+// edge. Main supplies the page edge, as on the site.
+export const RuledContent: Story = {
+    render: () => (
+        <Main hasPadding={false}>
+            <Container as="section" maxWidth="alignwide" contentWidth="alignwide" hasRule>
+                <SectionHeader
+                    title="New here? Start with these."
+                    description="Whether you're new to WordPress or a seasoned developer, there's a place for you."
+                />
+                <GridGroup columns={4} dividers="columns">
+                    <FeatureItem icon="map-pin" title="Find your meetup" href="#groups" linkText="Browse groups">
+                        Browse 23 active local groups organized by province.
+                    </FeatureItem>
+                    <FeatureItem icon="messages-square" title="Join Slack" href="#slack" linkText="Get an invite">
+                        Connect with 2,400+ Canadian WordPress people.
+                    </FeatureItem>
+                    <FeatureItem icon="circle-plus" title="Organize a group" href="#form" linkText="Submit a group">
+                        Don&apos;t see your city listed? Submit your group.
+                    </FeatureItem>
+                    <FeatureItem icon="star" title="Attend a WordCamp" href="#wordcamp" linkText="Find a WordCamp">
+                        Volunteer-run WordPress conferences across Canada.
+                    </FeatureItem>
+                </GridGroup>
+            </Container>
+            <Container as="section" color="sage" maxWidth="alignfull" contentWidth="alignwide" hasRule>
+                <SectionHeader title="Common questions" description="On sage, the rule takes the sage border role." />
+                <Accordion label="Getting started">
+                    <Accordion.Item question="Do I need to be a developer to attend meetups?" defaultOpen>
+                        <p>Not at all. Meetups welcome designers, writers, site owners and the curious.</p>
+                    </Accordion.Item>
+                    <Accordion.Item question="Are meetups free to attend?">
+                        <p>Almost always.</p>
+                    </Accordion.Item>
+                </Accordion>
             </Container>
         </Main>
     ),

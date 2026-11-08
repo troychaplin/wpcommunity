@@ -1,5 +1,6 @@
 @use 'sass:map';
 @use '../../styles/wpc-variables' as vars;
+@use '../../styles/mixins/surfaces';
 
 // One column on small screens. `columns` takes effect at the viewport breakpoints the rest of
 // the system uses: two columns above the mobile breakpoint, and three or four above the tablet
@@ -75,28 +76,150 @@ $steps: (
     }
 }
 
-// Lines between cells instead of gaps. Each cell draws its own right (and, for `all`, bottom)
-// line as a shadow; the grid clips the shadows that fall past its right and bottom edges, so
-// lines only ever appear between cells, at every column count. `all` closes with a bottom rule.
+// Lines between cells instead of a gap. As in parlour-ui, each line is drawn inside a cell's start
+// edge and only between cells, so an incomplete last row leaves its empty slots unruled and cells
+// may have backgrounds (a forest Card on a forest section). Each cell draws its lines with a
+// transparent ::after overlay whose inline-start and block-start borders are switched on per
+// breakpoint through two custom properties. ::before stays free for the cell (FeatureItem uses it),
+// but a divided grid's direct children shouldn't use ::after.
+.wpc-grid-group--dividers {
+    --wpc-grid-group-divider: var(--wpc--color-border);
+}
+
+// The paired border of a surface from the shared set
+@each $name in (stone, sage, crimson, forest) {
+    .wpc-grid-group--divider-#{$name} {
+        --wpc-grid-group-divider: #{surfaces.colour-var(surfaces.surface-get($name, border))};
+    }
+}
+
 .wpc-grid-group.wpc-grid-group--dividers {
     gap: 0;
-    overflow: hidden;
 
     > * {
-        padding: var(--wpc--spacing-large) var(--wpc--spacing-medium);
+        position: relative;
+        --wpc-grid-line-start: 0;
+        --wpc-grid-line-top: 0;
+    }
+
+    > *::after {
+        content: '';
+        position: absolute;
+        inset: 0;
+        border-style: solid;
+        border-color: var(--wpc-grid-group-divider);
+        border-width: 0;
+        border-inline-start-width: var(--wpc-grid-line-start);
+        border-block-start-width: var(--wpc-grid-line-top);
+        pointer-events: none;
+    }
+
+    // One column (phones, and any `columns={1}` grid): a rule between stacked cells
+    > * + * {
+        --wpc-grid-line-top: 1px;
     }
 }
 
-.wpc-grid-group--dividers-columns > * {
-    box-shadow: 1px 0 0 var(--wpc--color-border);
+// Same specificity as the rule above, so a cell's own padding can't outrank it
+.wpc-grid-group.wpc-grid-group--cell-padding > * {
+    padding: var(--wpc--spacing-large) var(--wpc--spacing-medium);
 }
 
+// `columns`: rules between side-by-side cells only. Once a row holds more than one cell the
+// stacked rules turn off and each cell that isn't first in its row rules its start edge.
+.wpc-grid-group--dividers-columns {
+    &.wpc-grid-group--columns-2,
+    &.wpc-grid-group--columns-4 {
+        @include vars.above-mobile {
+            > * {
+                --wpc-grid-line-top: 0;
+            }
+
+            > :not(:nth-child(2n + 1)) {
+                --wpc-grid-line-start: 1px;
+            }
+        }
+    }
+
+    &.wpc-grid-group--columns-3 {
+        @include vars.above-tablet {
+            > * {
+                --wpc-grid-line-top: 0;
+            }
+
+            > :not(:nth-child(3n + 1)) {
+                --wpc-grid-line-start: 1px;
+            }
+        }
+    }
+
+    // Four across adds the rules before the third and seventh cells to the two-across ones
+    &.wpc-grid-group--columns-4 {
+        @include vars.above-tablet {
+            > :not(:nth-child(4n + 1)) {
+                --wpc-grid-line-start: 1px;
+            }
+        }
+    }
+}
+
+// `all` and `framed`: every row and column. Each cell past the first row rules its top edge, and
+// each cell that isn't first in its row rules its start edge.
+.wpc-grid-group--dividers-all,
+.wpc-grid-group--dividers-framed {
+    &.wpc-grid-group--columns-2,
+    &.wpc-grid-group--columns-4 {
+        @include vars.above-mobile {
+            > * {
+                --wpc-grid-line-top: 0;
+            }
+
+            > :nth-child(n + 3) {
+                --wpc-grid-line-top: 1px;
+            }
+
+            > :not(:nth-child(2n + 1)) {
+                --wpc-grid-line-start: 1px;
+            }
+        }
+    }
+
+    &.wpc-grid-group--columns-3 {
+        @include vars.above-tablet {
+            > * {
+                --wpc-grid-line-top: 0;
+            }
+
+            > :nth-child(n + 4) {
+                --wpc-grid-line-top: 1px;
+            }
+
+            > :not(:nth-child(3n + 1)) {
+                --wpc-grid-line-start: 1px;
+            }
+        }
+    }
+
+    // Four across: the first four cells form the first row, and the start-edge rules gain the
+    // third and seventh cells
+    &.wpc-grid-group--columns-4 {
+        @include vars.above-tablet {
+            > :nth-child(-n + 4) {
+                --wpc-grid-line-top: 0;
+            }
+
+            > :not(:nth-child(4n + 1)) {
+                --wpc-grid-line-start: 1px;
+            }
+        }
+    }
+}
+
+// `all` closes with a bottom rule; `framed` draws the whole frame
 .wpc-grid-group--dividers-all {
-    border-bottom: 1px solid var(--wpc--color-border);
+    border-bottom: 1px solid var(--wpc-grid-group-divider);
+}
 
-    > * {
-        box-shadow:
-            1px 0 0 var(--wpc--color-border),
-            0 1px 0 var(--wpc--color-border);
-    }
+.wpc-grid-group--dividers-framed {
+    border: 1px solid var(--wpc-grid-group-divider);
 }

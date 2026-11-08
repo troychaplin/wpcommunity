@@ -13,7 +13,16 @@ export interface GridGroupProps extends React.HTMLAttributes<HTMLElement> {
     rowGap?: spacingKeys;
     align?: alignKeys;
     maxWidth?: maxWidthKeys;
-    dividers?: 'none' | 'columns' | 'all';
+    // Lines between cells instead of a gap. `columns` rules between side-by-side cells (and between
+    // stacked ones); `all` rules every row and column and closes with a bottom rule; `framed` rules
+    // every row and column inside a frame, like a table.
+    dividers?: 'none' | 'columns' | 'all' | 'framed';
+    // Draws the lines in that surface's paired border (stone-200, sage-200, crimson-700,
+    // forest-800). Unset, they follow the section's border role.
+    dividerColor?: 'stone' | 'sage' | 'crimson' | 'forest';
+    // Pads each divided cell so its content clears the lines. Turn it off to sit a Card flush
+    // against them, with the Card's own padding insetting its content.
+    cellPadding?: boolean;
 }
 
 export const GridGroup = ({
@@ -25,6 +34,8 @@ export const GridGroup = ({
     align,
     maxWidth,
     dividers = 'none',
+    dividerColor,
+    cellPadding = true,
     className,
     ...rest
 }: GridGroupProps) => {
@@ -38,6 +49,8 @@ export const GridGroup = ({
         align && `wpc-grid-group--align-${flexAlignClasses[align]}`,
         maxWidth && maxWidthClasses[maxWidth],
         dividers !== 'none' && `wpc-grid-group--dividers wpc-grid-group--dividers-${dividers}`,
+        dividers !== 'none' && dividerColor && `wpc-grid-group--divider-${dividerColor}`,
+        dividers !== 'none' && cellPadding && 'wpc-grid-group--cell-padding',
         className,
     ]
         .filter(Boolean)

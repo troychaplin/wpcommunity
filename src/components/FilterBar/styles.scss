@@ -7,6 +7,13 @@
     border-bottom: 1px solid var(--wpc--color-border);
 }
 
+// A divided GridGroup straight after the bar butts against its bottom rule, which doubles as the
+// grid's top line, so the grid's column lines run up to it (the group directory). Three classes to
+// outrank the block gap a Container puts between its children.
+.wpc-filter-bar + .wpc-grid-group.wpc-grid-group--dividers {
+    margin-block-start: 0;
+}
+
 .wpc-filter-bar .wpc-filter-bar__label {
     margin-inline-end: var(--wpc--spacing-x-small);
 }

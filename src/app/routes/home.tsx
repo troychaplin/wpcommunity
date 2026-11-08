@@ -97,6 +97,7 @@ export default function Home() {
                     <SectionHeader
                         title={t.home.groups.title}
                         meta={format(t.home.groups.meta, { count: groups.length })}
+                        hasDivider
                     />
                     <DirectoryResults
                         regions={[
@@ -137,7 +138,7 @@ export default function Home() {
                 </Column>
             </Container>
 
-            <Container as="section" id="new-here" maxWidth="alignwide" contentWidth="alignwide">
+            <Container as="section" id="new-here" maxWidth="alignwide" contentWidth="alignwide" hasRule>
                 <SectionHeader title={t.home.newHere.title} description={t.home.newHere.description} />
                 <GridGroup columns={4} dividers="columns">
                     {features.map((feature) => (
@@ -179,7 +180,9 @@ export default function Home() {
                 </Column>
             </Container>
 
-            <Container as="section" id="updates" maxWidth="alignwide" contentWidth="aligncontent">
+            {/* Wide, so the rules between updates span the section as in the design; each update's text
+                keeps its own reading width */}
+            <Container as="section" id="updates" maxWidth="alignwide" contentWidth="alignwide">
                 <SectionHeader title={t.home.updates.title} align="center" />
                 <UpdateList>
                     {updates.map((update) => (
@@ -200,7 +203,9 @@ export default function Home() {
                 </FlexGroup>
             </Container>
 
-            <Container as="section" id="faq" color="sage" maxWidth="alignfull" contentWidth="aligncontent">
+            {/* Wide, so the questions span the section as in the design; the answers keep their own
+                reading width */}
+            <Container as="section" id="faq" color="sage" maxWidth="alignfull" contentWidth="alignwide" hasRule>
                 <SectionHeader title={t.home.faq.title} description={t.home.faq.description} />
                 {faq.map((group, groupIndex) => (
                     <Accordion key={group.label.en} label={group.label[locale]}>

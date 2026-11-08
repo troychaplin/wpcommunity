@@ -55,6 +55,22 @@
     }
 }
 
+// `hasRule`: a rule down the content's start edge in the section's border role, with the content
+// inset beside it by the inline padding a divided GridGroup gives its cells. A divided GridGroup
+// inside is pulled back by that inset, so the rule doubles as its first column line and its cells'
+// content lines up with the content above (the "New here?" heading over its features). These come
+// after the padding resets above and match their specificity, so they win: the second selector
+// mirrors the full-width reset, which a full-width band inside Main hits.
+.wpc-container--ruled > .has-global-padding,
+.has-global-padding > .wpc-container--ruled.alignfull > .has-global-padding {
+    padding-inline-start: var(--wpc--spacing-medium);
+    border-inline-start: 1px solid var(--wpc--color-border);
+}
+
+.wpc-container--ruled > .has-global-padding > .wpc-grid-group--cell-padding {
+    margin-inline-start: calc(-1 * var(--wpc--spacing-medium));
+}
+
 .wpc-main > div > .wpc-container--no-gap + .wpc-container--no-gap {
     margin-top: var(--wpc--spacing-large);
 }
