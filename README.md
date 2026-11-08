@@ -43,7 +43,7 @@ Adding a page means adding it to `src/app/routes.ts` and, so it ships as HTML, t
 
 ## Storybook
 
-Every component in `src/components/` has stories beside it (`ComponentName.stories.tsx`), grouped as in the [component inventory](./docs/components/README.md#inventory). Storybook deploys to GitHub Pages on every push to `main`, through `.github/workflows/deploy-storybook.yml`, at [troychaplin.github.io/wpcommunity.ca](https://troychaplin.github.io/wpcommunity.ca/).
+Every component in `src/components/` has stories beside it (`ComponentName.stories.tsx`), grouped as in the [component inventory](./docs/components/README.md#inventory). The Overview section holds a Stylebook of the design tokens and page templates, starting with the homepage rendered from the site's own route. Storybook deploys to GitHub Pages on every push to `main`, through `.github/workflows/deploy-storybook.yml`, at [troychaplin.github.io/wpcommunity](https://troychaplin.github.io/wpcommunity/).
 
 ## Deploying
 

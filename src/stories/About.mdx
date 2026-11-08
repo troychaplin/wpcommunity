@@ -1,0 +1,33 @@
+import { Meta } from '@storybook/addon-docs/blocks';
+
+<Meta title="Overview/About" />
+
+# wpcommunity.ca components
+
+The UI components behind [wpcommunity.ca](https://wpcommunity.ca), a bilingual directory of WordPress meetups across Canada. Each one has a full spec in [`docs/components/`](https://github.com/troychaplin/wpcommunity/tree/main/docs/components) of the repository.
+
+## Overview
+
+- **Stylebook**: the design tokens from `c2b.config.json`. Colors, typography, spacing, radius and shadows, and how headings, paragraphs and lists flow inside `Main`.
+- **Templates**: whole pages built from the components. **Homepage** renders the site's own homepage, in English or French (switch with the Locale control), and its links, search and form work as they do on the site.
+
+## Components
+
+The groups follow the component inventory:
+
+- **Elements**: the smallest pieces. Avatar, buttons, eyebrows, headings, icons, pills and text links.
+- **Headers**: the homepage hero, the group page header and section headers.
+- **Navigation**: the language toggle and the Meetup Index.
+- **Content**: the FAQ accordion, Slack preview, event band, feature items, figures, stats and update list.
+- **Cards**: the base card and the group, person and resource cards built on it.
+- **Forms**: fields, the fieldset, the search field and the region filters.
+- **Layout**: `Container` with its five tones, columns, flex and grid groups, and `Article` and `Aside`.
+- **Template Parts**: `Body`, `Main`, and the site header and footer every page shares.
+- **Utilities**: `LinkProvider` and the skip link.
+
+## Conventions
+
+- Every visual value comes from a `--wpc--*` design token generated from `c2b.config.json`.
+- Components take their user-facing strings as props with English defaults, so the site can pass French.
+- Components never import a router. Links render a plain `<a>` here; the site swaps in React Router's link through `LinkProvider`.
+- Interactive components are controlled. The stories that need state, such as **Forms / Filter Bar**, own it in a small wrapper.

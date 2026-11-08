@@ -7,7 +7,7 @@ import { meetupRegions } from '../../stories/fixtures';
 import { Hero } from './Hero';
 
 const meta = {
-    title: 'Sections/Hero',
+    title: 'Components/Headers/Hero',
     component: Hero,
     parameters: { layout: 'fullscreen' },
     args: {

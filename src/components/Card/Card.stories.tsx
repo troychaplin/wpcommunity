@@ -3,7 +3,7 @@ import { GridGroup } from '../GridGroup';
 import { Card } from './Card';
 
 const meta = {
-    title: 'Content/Card',
+    title: 'Components/Cards/Card',
     component: Card,
     args: {
         children: (

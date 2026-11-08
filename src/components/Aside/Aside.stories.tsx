@@ -4,7 +4,7 @@ import { Column } from '../Column';
 import { Aside } from './Aside';
 
 const meta = {
-    title: 'Page Structure/Aside',
+    title: 'Components/Layout/Aside',
     component: Aside,
     args: {
         children: (

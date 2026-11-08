@@ -2,7 +2,7 @@ import type { Meta, StoryObj } from '@storybook/react-vite';
 import { SectionHeader } from './SectionHeader';
 
 const meta = {
-    title: 'Layout/SectionHeader',
+    title: 'Components/Headers/Section Header',
     component: SectionHeader,
     args: {
         prefix: 'Content components',

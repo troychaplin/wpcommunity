@@ -2,7 +2,7 @@ import type { Meta, StoryObj } from '@storybook/react-vite';
 import { Pill } from './Pill';
 
 const meta = {
-    title: 'Foundations/Pill',
+    title: 'Components/Elements/Pill',
     component: Pill,
     args: { children: 'Event' },
 } satisfies Meta<typeof Pill>;

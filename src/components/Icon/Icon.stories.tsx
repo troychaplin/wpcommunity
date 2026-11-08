@@ -7,7 +7,7 @@ import type { IconName } from './icons';
 const iconNames = Object.keys(icons) as IconName[];
 
 const meta = {
-    title: 'Foundations/Icon',
+    title: 'Components/Elements/Icon',
     component: Icon,
     args: { name: 'map-pin', size: 'heading-small' },
     argTypes: {

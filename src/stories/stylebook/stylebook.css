@@ -1,0 +1,238 @@
+/*
+ * Stylebook-only styles.
+ *
+ * IMPORTANT: This file is imported from components under src/stories/stylebook/
+ * which are only consumed by .mdx story files — NOT from src/index.ts.
+ * As a result, these styles are not included in the published library bundle.
+ *
+ * Selectors are doubled up (.sb-section.sb-section) to beat Storybook's
+ * docs-theme specificity without using !important.
+ */
+
+.sb-section {
+  margin: var(--wpc--spacing-x-large) 0;
+}
+
+.sb-section .sb-header {
+  margin-bottom: var(--wpc--spacing-medium);
+}
+
+.sb-section .sb-header h2 {
+  margin: 0;
+}
+
+.sb-section .sb-header p {
+  margin: 0;
+  margin-top: var(--wpc--spacing-x-small);
+  color: var(--wpc--color-text);
+}
+
+.sb-section .sb-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: var(--wpc--spacing-large);
+}
+
+.sb-section .sb-grid--wide {
+  gap: var(--wpc--spacing-large);
+}
+
+.sb-section .sb-swatch {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.sb-section .sb-swatch__color {
+  width: 100%;
+  height: 120px;
+  margin-bottom: var(--wpc--spacing-small);
+  border-radius: var(--wpc--radius-md);
+}
+
+.sb-section .sb-swatch__name {
+  font-size: var(--wpc--font-size-small);
+}
+
+.sb-section .sb-swatch__var,
+.sb-section .sb-swatch__value {
+  font-size: var(--wpc--font-size-x-small);
+  color: var(--wpc--color-text-muted);
+}
+
+.sb-section .sb-swatch__flag {
+  font-size: var(--wpc--font-size-x-small);
+  color: var(--wpc--color-text-muted);
+  font-style: italic;
+}
+
+.sb-section .sb-gradient {
+  display: flex;
+  flex-direction: column;
+}
+
+.sb-section .sb-gradient__bar {
+  height: 120px;
+  border-radius: var(--wpc--radius-md);
+}
+
+.sb-section .sb-stack {
+  display: flex;
+  flex-direction: column;
+  gap: var(--wpc--spacing-small);
+}
+
+.sb-section .sb-stack__item {
+  padding-bottom: var(--wpc--spacing-medium);
+}
+
+.sb-section .sb-stack__item:last-child {
+  border-bottom: none;
+  padding-bottom: 0;
+}
+
+.sb-section .sb-stack__sample {
+  color: var(--wpc--color-heading);
+  margin: 0 0 var(--wpc--spacing-x-small);
+}
+
+.sb-section .sb-stack__meta {
+  font-size: var(--wpc--font-size-small);
+  color: var(--wpc--color-text);
+}
+
+.sb-section .sb-spacing-row {
+  display: flex;
+  align-items: center;
+  gap: var(--wpc--spacing-large);
+}
+
+.sb-section .sb-spacing-demo {
+  display: flex;
+  align-items: center;
+  flex-shrink: 0;
+}
+
+.sb-section .sb-spacing-demo__block {
+  width: 48px;
+  height: 48px;
+  background-color: var(--wpc--color-text-muted);
+  border-radius: var(--wpc--radius-md);
+}
+
+.sb-section .sb-padding-demo {
+  display: block;
+  width: 320px;
+  background-color: #f5f5f5;
+  border: 1px dashed #999;
+  flex-shrink: 0;
+}
+
+.sb-section .sb-padding-demo__content {
+  display: block;
+  background-color: var(--wpc--color-text-muted);
+  color: var(--wpc--color-white);
+  border-radius: var(--wpc--radius-md);
+  font-size: var(--wpc--font-size-small);
+  font-weight: var(--wpc--font-weight-bold);
+  text-align: center;
+  padding: var(--wpc--spacing-x-large) var(--wpc--spacing-x-small);
+}
+
+.sb-section .sb-token-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: var(--wpc--font-size-small);
+}
+
+.sb-section .sb-token-table th,
+.sb-section .sb-token-table td {
+  padding: var(--wpc--spacing-x-small) var(--wpc--spacing-small);
+  text-align: left;
+  border-bottom: 1px solid var(--wpc--color-border);
+}
+
+.sb-section .sb-token-table th {
+  font-weight: var(--wpc--font-weight-semibold);
+  color: var(--wpc--color-text);
+  background-color: var(--wpc--color-surface-tint);
+}
+
+.sb-section .sb-token-table td:last-child {
+  color: var(--wpc--color-text-muted);
+}
+
+.sb-section .sb-token-table code {
+  font-size: var(--wpc--font-size-x-small);
+}
+
+/* ---------- Welcome page ---------- */
+
+.welcome-hero {
+  padding: var(--wpc--spacing-2x-large) 0;
+  border-bottom: 1px solid var(--wpc--color-border);
+  margin-bottom: var(--wpc--spacing-2x-large);
+}
+
+.welcome-hero .welcome-hero__title {
+  color: var(--wpc--color-primary);
+  font-size: var(--wpc--font-size-display);
+  font-weight: var(--wpc--font-weight-bold);
+  line-height: var(--wpc--line-height-tight);
+  margin: 0 0 var(--wpc--spacing-medium);
+}
+
+.welcome-hero .welcome-hero__tagline {
+  font-size: var(--wpc--font-size-x-large);
+  color: var(--wpc--color-text);
+  line-height: var(--wpc--line-height-normal);
+  margin: 0 0 var(--wpc--spacing-medium);
+  max-width: 60ch;
+}
+
+.welcome-hero .welcome-hero__body {
+  font-size: var(--wpc--font-size-medium);
+  color: var(--wpc--color-heading);
+  line-height: var(--wpc--line-height-normal);
+  max-width: 60ch;
+  margin: 0;
+}
+
+.welcome-highlights {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--wpc--spacing-medium);
+  margin-bottom: var(--wpc--spacing-2x-large);
+}
+
+.welcome-highlights .welcome-highlight {
+  display: block;
+  padding: var(--wpc--spacing-large);
+  background-color: var(--wpc--color-surface-tint);
+  border: 1px solid var(--wpc--color-border);
+  border-radius: var(--wpc--radius-lg);
+  text-decoration: none;
+  color: var(--wpc--color-heading);
+  transition: transform 0.15s ease, background-color 0.15s ease, border-color 0.15s ease;
+}
+
+.welcome-highlights .welcome-highlight:hover {
+  background-color: var(--wpc--color-border);
+  border-color: var(--wpc--color-primary);
+  transform: translateY(-2px);
+}
+
+.welcome-highlights .welcome-highlight__title {
+  display: block;
+  color: var(--wpc--color-primary);
+  font-size: var(--wpc--font-size-large);
+  font-weight: var(--wpc--font-weight-bold);
+  margin-bottom: var(--wpc--spacing-x-small);
+}
+
+.welcome-highlights .welcome-highlight__description {
+  display: block;
+  font-size: var(--wpc--font-size-small);
+  color: var(--wpc--color-text);
+  line-height: var(--wpc--line-height-normal);
+}

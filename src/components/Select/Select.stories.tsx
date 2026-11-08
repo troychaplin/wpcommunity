@@ -3,7 +3,7 @@ import { provinces } from '../../stories/fixtures';
 import { Select } from './Select';
 
 const meta = {
-    title: 'Content/Select',
+    title: 'Components/Forms/Select',
     component: Select,
     args: {
         label: 'Province or territory',

@@ -12,7 +12,7 @@ import { provinces } from '../../stories/fixtures';
 import { Fieldset } from './Fieldset';
 
 const meta = {
-    title: 'Content/Fieldset',
+    title: 'Components/Forms/Fieldset',
     component: Fieldset,
     args: {
         legend: 'Your details',

@@ -23,7 +23,7 @@ Adapted from Parlour's `build-component` skill.
 src/components/ComponentName/
 ├── ComponentName.tsx   # implementation
 ├── index.ts            # barrel: export { ComponentName } and type { ComponentNameProps }
-├── ComponentName.stories.tsx  # Storybook stories, titled by inventory group
+├── ComponentName.stories.tsx  # Storybook stories, titled `Components/<Group>/<Spaced Name>`
 └── styles.scss         # component styles (omit if none)
 docs/components/component-name.md
 ```
@@ -80,72 +80,101 @@ docs/components/component-name.md
 
 ## Inventory
 
-### Foundations
+Grouped as in Storybook, where each component is titled `Components/<Group>/<Name>`.
+
+### Elements
+
+The smallest pieces, used inside everything else.
 
 | Component | Used in | Variants / notes | Depends on | Status |
 |---|---|---|---|---|
+| [Avatar](./avatar.md) | Contact, volunteers, Slack mock | photo (ringed circle) or initials; small / medium / large; circle / square | — | complete |
 | [Button](./button.md) | Hero, Slack section, contact card, CTA band, group form | primary (crimson), secondary (white + border), inverse (outline on forest); leading icon; small / large; `href` renders a link | Icon | complete |
 | [ButtonGroup](./button-group.md) | Hero, contact card, CTA band | wrapping row of buttons; align start / center / end | Button | complete |
-| [SkipLink](./skip-link.md) | Every page (root layout) | off-screen until focused; targets `#main` | Main | complete |
-| [Icon](./icon.md) | Feature list, hero buttons, FAQ `+`, arrows, search | Lucide icons behind a registry of the ones the designs use; `em`-sized, decorative unless labelled | — | complete |
-| [Heading](./heading.md) | Hero, page and card titles, stat values | HTML level (`as`) separate from visual size (display … large); `accent` word (the "canopy" span) | — | complete |
 | [Eyebrow](./eyebrow.md) | Card regions, section eyebrows, stat / resource / fieldset / FAQ-group labels, dates | mono label; tones muted / accent (both follow the section tone) | — | complete |
-| [TextLink](./text-link.md) | Group cards, resources, updates, "View all groups", channel links | crimson semibold; optional trailing arrow; mono variant | Icon | complete |
+| [Heading](./heading.md) | Hero, page and card titles, stat values | HTML level (`as`) separate from visual size (display … large); `accent` word (the "canopy" span) | — | complete |
+| [Icon](./icon.md) | Feature list, hero buttons, FAQ `+`, arrows, search | Lucide icons behind a registry of the ones the designs use; `em`-sized, decorative unless labelled | — | complete |
 | [Pill](./pill.md) | Group header, update tags | tag (crimson tint), region (sage + dot), status (bordered) | — | complete |
-| [FilterPill](./filter-pill.md) | Meetup filter bar | stateless toggle (`aria-pressed`): forest-light fill when pressed | — | complete |
-| [Avatar](./avatar.md) | Contact, volunteers, Slack mock | photo (ringed circle) or initials; small / medium / large; circle / square | — | complete |
+| [TextLink](./text-link.md) | Group cards, resources, updates, "View all groups", channel links | crimson semibold; optional trailing arrow; mono variant | Icon | complete |
 
-### Page structure
+### Headers
+
+Page and section headings.
 
 | Component | Used in | Variants / notes | Depends on | Status |
 |---|---|---|---|---|
-| [Body](./body.md) | Root layout | renders `<body>` | — | complete |
-| [Main](./main.md) | Every page | `<main id="main">` with the WP layout inner div; optional block padding | — | complete |
-| [Article](./article.md) | Content pages | JSX children or an HTML string (`content`) | — | complete |
-| [Aside](./aside.md) | Content pages | optional sticky content | — | complete |
+| [Hero](./hero.md) | Home | full-bleed; display h1 with accent, lead, actions, aside; blush gradient, optional photo under a wash | Heading | complete |
+| [GroupHeader](./group-header.md) | Group page | pills row + channel link, 48px h1, description, stats in a tint card | Card, FlexGroup, Pill, TextLink, Heading, StatGroup | complete |
+| [SectionHeader](./section-header.md) | Meetup groups, resources, updates, FAQ, "New here?", Slack, CTA band | eyebrow, serif title, mono meta, description; align start / center; optional divider | Eyebrow | complete |
+
+### Navigation
+
+| Component | Used in | Variants / notes | Depends on | Status |
+|---|---|---|---|---|
+| [LanguageToggle](./language-toggle.md) | Header, footer | segmented En / Fr pill / labelled list; takes hrefs, `lang` + `aria-current` | — | complete |
+| [MeetupIndex](./meetup-index.md) | Home hero | title + version, search slot, region rows with dotted leaders and counts, meta facts | Eyebrow | complete |
+
+### Content
+
+| Component | Used in | Variants / notes | Depends on | Status |
+|---|---|---|---|---|
+| [Accordion](./accordion.md) | FAQ | label + `Accordion.Item` on native `details` / `summary`; plus / minus icons | Eyebrow, Icon | complete |
+| [ChatPreview](./chat-preview.md) | Slack section | figure: channel header, initials-avatar messages, mono stats footer | Card, Avatar, Eyebrow, StatGroup | complete |
+| [CTABand](./cta-band.md) | Group page (upcoming gathering) | inverse card with forest glow and raised shadow; eyebrow, title, details, location, actions | Card, Eyebrow, Heading | complete |
+| [FeatureItem](./feature-item.md) | "New here?" | short rule, icon, title, text, link pinned to the bottom | Icon, Heading, TextLink | complete |
+| [Figure](./figure.md) | Content pages | sizes xs–full, float left / right / center, caption | — | complete |
+| [StatGroup](./stat-group.md) | Group header, Slack mock | `<dl>` with `StatGroup.Item`; serif (with dividers) / mono | — | complete |
+| [UpdateList](./update-list.md) | Community updates | `UpdateList.Item`: date + tag column (subgrid-aligned), title, excerpt, link | Eyebrow, Pill, Heading, TextLink | complete |
+
+### Cards
+
+| Component | Used in | Variants / notes | Depends on | Status |
+|---|---|---|---|---|
+| [Card](./card.md) | Group header, contact, team panel, resources, Slack mock | surfaces white / canvas / tint / inverse / blush; border, shadow, radius, padding; full-card link | — | complete |
+| [GroupCard](./group-card.md) | Homepage group grid | unboxed; region eyebrow, title, description, meta (members · cadence), link | Eyebrow, Heading, TextLink | complete |
+| [PersonCard](./person-card.md) | Primary contact, volunteers | featured (label, lg avatar, role, handle, bio, actions) / compact | Avatar, Card, Eyebrow, Heading | complete |
+| [ResourceCard](./resource-card.md) | Local resources | eyebrow, title, text, arrow link pinned to the bottom | Card, Eyebrow, Heading, TextLink | complete |
+
+### Forms
+
+| Component | Used in | Variants / notes | Depends on | Status |
+|---|---|---|---|---|
+| [Fieldset](./fieldset.md) | "Start a group" form | mono legend over a rule | — | complete |
+| [FilterBar](./filter-bar.md) | Meetup groups | controlled client component; label + FilterPill group | Eyebrow, FilterPill | complete |
+| [FilterPill](./filter-pill.md) | Meetup filter bar | stateless toggle (`aria-pressed`): forest-light fill when pressed | — | complete |
+| [SearchField](./search-field.md) | Meetup Index sidebar | TextField preset: search icon, hidden label, taller | TextField | complete |
+| [Select](./select.md) | "Start a group" form (province) | native select with a chevron icon | Icon | complete |
+| [TextArea](./text-area.md) | "Start a group" form | wrapping label; vertical resize | — | complete |
+| [TextField](./text-field.md) | "Start a group" form | wrapping label; optional leading icon; field roles for light / inverse | Icon | complete |
 
 ### Layout
 
 | Component | Used in | Variants / notes | Depends on | Status |
 |---|---|---|---|---|
-| [Container](./container.md) | Every page band | tone: canvas / tint / inverse / blush / white (re-declares role tokens); width and content width from the WP alignment classes | — | complete |
-| [SectionHeader](./section-header.md) | Meetup groups, resources, updates, FAQ, "New here?", Slack, CTA band | eyebrow, serif title, mono meta, description; align start / center; optional divider | Eyebrow | complete |
-| [GridGroup](./grid-group.md) | Group cards (3), features (4), resources (4), team (3), form rows (2) | 1–4 responsive columns, token gaps; `dividers` (columns / all) draws lines between cells | — | complete |
+| [Article](./article.md) | Content pages | JSX children or an HTML string (`content`) | — | complete |
+| [Aside](./aside.md) | Content pages | optional sticky content | — | complete |
 | [Column](./column.md) | Slack section, "Start a group", contact + team | halves, thirds, quarters, one-third / two-thirds; `Column.Content isFirst` reordering | — | complete |
+| [Container](./container.md) | Every page band | tone: canvas / tint / inverse / blush / white (re-declares role tokens); width and content width from the WP alignment classes | — | complete |
 | [FlexGroup](./flex-group.md) | Header row, "Showing 6 of 23" row, card meta rows | direction, wrap, justify, align, token gap / padding / margin | — | complete |
+| [GridGroup](./grid-group.md) | Group cards (3), features (4), resources (4), team (3), form rows (2) | 1–4 responsive columns, token gaps; `dividers` (columns / all) draws lines between cells | — | complete |
 
-### Content components
+### Template Parts
 
-| Component | Used in | Variants / notes | Depends on | Status |
-|---|---|---|---|---|
-| [Card](./card.md) | Group header, contact, team panel, resources, Slack mock | surfaces white / canvas / tint / inverse / blush; border, shadow, radius, padding; full-card link | — | complete |
-| [Figure](./figure.md) | Content pages | sizes xs–full, float left / right / center, caption | — | complete |
-| [GroupCard](./group-card.md) | Homepage group grid | unboxed; region eyebrow, title, description, meta (members · cadence), link | Eyebrow, Heading, TextLink | complete |
-| [FeatureItem](./feature-item.md) | "New here?" | short rule, icon, title, text, link pinned to the bottom | Icon, Heading, TextLink | complete |
-| [StatGroup](./stat-group.md) | Group header, Slack mock | `<dl>` with `StatGroup.Item`; serif (with dividers) / mono | — | complete |
-| [PersonCard](./person-card.md) | Primary contact, volunteers | featured (label, lg avatar, role, handle, bio, actions) / compact | Avatar, Card, Eyebrow, Heading | complete |
-| [ResourceCard](./resource-card.md) | Local resources | eyebrow, title, text, arrow link pinned to the bottom | Card, Eyebrow, Heading, TextLink | complete |
-| [UpdateList](./update-list.md) | Community updates | `UpdateList.Item`: date + tag column (subgrid-aligned), title, excerpt, link | Eyebrow, Pill, Heading, TextLink | complete |
-| [Accordion](./accordion.md) | FAQ | label + `Accordion.Item` on native `details` / `summary`; plus / minus icons | Eyebrow, Icon | complete |
-| [Fieldset](./fieldset.md) | "Start a group" form | mono legend over a rule | — | complete |
-| [TextField](./text-field.md) | "Start a group" form | wrapping label; optional leading icon; field roles for light / inverse | Icon | complete |
-| [TextArea](./text-area.md) | "Start a group" form | wrapping label; vertical resize | — | complete |
-| [Select](./select.md) | "Start a group" form (province) | native select with a chevron icon | Icon | complete |
-| [SearchField](./search-field.md) | Meetup Index sidebar | TextField preset: search icon, hidden label, taller | TextField | complete |
-| [FilterBar](./filter-bar.md) | Meetup groups | controlled client component; label + FilterPill group | Eyebrow, FilterPill | complete |
-| [ChatPreview](./chat-preview.md) | Slack section | figure: channel header, initials-avatar messages, mono stats footer | Card, Avatar, Eyebrow, StatGroup | complete |
-
-### Page sections
+The document shell every page shares.
 
 | Component | Used in | Variants / notes | Depends on | Status |
 |---|---|---|---|---|
+| [Body](./body.md) | Root layout | renders `<body>` | — | complete |
+| [Main](./main.md) | Every page | `<main id="main">` with the WP layout inner div; optional block padding | — | complete |
 | [SiteHeader](./site-header.md) | All pages | serif wordmark; muted nav beside the actions slot (language toggle); Menu button and panel below tablet | FlexGroup, Icon | complete |
 | [SiteFooter](./site-footer.md) | All pages | forest; brand + description, nav column, extra slot (language), bottom bar | — | complete |
-| [LanguageToggle](./language-toggle.md) | Header, footer | segmented En / Fr pill / labelled list; takes hrefs, `lang` + `aria-current` | — | complete |
-| [MeetupIndex](./meetup-index.md) | Home hero | title + version, search slot, region rows with dotted leaders and counts, meta facts | Eyebrow | complete |
-| [Hero](./hero.md) | Home | full-bleed; display h1 with accent, lead, actions, aside; blush gradient, optional photo under a wash | Heading | complete |
-| [GroupHeader](./group-header.md) | Group page | pills row + channel link, 48px h1, description, stats in a tint card | Card, FlexGroup, Pill, TextLink, Heading, StatGroup | complete |
-| [CTABand](./cta-band.md) | Group page (upcoming gathering) | inverse card with forest glow and raised shadow; eyebrow, title, details, location, actions | Card, Eyebrow, Heading | complete |
+
+### Utilities
+
+| Component | Used in | Variants / notes | Depends on | Status |
+|---|---|---|---|---|
+| LinkProvider | App root (`src/app/root.tsx`) | supplies the router's link component to every component that renders a link; plain `<a>` without one | — | complete |
+| [SkipLink](./skip-link.md) | Every page (root layout) | off-screen until focused; targets `#main` | Main | complete |
 
 ## Pages
 

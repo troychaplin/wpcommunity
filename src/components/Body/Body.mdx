@@ -1,0 +1,26 @@
+import { ArgTypes, Meta } from '@storybook/addon-docs/blocks';
+import { Body } from './Body';
+
+<Meta title="Components/Template Parts/Body" />
+
+# Body
+
+Renders the page's `<body>` element. The root route's `Layout` in `src/app/root.tsx` uses it to wrap every page, so global classes can be set on the body from React.
+
+This page has no rendered example: a `<body>` inside Storybook's preview would sit inside another element, which isn't valid HTML.
+
+## Usage
+
+```tsx
+<html lang={locale}>
+    <head>{/* … */}</head>
+    <Body>
+        <SkipLink />
+        <Main>{/* … */}</Main>
+    </Body>
+</html>
+```
+
+## Props
+
+<ArgTypes of={Body} />

@@ -4,7 +4,7 @@ import { footerNav, languages } from '../../stories/fixtures';
 import { SiteFooter } from './SiteFooter';
 
 const meta = {
-    title: 'Sections/SiteFooter',
+    title: 'Components/Template Parts/Site Footer',
     component: SiteFooter,
     parameters: { layout: 'fullscreen' },
     args: {
@@ -19,7 +19,7 @@ const meta = {
                 Part of the global <a href="https://wordpress.org">WordPress</a> community.
             </>
         ),
-        children: <LanguageToggle languages={languages} variant="list" />,
+        children: <LanguageToggle languages={languages} variant="list" navLabel="Footer language" />,
     },
 } satisfies Meta<typeof SiteFooter>;
 

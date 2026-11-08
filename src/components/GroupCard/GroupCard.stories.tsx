@@ -5,7 +5,7 @@ import { GroupCard } from './GroupCard';
 const { regionKey, ...toronto } = groups[0];
 
 const meta = {
-    title: 'Content/GroupCard',
+    title: 'Components/Cards/Group Card',
     component: GroupCard,
     args: { ...toronto, href: `#${regionKey}` },
 } satisfies Meta<typeof GroupCard>;

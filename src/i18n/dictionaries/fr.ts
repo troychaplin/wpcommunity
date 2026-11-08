@@ -30,6 +30,7 @@ export const fr: Dictionary = {
     },
     footer: {
         navLabel: 'Pied de page',
+        languageNavLabel: 'Langue du pied de page',
         description: 'Une communauté bilingue pour les gens de WordPress au Canada.',
         nav: {
             groups: 'Groupes de rencontre',

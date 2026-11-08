@@ -4,7 +4,7 @@ import { Heading } from '../Heading';
 import { Main } from './Main';
 
 const meta = {
-    title: 'Page Structure/Main',
+    title: 'Components/Template Parts/Main',
     component: Main,
     parameters: { layout: 'fullscreen' },
     args: {

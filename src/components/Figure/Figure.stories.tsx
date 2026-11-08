@@ -2,7 +2,7 @@ import type { Meta, StoryObj } from '@storybook/react-vite';
 import { Figure } from './Figure';
 
 const meta = {
-    title: 'Content/Figure',
+    title: 'Components/Content/Figure',
     component: Figure,
     args: {
         caption: 'A figure with a caption',

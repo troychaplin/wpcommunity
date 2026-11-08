@@ -13,7 +13,7 @@ import { Container } from './Container';
 const tones = ['canvas', 'tint', 'blush', 'inverse', 'white'] as const;
 
 const meta = {
-    title: 'Layout/Container',
+    title: 'Components/Layout/Container',
     component: Container,
     parameters: { layout: 'fullscreen' },
     args: { as: 'section', maxWidth: 'alignfull', contentWidth: 'alignwide', color: 'canvas' },

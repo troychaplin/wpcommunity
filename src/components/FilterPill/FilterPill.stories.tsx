@@ -5,7 +5,7 @@ import { FlexGroup } from '../FlexGroup';
 import { FilterPill } from './FilterPill';
 
 const meta = {
-    title: 'Foundations/FilterPill',
+    title: 'Components/Forms/Filter Pill',
     component: FilterPill,
     args: { children: 'British Columbia' },
 } satisfies Meta<typeof FilterPill>;

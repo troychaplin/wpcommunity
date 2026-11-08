@@ -3,7 +3,7 @@ import { Container } from '../Container';
 import { Accordion } from './Accordion';
 
 const meta = {
-    title: 'Content/Accordion',
+    title: 'Components/Content/Accordion',
     component: Accordion,
     args: {
         label: 'Getting started',

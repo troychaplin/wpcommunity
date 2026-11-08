@@ -3,7 +3,7 @@ import { languages } from '../../stories/fixtures';
 import { LanguageToggle } from './LanguageToggle';
 
 const meta = {
-    title: 'Sections/LanguageToggle',
+    title: 'Components/Navigation/Language Toggle',
     component: LanguageToggle,
     args: { languages },
 } satisfies Meta<typeof LanguageToggle>;
@@ -14,7 +14,7 @@ type Story = StoryObj<typeof meta>;
 // The header pill
 export const Segmented: Story = {};
 
-// The footer list
+// The footer list. Its landmark gets its own name so it differs from the header toggle's
 export const List: Story = {
-    args: { variant: 'list' },
+    args: { variant: 'list', navLabel: 'Footer language' },
 };

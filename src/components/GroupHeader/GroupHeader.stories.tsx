@@ -3,7 +3,7 @@ import { groupStats } from '../../stories/fixtures';
 import { GroupHeader } from './GroupHeader';
 
 const meta = {
-    title: 'Sections/GroupHeader',
+    title: 'Components/Headers/Group Header',
     component: GroupHeader,
     args: {
         region: 'Ontario / Great Lakes Region',

@@ -13,6 +13,13 @@ Vite + React Router 8.5.1 in framework mode, prerendered to static HTML (`ssr: f
 - Components in `src/components/` must stay router-free: render links with `Link` from
   `src/components/LinkProvider`, never `react-router`'s, so the same components work in Storybook
   and c2b. The app supplies React Router's Link through `LinkProvider` in `src/app/root.tsx`.
-- Every component has a `ComponentName.stories.tsx` beside it. Shared sample content lives in
-  `src/stories/fixtures.ts`; reference static files with relative paths (`globe.svg`) so they resolve
-  under the GitHub Pages base path.
+- Every component has a `ComponentName.stories.tsx` beside it, titled
+  `Components/<Group>/<Spaced Name>` with the group from the inventory in
+  `docs/components/README.md` (add new groups to `storySort` in `.storybook/preview.ts`). Shared
+  sample content lives in `src/stories/fixtures.ts`; reference static files with relative paths
+  (`globe.svg`) so they resolve under the GitHub Pages base path.
+- Overview pages live in `src/stories/`: `About.mdx` and the Stylebook in `src/stories/stylebook/`,
+  whose components read token names and values straight from `c2b.config.json`.
+- Page templates live in `src/templates/`, titled `Overview/Templates`. They render the app's real
+  route modules through React Router's `createRoutesStub` rather than re-composing the page, so
+  they stay in sync with the site; give each template its own story export.

@@ -27,6 +27,8 @@ export const en = {
     },
     footer: {
         navLabel: 'Footer',
+        // The footer language toggle's landmark name; the header's is `language`
+        languageNavLabel: 'Footer language',
         description: "A bilingual community for Canada's WordPress people.",
         nav: {
             groups: 'Meetup Groups',

@@ -4,7 +4,7 @@ import { chatStats, groupStats } from '../../stories/fixtures';
 import { StatGroup } from './StatGroup';
 
 const meta = {
-    title: 'Content/StatGroup',
+    title: 'Components/Content/Stat Group',
     component: StatGroup,
     args: {
         children: groupStats.map((stat) => <StatGroup.Item key={stat.label} {...stat} />),

@@ -44,9 +44,26 @@ const preview: Preview = {
             },
         },
         options: {
-            // Follows the inventory in docs/components/README.md
+            // Overview holds the docs pages; the Components groups follow the inventory in
+            // docs/components/README.md
             storySort: {
-                order: ['Introduction', 'Foundations', 'Page Structure', 'Layout', 'Content', 'Sections', '*'],
+                order: [
+                    'Overview',
+                    ['About', 'Stylebook', ['Colors', 'Typography', 'Spacing', 'Effects', 'Content Flow'], 'Templates'],
+                    'Components',
+                    [
+                        'Elements',
+                        'Headers',
+                        'Navigation',
+                        'Content',
+                        'Cards',
+                        'Forms',
+                        'Layout',
+                        'Template Parts',
+                        'Utilities',
+                    ],
+                    '*',
+                ],
             },
         },
     },

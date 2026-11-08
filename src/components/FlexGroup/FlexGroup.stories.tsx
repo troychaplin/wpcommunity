@@ -5,7 +5,7 @@ import { TextLink } from '../TextLink';
 import { FlexGroup } from './FlexGroup';
 
 const meta = {
-    title: 'Layout/FlexGroup',
+    title: 'Components/Layout/Flex Group',
     component: FlexGroup,
     args: {
         justify: 'space-between',

@@ -2,7 +2,7 @@ import type { Meta, StoryObj } from '@storybook/react-vite';
 import { TextLink } from './TextLink';
 
 const meta = {
-    title: 'Foundations/TextLink',
+    title: 'Components/Elements/Text Link',
     component: TextLink,
     args: { href: '#groups', children: 'View group details' },
 } satisfies Meta<typeof TextLink>;

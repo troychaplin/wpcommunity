@@ -3,7 +3,7 @@ import { Card } from '../Card';
 import { Column } from './Column';
 
 const meta = {
-    title: 'Layout/Column',
+    title: 'Components/Layout/Column',
     component: Column,
     args: {
         cols: '2',

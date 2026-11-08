@@ -2,7 +2,7 @@ import type { Meta, StoryObj } from '@storybook/react-vite';
 import { Eyebrow } from './Eyebrow';
 
 const meta = {
-    title: 'Foundations/Eyebrow',
+    title: 'Components/Elements/Eyebrow',
     component: Eyebrow,
     args: { children: 'primary group contact' },
 } satisfies Meta<typeof Eyebrow>;

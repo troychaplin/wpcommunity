@@ -4,7 +4,7 @@ import { headerNav, languages } from '../../stories/fixtures';
 import { SiteHeader } from './SiteHeader';
 
 const meta = {
-    title: 'Sections/SiteHeader',
+    title: 'Components/Template Parts/Site Header',
     component: SiteHeader,
     parameters: { layout: 'fullscreen' },
     args: {
