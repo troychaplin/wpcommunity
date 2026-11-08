@@ -1,7 +1,9 @@
 'use client';
 
 import { createContext, useContext, useEffect, useMemo, useState, useSyncExternalStore } from 'react';
+import { getDirectoryGroups } from '@/data';
 import type { DirectoryGroup } from '@/data';
+import { useI18n } from '@/i18n/useI18n';
 
 interface DirectoryContextValue {
     groups: DirectoryGroup[];
@@ -36,7 +38,6 @@ const subscribeToHash = (onChange: () => void) => {
 };
 
 export interface DirectoryProviderProps {
-    groups: DirectoryGroup[];
     // The element scrolled into view when a #region- link is followed
     resultsId: string;
     children: React.ReactNode;
@@ -44,7 +45,13 @@ export interface DirectoryProviderProps {
 
 // Shares the search query and region across sections that sit apart on the page: the hero's
 // Meetup Index search and the group grid below it. Region links (#region-bc) pick a region too.
-export function DirectoryProvider({ groups, resultsId, children }: DirectoryProviderProps) {
+// Builds the page locale's group list itself, so a page only says where its results are.
+export function DirectoryProvider({ resultsId, children }: DirectoryProviderProps) {
+    const { locale, t } = useI18n();
+    const groups = useMemo(
+        () => getDirectoryGroups(locale, (cadence) => t.cadences[cadence].inCard),
+        [locale, t],
+    );
     const [query, setQuery] = useState('');
     const hash = useSyncExternalStore(subscribeToHash, () => window.location.hash, () => '');
     const [choice, setChoice] = useState<{ region: string; hash: string } | null>(null);

@@ -66,7 +66,7 @@ docs/components/component-name.md
 
 - Components never import a router. Links render `Link` from [`src/components/LinkProvider`](../../src/components/LinkProvider/), a plain `<a>` by default; the app hands it React Router's `Link` through `LinkProvider` in `src/app/root.tsx`. That keeps components working in Storybook and c2b. `'use client'` marks components with state, effects or context, for any Server Components consumer.
 - Interactive components are controlled (`value` + `onChange`) and hold no state. A small client wrapper owns the state, as in the FilterBar story (`src/components/FilterBar/FilterBar.stories.tsx`).
-- App-level client code that wires components to data lives in `src/features/`, not in `src/components/` (see [Pages](#pages)).
+- App-level client code that wires components to data lives in `src/features/`, not in `src/components/`, and page sections live in `src/patterns/` (see [Pages](#pages)).
 - Components take their user-facing strings as props with English defaults, so the pages can pass translations.
 
 ### Layout
@@ -179,7 +179,14 @@ The document shell every page shares.
 
 ## Pages
 
-Phase 5 assembled the designs into real routes, in English and French.
+Phase 5 assembled the designs into real routes, in English and French. A page is built in four layers, the same ladder as WordPress's blocks, patterns and templates:
+
+| Layer | Folder | What it holds |
+|---|---|---|
+| Components | `src/components/` | The design system: router-free and data-free |
+| Features | `src/features/` | Interactive app code. Reads the locale and data itself, so a page doesn't wire it up |
+| Patterns | `src/patterns/<page>/` | One page section each: its `Container`, layout and data mapping. Reads `useI18n()` and the data itself, and takes only what differs per page (a group) |
+| Routes | `src/app/routes/` | A page: `PageMeta` and its patterns, top to bottom |
 
 ### Routes
 
@@ -214,6 +221,20 @@ Routes are declared in [`src/app/routes.ts`](../../src/app/routes.ts) and every 
 - `locale/LocaleSwitcher`: the header and footer language toggles.
 - `directory/`: `DirectoryProvider` shares the search query and region across sections that sit apart on the page (the hero search and the group grid). A `#region-bc` link from the Meetup Index selects that region and scrolls to the results. `DirectorySearch` and `DirectoryResults` read the context. Search ignores case and accents ("montreal" finds Montréal).
 - `group-form/`: `GroupForm` with `useActionState` and `submitGroup`, which runs in the browser (the site is static). It validates and returns localized errors, keeps what was typed, moves focus to the first invalid field, and announces the result in a live region. Nothing is stored yet: `deliverGroupSubmission()` is where a backend plugs in.
+
+Each feature reads the locale with `useI18n()` and builds its own labels and options, so it takes only what changes where it's used (`DirectoryResults` takes `limit`, `showViewAll` and `cardHeadingLevel`).
+
+### Patterns
+
+[`src/patterns/`](../../src/patterns/) holds one folder per page, with a barrel each (`@/patterns/home`). A pattern is one section of the page: it owns its `Container`, layout, data mapping and the comments that explain them. Each has a story titled `Patterns/<Page>/<Name>`, rendered in the page's `Main` in English or French.
+
+| Page | Patterns, top to bottom |
+|---|---|
+| `home/` | `HomeHero`, `MeetupGroups` (both inside the page's `DirectoryProvider`), `SlackInvite`, `NewHere`, `StartGroup`, `CommunityUpdates`, `CommonQuestions` |
+| `groups/` | `GroupDirectory` (inside a `DirectoryProvider`) |
+| `group/` | `GroupIntro`, `GroupPeople`, `GroupResources`, `NextEvent`. Each takes the `group`; `GroupPeople` and `NextEvent` render nothing without an organizer or team, or an event |
+
+The homepage's section ids (`groups`, `slack`, `new-here`, `start-a-group`, `updates`, `faq`) are defined once in [`src/patterns/home/sections.ts`](../../src/patterns/home/sections.ts). The patterns, the hero's buttons and the header and footer links all read them, so an anchor can't drift from its section.
 
 ## Alignment (Parlour → wpc)
 

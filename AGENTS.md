@@ -27,6 +27,16 @@ Vite + React Router 8.5.1 in framework mode, prerendered to static HTML (`ssr: f
   (`globe.svg`) so they resolve under the GitHub Pages base path.
 - Overview pages live in `src/stories/`: `About.mdx` and the Stylebook in `src/stories/stylebook/`,
   whose components read token names and values straight from `c2b.config.json`.
+- Pages are built in four layers. Components (`src/components/`) are router-free and data-free.
+  Features (`src/features/`) are interactive app code that reads the locale and data itself.
+  Patterns (`src/patterns/<page>/`) are one page section each: they own their `Container`, layout
+  and data mapping, read `useI18n()` and `@/data` themselves, and take only what differs per page
+  (a `group`). Routes (`src/app/routes/`) render `PageMeta` and their patterns in order, with no
+  inline data mapping. The homepage's section ids live in `src/patterns/home/sections.ts`.
+- Every pattern has a `PatternName.stories.tsx` beside it, titled `Patterns/<Page>/<Spaced Name>`,
+  using `patternMeta` and `withPattern()` from `src/stories/patternDecorator.tsx` (set `title` and
+  `tags: ['!autodocs']` in the file itself; Storybook reads them statically). Add new pages and
+  patterns to the `Patterns` entry of `storySort`, in page order.
 - Page templates live in `src/templates/`, titled `Overview/Templates`. They render the app's real
   route modules through React Router's `createRoutesStub` rather than re-composing the page, so
   they stay in sync with the site; give each template its own story export.

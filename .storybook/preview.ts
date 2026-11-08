@@ -45,7 +45,7 @@ const preview: Preview = {
         },
         options: {
             // Overview holds the docs pages; the Components groups follow the inventory in
-            // docs/components/README.md
+            // docs/components/README.md; Patterns follow the pages, each in page order
             storySort: {
                 order: [
                     'Overview',
@@ -61,6 +61,22 @@ const preview: Preview = {
                         'Layout',
                         'Template Parts',
                         'Utilities',
+                    ],
+                    'Patterns',
+                    [
+                        'Home',
+                        [
+                            'Home Hero',
+                            'Meetup Groups',
+                            'Slack Invite',
+                            'New Here',
+                            'Start Group',
+                            'Community Updates',
+                            'Common Questions',
+                        ],
+                        'Groups',
+                        'Group',
+                        ['Group Intro', 'Group People', 'Group Resources', 'Next Event'],
                     ],
                     '*',
                 ],

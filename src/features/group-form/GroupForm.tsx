@@ -7,23 +7,20 @@ import { FlexGroup } from '@/components/FlexGroup';
 import { GridGroup } from '@/components/GridGroup';
 import { Heading } from '@/components/Heading';
 import { Select } from '@/components/Select';
-import type { SelectOption } from '@/components/Select';
 import { TextArea } from '@/components/TextArea';
 import { TextField } from '@/components/TextField';
-import type { Dictionary } from '@/i18n/dictionaries';
-import type { Locale } from '@/i18n/config';
+import { provinces } from '@/data';
+import { useI18n } from '@/i18n/useI18n';
 import { submitGroup } from './submitGroup';
 import { aboutMaxLength, groupFormFields, initialGroupFormState } from './types';
 
 import './styles.scss';
 
-export interface GroupFormProps {
-    locale: Locale;
-    labels: Dictionary['form'];
-    provinces: SelectOption[];
-}
-
-export function GroupForm({ locale, labels, provinces }: GroupFormProps) {
+// The "Start a group" form, labelled in the page locale
+export function GroupForm() {
+    const { locale, t } = useI18n();
+    const labels = t.form;
+    const provinceOptions = provinces.map((province) => ({ value: province.code, label: province.name[locale] }));
     const [state, formAction, isPending] = useActionState(submitGroup, initialGroupFormState);
     const formRef = useRef<HTMLFormElement>(null);
     const successRef = useRef<HTMLDivElement>(null);
@@ -86,7 +83,7 @@ export function GroupForm({ locale, labels, provinces }: GroupFormProps) {
                                 <Select
                                     label={labels.province}
                                     name="province"
-                                    options={provinces}
+                                    options={provinceOptions}
                                     placeholder={labels.provincePlaceholder}
                                     required
                                     defaultValue={values.province ?? ''}
