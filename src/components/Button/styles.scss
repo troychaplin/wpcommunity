@@ -43,7 +43,7 @@ a.wpc-button {
 // read palette steps, not roles, so a button looks the same whichever section it sits in. Solid
 // surfaces draw the border in the fill and darken the fill on hover; light ones draw the paired
 // border and darken it on hover.
-@each $name in (crimson, white, forest) {
+@each $name in ('crimson', 'white', 'forest') {
     .wpc-button--#{$name} {
         @include surfaces.surface-vars($name);
         color: var(--wpc-surface-text);

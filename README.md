@@ -13,19 +13,20 @@ pnpm install
 pnpm dev
 ```
 
-Open [http://localhost:5173](http://localhost:5173). `/` redirects to `/en` or `/fr` from your browser's languages.
+This runs the site at [http://localhost:5173](http://localhost:5173) and Storybook at [http://localhost:6006](http://localhost:6006). `/` redirects to `/en` or `/fr` from your browser's languages.
 
 ## Scripts
 
 | Script | What it does |
 | --- | --- |
-| `pnpm dev` | Generates design tokens, then starts the dev server |
-| `pnpm build` | Generates design tokens, then prerenders every page to `build/client` |
-| `pnpm preview` | Serves `build/client` as static files, the way a host will |
+| `pnpm dev` | Generates design tokens, then runs the dev server and Storybook side by side in one terminal. Ctrl-C stops both, and if either fails to start the other stops too |
+| `pnpm react` | Generates design tokens, then starts the dev server only |
 | `pnpm typecheck` | Generates route types, then runs TypeScript |
 | `pnpm lint` | Runs ESLint |
-| `pnpm storybook` | Starts Storybook on port 6006 |
+| `pnpm storybook` | Generates design tokens, then starts Storybook only, on port 6006 |
+| `pnpm build` | Generates design tokens, then prerenders every page to `build/client` |
 | `pnpm build-storybook` | Builds Storybook to `storybook-static` |
+| `pnpm preview` | Serves `build/client` as static files, the way a host will |
 | `pnpm tokens` | Regenerates the design tokens from `c2b.config.json` |
 
 ## Where things live

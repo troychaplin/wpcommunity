@@ -16,7 +16,8 @@ Vite + React Router 8.5.1 in framework mode, prerendered to static HTML (`ssr: f
   section. The surfaces (white, stone, sage, blush, crimson, forest) are defined once in
   `src/styles/mixins/_surfaces.scss`; Container `color`, Card `backgroundColor` and Button `color`
   take those names. Apply one with `@include surface(name)`, or `surface-vars(name)` for the
-  `--wpc-surface-*` variables only.
+  `--wpc-surface-*` variables only. Quote surface names in Sass (`'white'`, `'crimson'`): unquoted,
+  those two are colour keywords, which warn when interpolated into a class name.
 - Components in `src/components/` must stay router-free: render links with `Link` from
   `src/components/LinkProvider`, never `react-router`'s, so the same components work in Storybook
   and c2b. The app supplies React Router's Link through `LinkProvider` in `src/app/root.tsx`.

@@ -4,13 +4,14 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "dev": "c2b generate && react-router dev",
-    "build": "c2b generate && react-router build",
-    "preview": "vite preview --outDir build/client",
+    "dev": "c2b generate && concurrently --names app,storybook --prefix-colors green,magenta --kill-others-on-fail \"react-router dev\" \"storybook dev -p 6006 --exact-port\"",
+    "react": "c2b generate && react-router dev",
     "typecheck": "react-router typegen && tsc",
     "lint": "eslint",
     "storybook": "c2b generate && storybook dev -p 6006",
+    "build": "c2b generate && react-router build",
     "build-storybook": "c2b generate && storybook build",
+    "preview": "vite preview --outDir build/client",
     "tokens": "c2b generate"
   },
   "dependencies": {
@@ -36,6 +37,7 @@
     "@types/react": "^19",
     "@types/react-dom": "^19",
     "@vitejs/plugin-react": "6.3.0",
+    "concurrently": "^10.0.7",
     "eslint": "^10.15.0",
     "eslint-plugin-jsx-a11y": "^6.10.2",
     "eslint-plugin-react": "^7.37.5",

@@ -87,7 +87,7 @@ $steps: (
 }
 
 // The paired border of a surface from the shared set
-@each $name in (stone, sage, crimson, forest) {
+@each $name in ('stone', 'sage', 'crimson', 'forest') {
     .wpc-grid-group--divider-#{$name} {
         --wpc-grid-group-divider: #{surfaces.colour-var(surfaces.surface-get($name, border))};
     }

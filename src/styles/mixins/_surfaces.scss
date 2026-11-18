@@ -1,4 +1,5 @@
 @use 'sass:map';
+@use 'sass:meta';
 @use 'tones';
 
 // The shared surface set. Container (`color`), Card (`backgroundColor`) and Button (`color`) take
@@ -14,16 +15,21 @@
 // tone          the role set children read: light, inverse or crimson (see tones.scss)
 // border-role   optional override of the tone's --wpc--color-border, for dividers inside
 // solid         a saturated fill: buttons draw their border in the fill colour, not `border`
+//
+// Surface names are quoted strings, here and wherever a list of them is written out. `white` and
+// `crimson` are also CSS colour keywords, so unquoted, Sass reads them as colours: interpolating
+// one into a class name warns, and a colour doesn't match its quoted key (surface-get says so).
+// The `white` step and the `crimson` tone are quoted for the same reason.
 $surfaces: (
-    white: (
-        fill: white,
+    'white': (
+        fill: 'white',
         border: stone-200,
         hover-border: sage-600,
-        hover-fill: white,
+        hover-fill: 'white',
         text: forest-950,
         tone: light,
     ),
-    stone: (
+    'stone': (
         fill: stone-50,
         border: stone-200,
         hover-border: sage-600,
@@ -31,7 +37,7 @@ $surfaces: (
         text: forest-950,
         tone: light,
     ),
-    sage: (
+    'sage': (
         fill: sage-50,
         border: sage-200,
         hover-border: sage-600,
@@ -40,7 +46,7 @@ $surfaces: (
         tone: light,
         border-role: sage-200,
     ),
-    blush: (
+    'blush': (
         fill: stone-50,
         image: var(--wpc--gradient-blush),
         border: stone-200,
@@ -49,21 +55,21 @@ $surfaces: (
         text: forest-950,
         tone: light,
     ),
-    crimson: (
+    'crimson': (
         fill: crimson-600,
         border: crimson-700,
         hover-border: crimson-300,
         hover-fill: crimson-700,
-        text: white,
-        tone: crimson,
+        text: 'white',
+        tone: 'crimson',
         solid: true,
     ),
-    forest: (
+    'forest': (
         fill: forest-950,
         border: forest-800,
         hover-border: forest-400,
         hover-fill: forest-900,
-        text: white,
+        text: 'white',
         tone: inverse,
         solid: true,
     ),
@@ -72,6 +78,10 @@ $surfaces: (
 $surface-names: map.keys($surfaces);
 
 @function surface-get($name, $key) {
+    @if meta.type-of($name) == color {
+        @error 'Quote the surface name: \'#{meta.inspect($name)}\'. Unquoted, Sass reads it as a colour.';
+    }
+
     $surface: map.get($surfaces, $name);
 
     @if not $surface {
@@ -106,7 +116,7 @@ $surface-names: map.keys($surfaces);
         @include tones.light;
     } @else if $tone == inverse {
         @include tones.inverse;
-    } @else if $tone == crimson {
+    } @else if $tone == 'crimson' {
         @include tones.crimson;
     }
 
