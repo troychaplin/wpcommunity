@@ -1,3 +1,12 @@
 # esbuild (used by Storybook) runs a postinstall check of its platform binary
 onlyBuiltDependencies:
   - esbuild
+
+# eslint-plugin-react 7.37.5 and eslint-plugin-jsx-a11y 6.10.2 are the latest releases and still
+# declare ESLint 9 at most, but they run on ESLint 10: neither calls the context methods ESLint 10
+# removed, in the rules eslint.config.mjs turns on (with the React version set
+# explicitly there). Drop these once they declare ESLint 10.
+peerDependencyRules:
+  allowedVersions:
+    eslint-plugin-react>eslint: '^10'
+    eslint-plugin-jsx-a11y>eslint: '^10'

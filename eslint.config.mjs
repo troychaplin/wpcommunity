@@ -5,7 +5,12 @@ import reactHooks from 'eslint-plugin-react-hooks';
 import storybook from 'eslint-plugin-storybook';
 import { defineConfig, globalIgnores } from 'eslint/config';
 import globals from 'globals';
+import { createRequire } from 'node:module';
 import tseslint from 'typescript-eslint';
+
+// eslint-plugin-react's `version: 'detect'` calls context.getFilename(), which ESLint 10 removed,
+// so the installed React version is read here instead
+const { version: reactVersion } = createRequire(import.meta.url)('react/package.json');
 
 export default defineConfig([
     js.configs.recommended,
@@ -24,7 +29,7 @@ export default defineConfig([
             },
         },
         settings: {
-            react: { version: 'detect' },
+            react: { version: reactVersion },
         },
         rules: {
             ...react.configs.recommended.rules,
